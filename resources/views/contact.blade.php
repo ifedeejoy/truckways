@@ -1,0 +1,39 @@
+@extends('layouts.app')
+@section('title', 'Contact Us')
+@section('bg', 'map.png')
+@section('content')
+
+<section class="latest-loads animated fadeInUp delay-1s mt-5">
+	<div class="container">
+        <div class="login-form col-sm-4 mx-auto">
+            <p class="text-center"><b>Login</b></p>
+            <form action="" class="mt-5">
+                <div class="md-form mb-3">
+                    <img src="/images/username.svg" class="prefix" alt="Username Icon">
+                    <input type="email" class="form-control" name="email" id="email" autocomplete="username">
+                    <label for="email">Username Or Email</label>
+                </div>
+                <div class="md-form mb-5">
+                    <img src="/images/password.svg" class="prefix" alt="Password Icon">
+                    <input type="password" class="form-control" name="password" id="password" autcomplete="current-password">
+                    <label for="password">Password</label>
+                </div>
+                <div class="text-center mb-5">
+                    <button class="long-btn waves-effect waves-dark p-2">Login</button>
+                </div>
+                <div class="login-liner"></div>
+                <h6 class="login-option">or</h6>
+                <div class="text-center mb-4">
+                    <button class="btn-primary-outline">Login With <i class="fab fa-google"></i></button>
+                </div>
+                <div class="text-center">
+                    <a href="/driver-register" class="btn-primary-outline">Sign Up</a>
+                </div>
+            </form>
+        </div>
+	</div>
+</section>
+@endsection
+@section('scripts')
+	@parent
+@endsection
