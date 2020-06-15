@@ -888,3 +888,261 @@ header,
   }
 }
 
+body,
+main {
+  background-color: #F2F2F2;
+  font-family: "Montserrat", sans-serif;
+  color: #000000 !important;
+}
+
+.bg-primary {
+  background-color: #FF9011 !important;
+}
+
+.bg-white {
+  background-color: #FFFFFF !important;
+}
+
+.title {
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.small-text {
+  font-size: 0.85rem !important;
+}
+
+.bold {
+  font-weight: 900 !important;
+}
+
+.primary-text {
+  color: #FF9011 !important;
+}
+
+.gray-text {
+  color: #707070;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #FF9011 !important;
+  border-color: #FF9011 !important;
+}
+
+.btn-primary {
+  background-color: #FF9011 !important;
+  border-color: #FF9011 !important;
+  box-shadow: 0px 3px 6px #00000029 !important;
+}
+
+.btn-gray {
+  background: #ADB8C6 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  color: #FFFFFF;
+}
+
+.btn-gray:hover {
+  color: #FFFFFF;
+}
+
+.rounded-btn {
+  border-radius: 14px;
+}
+
+.plus-icon {
+  background-color: #FFFFFF !important;
+  color: #FF9011 !important;
+  padding: 0.2rem;
+  margin-right: 0.5rem;
+}
+
+[data-href],
+[data-href],
+.clickable-div,
+.clickable-text {
+  cursor: pointer !important;
+}
+
+.table-border {
+  border: 2px solid #FF9011;
+}
+
+.table-border thead {
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.table-border thead th {
+  border-bottom: 2px solid #FF9011 !important;
+}
+
+.table-border tfoot {
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.table-border tfoot th {
+  border-top: 2px solid #FF9011 !important;
+}
+
+.navbar {
+  background-color: #FFFFFF !important;
+  padding: 0rem !important;
+}
+
+.navbar-brand {
+  background: #C5CDD7 0% 0% no-repeat padding-box;
+  padding: 1rem;
+}
+
+.navbar-nav {
+  padding: 1rem;
+}
+
+.nav-link:hover {
+  border-bottom: none;
+}
+
+.hidden-nav {
+  visibility: hidden;
+}
+
+.title {
+  color: #000000 !important;
+}
+
+.sidenav {
+  background: #ADB8C6 0% 0% no-repeat padding-box;
+  margin-top: -0.2rem;
+}
+
+.sidenav-menu {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  margin-top: 1rem;
+  box-shadow: 0px 3px 6px #00000029;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.sidenav-menu a {
+  color: #000000;
+}
+
+.sidenav-menu.active {
+  border: 2px solid #FF9011 !important;
+}
+
+.sidenav-menu.active a i {
+  color: #FF9011;
+}
+
+.home-options {
+  border-bottom: 2px solid #70707026 !important;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 2rem;
+}
+
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+
+.noshadow-card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-self: flex-start;
+  flex-wrap: wrap;
+  padding: 3rem;
+}
+
+.card-box {
+  flex: 1 0 25%;
+  margin: 2rem;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 15px;
+  padding: 2rem;
+  color: #000000;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.card-box img {
+  height: 155px;
+  width: 135px;
+  margin-bottom: 1rem;
+}
+
+.gray-card {
+  background: #F1F1F1 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 18px;
+  padding: 2rem;
+}
+
+.map-card {
+  padding: 0em !important;
+  background: transparent url("/images/2020-02-10 17.30.01.png?079246a9009dd08570f0825987cef834") 0% 0% no-repeat padding-box;
+  background-size: 100% 100%;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 18px;
+  align-self: flex-start !important;
+  height: 20rem !important;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.banner-upload {
+  height: auto !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar-light {
+    background: #C5CDD7 0% 0% no-repeat padding-box !important;
+    align-items: center;
+    justify-content: center !important;
+  }
+
+  .noshadow-card {
+    flex-direction: column;
+  }
+
+  .main-container {
+    flex-direction: column;
+  }
+
+  .sidenav {
+    display: none;
+  }
+
+  .navbar-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .nav-item {
+    border-bottom: 1px solid #000000 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .hidden-nav {
+    visibility: visible;
+  }
+}
+
