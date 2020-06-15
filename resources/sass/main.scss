@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+@import './styles.scss';
+$white: #FFFFFF;
+$primary-color: #FF9011;
+$black: #000000;
+$title-font: 'Montserrat Alternates',
+sans-serif;
+$body-font: 'Montserrat',
+sans-serif;
+$semi-gray: #ADB8C6;
+// Utilities
+body,
+main {
+    background-color: #F2F2F2;
+    font-family: $body-font;
+    color: $black !important;
+}
+
+// Background Utilities
+.bg-primary {
+    background-color: $primary-color !important;
+}
+
+.bg-white {
+    background-color: $white !important;
+}
+
+// Text Utilities
+.title {
+    font-family: $title-font;
+    color: $white;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.small-text {
+    font-size: .85rem !important;
+}
+
+.bold {
+    font-weight: 900 !important;
+}
+
+.primary-text {
+    color: $primary-color !important;
+}
+
+.gray-text {
+    color: #707070;
+}
+
+// Button & Paginition Utilities
+.pagination .page-item.active .page-link {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+}
+
+.btn-primary {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+    box-shadow: 0px 3px 6px #00000029 !important;
+}
+
+.btn-gray {
+    background: $semi-gray 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    color: $white;
+}
+
+.btn-gray:hover {
+    color: $white;
+}
+
+.rounded-btn {
+    border-radius: 14px;
+}
+
+// Icons 
+.plus-icon {
+    background-color: $white !important;
+    color: $primary-color !important;
+    padding: .2rem;
+    margin-right: .5rem;
+}
+
+// Tables
+[data-href],
+[data-href],
+.clickable-div,
+.clickable-text {
+    cursor: pointer !important;
+}
+
+.table-border {
+    border: 2px solid $primary-color;
+    thead {
+        box-shadow: 0px 3px 6px #00000029;
+        th {
+            border-bottom: 2px solid $primary-color !important;
+        }
+    }
+    tfoot {
+        box-shadow: 0px 3px 6px #00000029;
+        th {
+            border-top: 2px solid $primary-color !important;
+        }
+    }
+}
+
+// Navbar
+.navbar {
+    background-color: $white !important;
+    padding: 0rem !important;
+}
+
+.navbar-brand {
+    background: #C5CDD7 0% 0% no-repeat padding-box;
+    padding: 1rem;
+}
+
+.navbar-nav {
+    padding: 1rem;
+}
+
+.nav-link:hover {
+    border-bottom: none;
+}
+
+.hidden-nav {
+    visibility: hidden;
+}
+
+.title {
+    color: $black !important;
+}
+
+// Side Nav
+.sidenav {
+    background: $semi-gray 0% 0% no-repeat padding-box;
+    margin-top: -.2rem;
+}
+
+.sidenav-menu {
+    background: $white 0% 0% no-repeat padding-box;
+    margin-top: 1rem;
+    box-shadow: 0px 3px 6px #00000029;
+    padding: 1.5rem;
+    text-align: center;
+    a {
+        color: $black;
+    }
+}
+
+.sidenav-menu.active {
+    border: 2px solid $primary-color !important;
+    a {
+        i {
+            color: $primary-color;
+        }
+    }
+}
+
+// Homepage
+.home-options {
+    border-bottom: 2px solid #70707026 !important;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+}
+
+// footer{
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 2rem;
+}
+
+// Card Utilities
+.custom-card {
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+}
+
+.noshadow-card {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-self: flex-start;
+    flex-wrap: wrap;
+    padding: 3rem;
+}
+
+.card-box {
+    flex: 1 0 25%;
+    margin: 2rem;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 15px;
+    padding: 2rem;
+    color: $black;
+    margin-bottom: 2rem;
+    text-align: center;
+    img {
+        height: 155px;
+        width: 135px;
+        margin-bottom: 1rem;
+    }
+}
+
+.gray-card {
+    background: #F1F1F1 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 18px;
+    padding: 2rem;
+}
+
+.map-card {
+    padding: 0em !important;
+    background: transparent url('./images/2020-02-10\ 17.30.01.png') 0% 0% no-repeat padding-box;
+    background-size: 100% 100%;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 18px;
+    align-self: flex-start !important;
+    height: 20rem !important;
+}
+
+// Container
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+//  Post Load
+.banner-upload {
+    height: auto !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar-light {
+        background: #C5CDD7 0% 0% no-repeat padding-box !important;
+        align-items: center;
+        justify-content: center !important;
+    }
+    .noshadow-card {
+        flex-direction: column;
+    }
+    .main-container {
+        flex-direction: column;
+    }
+    .sidenav {
+        display: none;
+    }
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .nav-item {
+        border-bottom: 1px solid $black !important;
+        margin-bottom: 1rem !important;
+    }
+    .hidden-nav {
+        visibility: visible;
+    }
+}

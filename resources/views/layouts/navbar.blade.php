@@ -29,10 +29,17 @@
 				</li>
 				<li class="nav-item ml-3">
 					<a href="/contact-us" class="nav-link {{ setActive(['contact-us']) }} waves-effect waves-light">Contact Us</a>
+                </li>
+                @guest
+                <li class="nav-item ml-4">
+					<a href="{{url('login')}}" class="nav-link waves-effect waves-dark long-btn black-text">Login</a>
 				</li>
-				<li class="nav-item ml-4">
-					<a href="/login" class="nav-link waves-effect waves-dark long-btn black-text">Login</a>
+                @endguest
+				@auth
+                <li class="nav-item ml-4">
+					<a href="{{Auth::logout()}}" class="nav-link waves-effect waves-dark long-btn black-text">Logout</a>
 				</li>
+                @endauth
 			</ul>
 		</div>
 

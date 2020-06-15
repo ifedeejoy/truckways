@@ -21,7 +21,6 @@ html,body,header,.view {
     color: $primary-color;
     background-color: $dark-bg;
 }
-
 // Carousel
 .carousel {
     height: 100%; 
@@ -135,6 +134,9 @@ html,body,header,.view {
     padding-right: 1.2rem !important;
     background-color: transparent;
 }
+.btn-primary-outline:hover{
+    color: $primary-color;
+}
 .btn-none, .btn-none:hover{
     background: none;
     border: none;
@@ -150,7 +152,9 @@ html,body,header,.view {
     font-weight: 700 !important;
     color: $dark-bg !important;
 }
-
+.primary-text{
+    color: $primary-color !important;
+}
 // Margin
 .mt-40{
     margin-top: 7.5rem !important;

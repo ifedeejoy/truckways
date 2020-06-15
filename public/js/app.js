@@ -37331,7 +37331,9 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue');
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./core */ "./resources/js/core.js"); // window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -37399,10 +37401,55 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/core.js":
+/*!******************************!*\
+  !*** ./resources/js/core.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+window.getfileInfo = function (event) {
+  if (!event || !event.target || !event.target.files || event.target.files.length === 0) {
+    return;
+  }
+
+  var name = event.target.files[0].name;
+  var lastDot = name.lastIndexOf('.');
+  var fileName = name.substring(0, lastDot);
+  var ext = name.substring(lastDot + 1);
+  var totalFile = document.getElementById("fileUpload").files.length;
+
+  for (var i = 0; i < totalFile; i++) {
+    $('#previewUploads').append("<div class='preview-card'><img class='banner-form-preview' src='" + URL.createObjectURL(event.target.files[i]) + "'></div>");
+  }
+};
+
+jQuery(document).ready(function ($) {
+  $(".clickable-row").click(function () {
+    window.location = $(this).data("href");
+  });
+  $(".clickable-div").click(function () {
+    window.location = $(this).data("href");
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
   \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/main.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/main.scss ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -37422,15 +37469,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!******************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/styles.scss ***!
-  \******************************************************************************************/
+/*!*********************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/styles.scss ./resources/sass/main.scss ***!
+  \*********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/mac/Sites/truckways/resources/js/app.js */"./resources/js/app.js");
 __webpack_require__(/*! /Users/mac/Sites/truckways/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/mac/Sites/truckways/resources/sass/styles.scss */"./resources/sass/styles.scss");
+__webpack_require__(/*! /Users/mac/Sites/truckways/resources/sass/styles.scss */"./resources/sass/styles.scss");
+module.exports = __webpack_require__(/*! /Users/mac/Sites/truckways/resources/sass/main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

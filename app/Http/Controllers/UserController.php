@@ -2,50 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Loads;
+use Illuminate\Http\Request;
 use App\Models\User;
 
-class LoadsController extends Controller
+class UserController extends Controller
 {
+    private $auth;
+    protected $user;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $user;
-    protected $loads;
-
-    public function __construct(Loads $loads)
+    public function __construct()
     {
         $this->middleware('auth');
-        $this->user = Auth::user();
-        $this->loads = $loads;
+        $this->auth = Auth::user();
+        $this->user = new User();
+    }
+
+    public function getName()
+    {
+        $name = $this->auth->name;
+        return $name;
     }
 
     public function index()
     {
-        $loads = $this->loads::all();
-        return view("loads")->with("loads", $loads);
+        //
     }
-
-    public function loads()
-    {
-        $id = auth()->user()->id;
-        $user = User::findOrFail($id);
-        $loads = $user->loads->where("status", "open");
-        return view("users.loads")->with("loads", $loads);
-    }
-
-    public function activeLoads()
-    {
-        $id = auth()->user()->id;
-        $user = User::findOrFail($id);
-        $loads = $user->loads->where("status", "active");
-        return $loads;
-    }
-
     /**
      * Show the form for creating a new resource.
      *
