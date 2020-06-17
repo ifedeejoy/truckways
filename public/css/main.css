@@ -937,10 +937,32 @@ main {
   box-shadow: 0px 3px 6px #00000029 !important;
 }
 
+.btn-secondary {
+  background-color: #707070 !important;
+  border-color: #707070 !important;
+  box-shadow: 0px 3px 6px #00000029 !important;
+}
+
 .btn-gray {
   background: #ADB8C6 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
   color: #FFFFFF;
+}
+
+.btn-primary:not([disabled]):not(.disabled).active {
+  background-color: #FF9011 !important;
+}
+
+.btn-primary:active {
+  background-color: #FF9011 !important;
+}
+
+.btn-secondary:not([disabled]):not(.disabled).active {
+  background-color: #FF9011 !important;
+}
+
+.btn-secondary:active {
+  background-color: #707070 !important;
 }
 
 .btn-gray:hover {

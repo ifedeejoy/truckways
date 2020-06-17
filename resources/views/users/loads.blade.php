@@ -15,7 +15,7 @@
                             <th scope="col">Reference</th>
                             <th scope="col">Location</th>
                             <th scope="col">Destination</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">Budget</th>
                             <th scope="col">Truck Type</th>
                         </tr>
                     </thead>
@@ -25,7 +25,7 @@
                             <th scope="col">Reference</th>
                             <th scope="col">Location</th>
                             <th scope="col">Destination</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">Budget</th>
                             <th scope="col">Truck Type</th>
                         </tr>
                     </tfoot>
@@ -36,7 +36,7 @@
                             <td>{{$load->reference}}</td>
                             <td>{{$load->pickup}}</td>
                             <td>{{$load->delivery}}</td>
-                            <td>{{$load->price}}</td>
+                            <td>{{number_format($load->budget)}}</td>
                             <td>{{$load->truck_type}}</td>
                         </tr>
                         @endforeach

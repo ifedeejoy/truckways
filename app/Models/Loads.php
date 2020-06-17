@@ -8,7 +8,7 @@ class Loads extends Model
 {
     //
     protected $fillable = [
-        'reference', 'user', 'pickup', 'delivery', 'truck_type', 'image', 'load'
+        'reference', 'user', 'pickup', 'delivery', 'truck_type', 'isPremium', 'budget', 'price', 'images',
     ];
 
     public function users()
@@ -23,6 +23,6 @@ class Loads extends Model
 
     public function driver()
     {
-        return $this->hasOne(Driver::class);
+        return $this->hasOne(Drivers::class);
     }
 }

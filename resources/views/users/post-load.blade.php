@@ -1,7 +1,6 @@
 @extends('layouts.mainApp.app')
 @section('title', 'Dashboard')
 @section('content')
-@inject('user', 'App\Http\Controllers\LoadsController')
     
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card">
@@ -9,7 +8,8 @@
                 <h4 class="text-white">Post a load</h6>
             </div>
             <div class="col-sm-12 p-4">
-                <form action="">
+            <form action="{{route('create-load')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="row d-flex justify-content-between">
                         <div class="gray-card col-sm-6 mb-4">
                             <div class="d-flex flex-row w-100 mb-5 justify-content-between">
@@ -27,7 +27,7 @@
                             <div class="banner-upload text-center mb-3">
                                 <h6 class="dark-bold mb-3">Upload images of goods</h6>
                                 <div class="d-flex text-center align-self-center">
-                                    <input type="file" name="productImages[]" id="fileUpload" class="file-input" onChange='getfileInfo(event)' accept="image/*" multiple>
+                                    <input type="file" name="loadImages[]" id="fileUpload" class="file-input" onChange='getfileInfo(event)' accept="image/*" multiple>
                                 </div>
                                 <div class="row mt-4" id="previewUploads">
 
@@ -35,6 +35,22 @@
                             </div>
                         </div>
                         <div class="gray-card col-sm-5 mb-4">
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Sorry!</strong> There were more problems with your HTML input.<br><br>
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
+                        @if(session('success'))
+                        <div class="alert alert-success">
+                        {{ session('success') }}
+                        </div> 
+                        @endif
                             <h6 class="primary-text mb-5 bold">Booking Details</h6>
                             <div class="col mb-4">
                                 <label for="title">Pickup address</label>
@@ -45,20 +61,63 @@
                                 <input type="text" name="delivery" class="form-control">
                             </div>
                             <div class="col mb-4">
-                                <select class="custom-select form-control">
+                                <select class="custom-select form-control" name="truck_type" id="truck-type" onchange="otherTrucks(this.value)">
                                     <option>Truck type</option>
+                                    <option value="vans">Vans</option>
+                                    <option value="mini-vans">Mini Vans</option>
+                                    <option value="covered body trucks">Covered Body Trucks</option>
+                                    <option value="sided body trucks">Sided Body Trucks</option>
+                                    <option value="trailers">Trailers</option>
+                                    <option value="tippers">Tippers</option>
+                                    <option value="heavy duty trucks">Heavy Duty Trucks</option>
+                                    <option value="others">Other (please specify)</option>
                                 </select>
+                            </div>
+                            <div class="col mb-4 d-none" id="other-trucks">
+                                <label for="title">Truck type</label>
+                                <input type="text" name="truck_type" id="other-truck" class="form-control" disabled>
                             </div>
                             <div class="col mb-4">
-                                <select class="custom-select form-control">
-                                    <option>Post Load As</option>
-                                </select>
+                                <label for="budget">Your budget</label>
+                                <input type="text" name="budget" class="form-control">
+                            </div>
+                            <div class="col mb-4">
+                                <h6>Post Load As</h6>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-secondary btn-sm btn-rounded active">
+                                        Basic 
+                                        <input type="radio" name="load_type" value="0" id="load-type" autocomplete="off" checked>
+                                    </label>
+                                    <label class="btn btn-secondary btn-sm btn-rounded">
+                                        Premium 
+                                        <input type="radio" name="load_type" value="1" id="load-type" autocomplete="off">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary btn-rounded">Post Load</button>
                             </div>
                         </div>
-                    
                     </div>
                 </form>
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    @parent
+    <script>
+        function otherTrucks(val)
+        {
+            if(val == "others"){
+                $("#truck-type").removeAttr("name")
+                $("#other-trucks").removeClass("d-none")
+                $("#other-truck").attr("disabled", false)
+            }else{
+                $("#truck-type").attr("name", "truck_type")
+                $("#other-trucks").addClass("d-none")
+                $("#other-truck").attr("disabled", true)
+            }
+        }
+    </script>
 @endsection

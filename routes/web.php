@@ -19,11 +19,19 @@ Route::view('drivers', 'drivers');
 Route::view('contact-us', 'contact');
 
 Auth::routes(['verify' => true]);
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('users/home', 'HomeController@index')->name('users.home');
 Route::get('users/loads', 'LoadsController@loads')->name('users.loads');
-Route::view('users/active-loads', 'users.active-loads')->middleware('auth');
-Route::view('users/post-load', 'users.post-load')->middleware('auth');
+Route::get('users/active-loads', 'LoadsController@activeLoads')->name('users.active');
+Route::get('users/post-load', 'LoadsController@create')->name('users.post');
+Route::post('users/create-load', 'LoadsController@store')->name('create-load');
+Route::get('users/load/{id}', 'LoadsController@show');
+
+Route::get('driver-register', 'DriversController@create');
+Route::post('register-driver', 'DriversController@store');
+
+
 
 Route::resource('loads', 'LoadsController')->except([
     'create', 'store', 'update', 'destroy'
