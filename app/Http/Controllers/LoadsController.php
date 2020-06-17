@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Loads;
@@ -14,7 +13,7 @@ class LoadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $user;
+    protected $user;
     protected $loads;
 
     public function __construct(Loads $loads)
@@ -43,7 +42,7 @@ class LoadsController extends Controller
         $id = auth()->user()->id;
         $user = User::findOrFail($id);
         $loads = $user->loads->where("status", "active");
-        return $loads;
+        return view("users.active-loads")->with("loads",$loads);
     }
 
     /**
@@ -53,7 +52,7 @@ class LoadsController extends Controller
      */
     public function create()
     {
-        //
+        return view("users.post-load");
     }
 
     /**
@@ -64,7 +63,28 @@ class LoadsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = auth()->user()->id;
+        $ref = mt_rand();
+        $this->loads->user = $id;
+        $this->loads->reference = $ref;
+        $this->loads->title = $request->title;
+        $this->loads->description = $request->description;
+        $this->loads->pickup = $request->pickup;
+        $this->loads->delivery = $request->delivery;
+        $this->loads->truck_type = $request->truck_type;
+        $this->loads->load_type = $request->load_type;
+        $this->loads->budget = $request->budget;
+        if($request->hasFile('loadImages')):
+            foreach($request->file('loadImages') as $image):
+                $path = $image->store('loads');
+                $file[] = $path;
+            endforeach;
+        else:
+            return redirect("users/post-load")->with('error', 'Please add images of your load');
+        endif;
+        $this->loads->images = json_encode($file);
+        $this->loads->save();
+        return redirect("users/post-load")->with('success', 'Load Posted Successfully');
     }
 
     /**
@@ -75,7 +95,8 @@ class LoadsController extends Controller
      */
     public function show($id)
     {
-        //
+        $load = Loads::where('reference',$id)->first();
+        return view("users.load")->with("load", $load);
     }
 
     /**

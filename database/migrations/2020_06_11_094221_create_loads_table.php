@@ -17,20 +17,17 @@ class CreateLoadsTable extends Migration
             $table->id();
             $table->uuid('reference');
             $table->integer('user');
+            $table->string('title');
+            $table->text('description');
             $table->mediumText('pickup');
             $table->mediumText('delivery');
             $table->string('truck_type');
+            $table->json('images');
             $table->string('status')->default('open');
             $table->integer('driver')->nullable();
-            $table->boolean('isPremium');
-            $table->decimal('price')->nullable();
-            $table->timestamps();
-        });
-
-        Schema::create('loadsImage', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('load');
-            $table->integer('image');
+            $table->boolean('load_type');
+            $table->decimal('budget', 10, 2);
+            $table->decimal('price', 10, 2)->nullable();
             $table->timestamps();
         });
     }
@@ -43,6 +40,5 @@ class CreateLoadsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('loads');
-        Schema::dropIfExists('loadsImage');
     }
 }

@@ -37,7 +37,7 @@
                 @endguest
 				@auth
                 <li class="nav-item ml-4">
-					<a href="{{Auth::logout()}}" class="nav-link waves-effect waves-dark long-btn black-text">Logout</a>
+					<a href="{{ url('/logout') }}" class="nav-link waves-effect waves-dark long-btn black-text">Logout</a>
 				</li>
                 @endauth
 			</ul>

@@ -6,9 +6,9 @@
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card">
             <div class="home-options">
-                <h6 class="small-text bold">{{count($user->activeLoads())}} active loads</h6>
-                <h6 class="small-text bold">{{count($user->activeLoads())}} trucks available</h6>
-                <h6 class="small-text bold">{{count($user->activeLoads())}} pending bills</h6>
+                <h6 class="small-text bold"> active loads</h6>
+                <h6 class="small-text bold"> trucks available</h6>
+                <h6 class="small-text bold"> pending bills</h6>
             </div>
             <div class="noshadow-card">
                 <div class="card-box clickable-row" data-href="/users/post-load">

@@ -62,4 +62,10 @@ class LoginController extends Controller
         }
           
     }
+
+    public function logout(\Illuminate\Http\Request $request)
+    {
+        auth()->logout();
+        return redirect('/');
+    }
 }

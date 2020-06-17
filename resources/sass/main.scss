@@ -9,6 +9,7 @@ sans-serif;
 $body-font: 'Montserrat',
 sans-serif;
 $semi-gray: #ADB8C6;
+$dark-gray: #707070;
 // Utilities
 body,
 main {
@@ -47,7 +48,7 @@ main {
 }
 
 .gray-text {
-    color: #707070;
+    color: $dark-gray;
 }
 
 // Button & Paginition Utilities
@@ -62,10 +63,32 @@ main {
     box-shadow: 0px 3px 6px #00000029 !important;
 }
 
+.btn-secondary {
+    background-color: $dark-gray !important;
+    border-color: $dark-gray !important;
+    box-shadow: 0px 3px 6px #00000029 !important;
+}
+
 .btn-gray {
     background: $semi-gray 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     color: $white;
+}
+
+.btn-primary:not([disabled]):not(.disabled).active {
+    background-color: $primary-color !important;
+}
+
+.btn-primary:active {
+    background-color: $primary-color !important;
+}
+
+.btn-secondary:not([disabled]):not(.disabled).active {
+    background-color: $primary-color !important;
+}
+
+.btn-secondary:active {
+    background-color: $dark-gray !important;
 }
 
 .btn-gray:hover {

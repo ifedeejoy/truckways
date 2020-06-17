@@ -1,7 +1,6 @@
 @extends('layouts.mainApp.app')
 @section('title', 'Active Loads')
 @section('content')
-@inject('loads', 'App\Http\Controllers\LoadsController')
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card p-3">
             <div class="row pl-4 pt-3">
@@ -30,7 +29,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach ($loads->activeLoads() as $load)
+                        @foreach ($loads as $load)
                         <tr class="clickable-row" data-href="/users/load/{{$load->reference}}">
                             <td>2020-04-19</td>
                             <td>{{$load->reference}}</td>
