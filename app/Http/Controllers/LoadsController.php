@@ -18,7 +18,8 @@ class LoadsController extends Controller
 
     public function __construct(Loads $loads)
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
+        // $this->middleware('auth:truck_drivers');
         $this->user = Auth::user();
         $this->loads = $loads;
     }
@@ -44,7 +45,6 @@ class LoadsController extends Controller
         $loads = $user->loads->where("status", "active");
         return view("users.active-loads")->with("loads",$loads);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -93,10 +93,14 @@ class LoadsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         $load = Loads::where('reference',$id)->first();
-        return view("users.load")->with("load", $load);
+        if($request->is('users/*')):
+            return view("users.load")->with("load", $load);
+        elseif($request->is('drivers/*')):
+            return view("drivers.load")->with("load", $load);
+        endif;
     }
 
     /**

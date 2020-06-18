@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -38,6 +39,25 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:truck_drivers')->except('logout');
+    }
+
+    public function showDriverLogin()
+    {
+        return view("drivers.login");
+    }
+
+    public function driverlogin(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:8'
+        ]);
+        if (Auth::guard('truck_drivers')->attempt(['email' => $request->email, 'password' => $request->password])):
+            return redirect()->intended('drivers/home');
+        endif;
+        return back()->with("errors", "Fucking Hell");
     }
 
     public function login(Request $request)
@@ -60,12 +80,15 @@ class LoginController extends Controller
             return redirect()->route('login')
                 ->with('error','Email-Address Or Password Are Wrong.');
         }
-          
     }
 
     public function logout(\Illuminate\Http\Request $request)
     {
-        auth()->logout();
+        if(auth()->guard('truck_drivers')->check()):
+            auth()->guard('truck_drivers')->logout();
+        else:
+            auth()->logout();
+        endif;
         return redirect('/');
     }
 }

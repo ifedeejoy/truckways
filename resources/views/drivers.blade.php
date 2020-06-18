@@ -9,7 +9,8 @@
 	<div class="container">
         <div class="login-form col-sm-4 mx-auto">
             <p class="text-center"><b>Login</b></p>
-            <form action="" class="mt-5">
+            <form method="POST" action="{{ route('drivers.login') }}" class="mt-5">
+                @csrf
                 <div class="md-form mb-3">
                     <img src="/images/username.svg" class="prefix" alt="Username Icon">
                     <input type="email" class="form-control" name="email" id="email" autocomplete="username">
@@ -29,7 +30,7 @@
                     <button class="btn-primary-outline">Login With <i class="fab fa-google"></i></button>
                 </div>
                 <div class="text-center">
-                    <a href="/driver-register" class="btn-primary-outline">Sign Up</a>
+                    <a href="drivers/register" class="btn-primary-outline">Sign Up</a>
                 </div>
             </form>
         </div>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Drivers;
 use Illuminate\Http\Request;
 
 class DriversController extends Controller
@@ -11,6 +11,12 @@ class DriversController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:truck_drivers');
+    }
+
     public function index()
     {
         //
@@ -23,8 +29,10 @@ class DriversController extends Controller
      */
     public function create()
     {
-        //
+        
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -32,10 +40,6 @@ class DriversController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.

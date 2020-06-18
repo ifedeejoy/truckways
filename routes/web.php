@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Auth;
 Route::view('/', 'welcome');
 Route::view('find-truck', 'find-truck');
 Route::view('market-place', 'market-place');
-Route::view('drivers', 'drivers');
 Route::view('contact-us', 'contact');
 
 Auth::routes(['verify' => true]);
+
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('users/home', 'HomeController@index')->name('users.home');
@@ -28,9 +28,15 @@ Route::get('users/post-load', 'LoadsController@create')->name('users.post');
 Route::post('users/create-load', 'LoadsController@store')->name('create-load');
 Route::get('users/load/{id}', 'LoadsController@show');
 
-Route::get('driver-register', 'DriversController@create');
-Route::post('register-driver', 'DriversController@store');
+Route::get('drivers/home', 'HomeController@driversHome')->name('drivers.home');
+Route::get('drivers/register', '\App\Http\Controllers\Auth\RegisterController@showDriverReg');
+Route::get('drivers/login', '\App\Http\Controllers\Auth\LoginController@showDriverLogin');
+Route::get('drivers/load/{id}', 'LoadsController@show');
+Route::view('drivers/loads', 'drivers.loads');
 
+
+Route::post('driver-login', '\App\Http\Controllers\Auth\LoginController@driverLogin')->name('login-driver');
+Route::post('driver-register', '\App\Http\Controllers\Auth\RegisterController@driverRegister')->name('register-driver');
 
 
 Route::resource('loads', 'LoadsController')->except([
