@@ -34,7 +34,7 @@
 			</li>
 			<li class="nav-item dropdown ml-2">
 				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
-				aria-haspopup="true" aria-expanded="false">{{$user->getName()}}
+				aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}
 				</a>
 				<div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
 					<a href="{{ url('/logout') }}" class="dropdown-item">Logout</a>

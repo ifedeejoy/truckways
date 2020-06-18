@@ -1,4 +1,4 @@
-@extends('layouts.mainApp.app')
+@extends('layouts.users.app')
 @section('title', 'Loads')
 @section('content')
     <div class="col-sm-12 p-3 pr-5 pl-5">

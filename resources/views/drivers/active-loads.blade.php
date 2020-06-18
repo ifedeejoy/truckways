@@ -1,4 +1,4 @@
-@extends('layouts.users.app')
+@extends('layouts.mainApp.app')
 @section('title', 'Active Loads')
 @section('content')
     <div class="col-sm-12 p-3 pr-5 pl-5">
@@ -30,7 +30,7 @@
                     </tfoot>
                     <tbody>
                         @foreach ($loads as $load)
-                        <tr class="clickable-row" data-href="/users/load/{{$load->reference}}">
+                        <tr class="clickable-row" data-href="/drivers/load/{{$load->reference}}">
                             <td>2020-04-19</td>
                             <td>{{$load->reference}}</td>
                             <td>{{$load->pickup}}</td>

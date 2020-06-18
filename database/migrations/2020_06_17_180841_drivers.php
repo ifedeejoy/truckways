@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDriversTable extends Migration
+class Drivers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,6 +13,7 @@ class CreateDriversTable extends Migration
      */
     public function up()
     {
+        //
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -20,11 +21,11 @@ class CreateDriversTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phone');
             $table->string('address');
-            $table->string('idType');
-            $table->string('idImage');
-            $table->integer('trucks');
+            $table->string('idType')->nullable();
+            $table->string('idImage')->nullable();
+            $table->integer('trucks')->nullable();
             $table->string('password');
-            $table->boolean('isVerified');
+            $table->boolean('isVerified')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

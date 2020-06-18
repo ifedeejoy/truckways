@@ -1,4 +1,3 @@
-@inject('user', 'App\Http\Controllers\UserController')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -12,18 +11,19 @@
     </head>
     <body>
         <main>
-            @include('layouts.mainApp.nav')
+            @include('layouts.users.nav')
             <div class="main-container">
-                @include('layouts.mainApp.sidenav')
+                
+                @include('layouts.users.sidenav')
                 <div class="container">
                     <div class="row justify-content-center">
                         @yield('content')
                     </div>
                 </div>
-            </div>
+            </div>=
         </main>
         
-        @include('layouts.mainApp.footer')
+        @include('layouts.users.footer')
     </body>
     @section('scripts')
         <script src="/js/app.js" defer></script>

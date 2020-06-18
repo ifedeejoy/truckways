@@ -27,6 +27,17 @@ main {
     background-color: $white !important;
 }
 
+.bg-gray {
+    background-color: $dark-gray !important;
+}
+
+// Border Utilities
+.border-primary {
+    border-color: $primary-color !important;
+    border-bottom-color: $primary-color !important;
+    border-top-color: $primary-color !important;
+}
+
 // Text Utilities
 .title {
     font-family: $title-font;
@@ -186,7 +197,7 @@ main {
 
 // Homepage
 .home-options {
-    border-bottom: 2px solid #70707026 !important;
+    border-bottom: 2px solid #70707026;
     display: flex;
     justify-content: space-between;
     padding: 1.5rem;

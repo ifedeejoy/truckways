@@ -1,4 +1,4 @@
-@extends('layouts.users.app')
+@extends('layouts.drivers.app')
 @section('title', 'Dashboard')
 @section('content')
 @inject('user', 'App\Http\Controllers\LoadsController')

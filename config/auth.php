@@ -41,6 +41,16 @@ return [
             'provider' => 'users',
         ],
 
+        'truck_drivers' => [
+            'driver' => 'session',
+            'provider' => 'tdrivers',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -69,6 +79,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'tdrivers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Drivers::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admins::class,
         ],
 
         // 'users' => [

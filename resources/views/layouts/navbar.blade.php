@@ -25,15 +25,22 @@
 					<a href="/market-place" class="nav-link {{ setActive(['market-place']) }} waves-effect waves-light">Market Place</a>
 				</li>
 				<li class="nav-item ml-3">
-					<a href="/drivers" class="nav-link {{ setActive(['drivers']) }} waves-effect waves-light">Drivers</a>
+					<a href="/drivers/login" class="nav-link {{ setActive(['drivers']) }} waves-effect waves-light">Drivers</a>
 				</li>
 				<li class="nav-item ml-3">
 					<a href="/contact-us" class="nav-link {{ setActive(['contact-us']) }} waves-effect waves-light">Contact Us</a>
                 </li>
                 @guest
+                @if (auth()->guard('truck_drivers')->check())
+                <li class="nav-item ml-4">
+					<a href="{{ url('/logout') }}" class="nav-link waves-effect waves-dark long-btn black-text">Logout</a>
+                </li>
+                @else
                 <li class="nav-item ml-4">
 					<a href="{{url('login')}}" class="nav-link waves-effect waves-dark long-btn black-text">Login</a>
 				</li>
+                @endif
+                
                 @endguest
 				@auth
                 <li class="nav-item ml-4">

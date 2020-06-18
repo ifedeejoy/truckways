@@ -1,4 +1,4 @@
-@extends('layouts.users.app')
+@extends('layouts.drivers.app')
 @section('title', 'Dashboard')
 @section('content')
     <div class="col-sm-12 p-3 pr-5 pl-5">
