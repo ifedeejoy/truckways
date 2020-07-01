@@ -50,45 +50,45 @@ header,
   background: transparent !important;
 }
 
-.md-form > label {
+.login-input > label {
   color: #FFFFFF;
 }
 
-.md-form input[type=text],
-.md-form input[type=email],
-.md-form textarea.md-textarea {
+.login-input input[type=text],
+.login-input input[type=email],
+.login-input textarea.md-textarea {
   border-bottom: 1.5px solid #FFFFFF !important;
 }
 
-.md-form input[type=text] + label,
-.md-form input[type=email] + label,
-.md-form input[type=password] + label,
-.md-form textarea.md-textarea + label {
+.login-input input[type=text] + label,
+.login-input input[type=email] + label,
+.login-input input[type=password] + label,
+.login-input textarea.md-textarea + label {
   font-size: 0.8rem;
 }
 
-.md-form input:not([type]):focus:not([readonly]),
-.md-form input[type=text]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=password]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=email]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=url]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=time]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=date]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=datetime]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=tel]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=number]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=search]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=phone]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=search-md]:focus:not([readonly]),
-.md-form textarea.md-textarea:focus:not([readonly]) {
+.login-input input:not([type]):focus:not([readonly]),
+.login-input input[type=text]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=password]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=email]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=url]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=time]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=date]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=datetime]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=tel]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=number]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=search]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=phone]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=search-md]:focus:not([readonly]),
+.login-input textarea.md-textarea:focus:not([readonly]) {
   border-bottom: 1px solid #707070 !important;
   box-shadow: 0 1px 0 0 #FF9011 !important;
 }
 
-.md-form input[type=text]:not(.browser-default):focus:not([readonly]) + label,
-.md-form input[type=password]:not(.browser-default):focus:not([readonly]) + label,
-.md-form input[type=email]:not(.browser-default):focus:not([readonly]) + label {
+.login-input input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+.login-input input[type=password]:not(.browser-default):focus:not([readonly]) + label,
+.login-input input[type=email]:not(.browser-default):focus:not([readonly]) + label {
   color: #FF9011;
   font-size: 0.8rem;
 }
@@ -98,7 +98,7 @@ header,
   max-width: 15px;
 }
 
-.md-form .prefix.active {
+.login-input .prefix.active {
   color: #FF9011;
 }
 
@@ -162,8 +162,16 @@ header,
   color: #FF9011 !important;
 }
 
+.extra-muted {
+  color: #70707099 !important;
+}
+
 .mt-40 {
   margin-top: 7.5rem !important;
+}
+
+.mt-n1-5 {
+  margin-top: -1.5rem;
 }
 
 .navbar {
@@ -323,7 +331,7 @@ header,
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 12px;
-  padding: 1.3rem;
+  padding: 1rem;
   overflow-y: scroll;
   overflow-x: auto;
   height: 10rem;
@@ -592,9 +600,9 @@ header,
   max-height: 117px !important;
 }
 
-.footer-box .md-form input[type=text],
-.footer-box .md-form input[type=email],
-.footer-box .md-form textarea.md-textarea {
+.footer-box .login-input input[type=text],
+.footer-box .login-input input[type=email],
+.footer-box .login-input textarea.md-textarea {
   border-bottom: 1.5px solid #FFFFFF;
   width: 100%;
 }
@@ -744,10 +752,10 @@ header,
   padding: 3rem;
 }
 
-.login-form .md-form input[type=text],
-.login-form .md-form input[type=email],
-.login-form .md-form input[type=password],
-.login-form .md-form textarea.md-textarea {
+.login-form .login-input input[type=text],
+.login-form .login-input input[type=email],
+.login-form .login-input input[type=password],
+.login-form .login-input textarea.md-textarea {
   border-bottom: 1.5px solid #707070 !important;
 }
 
@@ -793,6 +801,26 @@ header,
 
 .login-right .login-form {
   height: 100%;
+}
+
+.shadow-card {
+  padding: 2rem;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 50px #0000001C;
+  align-self: center;
+}
+
+.w-60 {
+  width: 60% !important;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+}
+
+.dark-hr {
+  border-color: #70707099 !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -886,11 +914,26 @@ header,
   .navbar:not(.top-nav-collapse) {
     background: #1B202E !important;
   }
+
+  .wwd-box1,
+  .wwd-box2 {
+    border: 1px solid #FF9011;
+    background: transparent;
+    height: auto;
+    width: auto;
+  }
+
+  .wwd-box2 {
+    margin-top: -3rem;
+    margin-left: 2rem;
+    padding: 1.5rem;
+  }
 }
 
 body,
+html,
 main {
-  background-color: #F2F2F2;
+  background-color: #F2F2F2 !important;
   font-family: "Montserrat", sans-serif;
   color: #000000 !important;
 }
@@ -934,6 +977,10 @@ main {
 
 .gray-text {
   color: #707070;
+}
+
+.ml-n10 {
+  margin-left: -10rem !important;
 }
 
 .pagination .page-item.active .page-link {
@@ -1140,6 +1187,87 @@ footer {
 
 .banner-upload {
   height: auto !important;
+}
+
+.load-container {
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #FBFBFB;
+}
+
+.smaller-text {
+  font-size: 0.7rem !important;
+}
+
+.load-title {
+  font-size: 0.95rem !important;
+}
+
+.load-cards {
+  flex: 1 0 28%;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.load-cards img {
+  height: 163px;
+  width: 262px;
+  border-radius: 2rem;
+}
+
+.truck-card {
+  flex: 1 0 20%;
+  background: #F1F1F1;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 18px;
+  padding: 2rem;
+  margin: 1rem;
+}
+
+.truck-form {
+  flex-grow: 2;
+}
+
+.transparent-truck {
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.truck-file::before {
+  width: 100% !important;
+  background: #FF9011 !important;
+}
+
+.user-truck {
+  background-color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  color: #FF9011 !important;
+  box-shadow: 0px 3px 6px #00000029 !important;
+  border: 1px solid #707070 !important;
+}
+
+.user-truck img {
+  min-height: 200px;
+  width: 300px;
+  margin-top: 0;
+}
+
+.light-overlay {
+  background-color: #FFFFFF !important;
+}
+
+.payment-card {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 10px #00000029;
+  border-radius: 20px;
+  padding: 2rem;
 }
 
 @media only screen and (max-width: 768px) {

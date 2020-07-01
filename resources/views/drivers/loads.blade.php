@@ -3,60 +3,36 @@
 @section('content')
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card">
-            <div class="home-options border-primary">
-                <h6 class="small-text bold"> active loads</h6>
-                <h6 class="small-text bold"> trucks available</h6>
-                <h6 class="small-text bold"> pending bills</h6>
+            <div class="home-options border-primary justify-content-center">
+                <h6 class="bold">Recently Posted Loads</h6>
             </div>
-            <div class="table-responsive mt-5 p-4">
-                <table class="table table-striped bg-white black-text table-border text-center" id="all-loads" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Reference</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Destination</th>
-                            <th scope="col">Budget</th>
-                            <th scope="col">Truck Type</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Reference</th>
-                            <th scope="col">Location</th>
-                            <th scope="col">Destination</th>
-                            <th scope="col">Budget</th>
-                            <th scope="col">Truck Type</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @foreach ($loads as $load)
-                        <tr class="clickable-row" data-href="/drivers/load/{{$load->reference}}">
-                            <td>{{$load->created_at}}</td>
-                            <td>{{$load->reference}}</td>
-                            <td>{{$load->pickup}}</td>
-                            <td>{{$load->delivery}}</td>
-                            <td>{{number_format($load->budget)}}</td>
-                            <td>{{$load->truck_type}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="load-container">
+                @foreach ($loads as $load)
+                <div class="load-cards">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="load-title bold">{{$load->title}}</h5>
+                        <h6 class="smaller-text text-center">{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($load->created_at))) !!}</h6>
+                    </div>
+                    <div class="d-flex justify-content-between text-center">
+                        <h6 class="smaller-text primary-text">{{$load->pickup}}</h6>
+                        <h6 class="smaller-text primary-text">{{$load->delivery}}</h6>
+                    </div>
+                    @foreach (json_decode($load->images) as $image)
+                        @if($loop->first)
+                            <img src="{{asset($image)}}" class="img-fluid" alt="">
+                            @break
+                        @endif
+                    @endforeach
+                    <div class="d-flex justify-content-between text-center mt-3">
+                        <h5 class="load-title bold mt-2">{{number_format($load->budget)}}</h5>
+                        <a class="btn btn-sm btn-primary btn-rounded" href="/drivers/load/{{$load->reference}}">Bid</a>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>
 @endsection
 @section('scripts')
 	@parent
-	<script src="/js/datatables.min.js" defer></script>
-	<script src="/js/datatables-select.min.js" defer></script>
-	<script type="module">
-		$(document).ready(function () {
-			$('#all-loads').DataTable({
-				// "dom": '<"top"i>rt<"bottom"><"clear">'
-			});
-		});
-	</script>
-	
 @endsection

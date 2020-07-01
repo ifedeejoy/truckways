@@ -6,88 +6,54 @@
 @section('content')
 
 <section class="latest-loads animated fadeInUp delay-1s mt-5">
-	<div class="container">
-		<div class="table-responsive mt-5">
-			<table class="table" cellspacing="0" id="find-trucks" width="100%">
-				<thead>
-					<tr>
-						<th>Date</th>
-						<th>Load Title</th>
-						<th>Location</th>
-						<th>Destination</th>
-						<th>Price</th>
-						<th>Truck Type</th>
-					</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<th>Date</th>
-						<th>Load Title</th>
-						<th>Location</th>
-						<th>Destination</th>
-						<th>Price</th>
-						<th>Truck Type</th>
-					</tr>
-				</tfoot>
-				<tbody>
-					<tr>
-						<td>2020-04-19</td>
-						<td>Quick House Move</td>
-						<td>Ikeja, Lagos</td>
-						<td>Admiralty, Lekki</td>
-						<td>$100</td>
-						<td>Flat Bed Truck</td>
-					</tr>
-					<tr>
-						<td>2020-04-19</td>
-						<td>Quick House Move</td>
-						<td>Ikeja, Lagos</td>
-						<td>Admiralty, Lekki</td>
-						<td>$100</td>
-						<td>Flat Bed Truck</td>
-					</tr>
-					<tr>
-						<td>2020-04-19</td>
-						<td>Quick House Move</td>
-						<td>Ikeja, Lagos</td>
-						<td>Admiralty, Lekki</td>
-						<td>$100</td>
-						<td>Flat Bed Truck</td>
-					</tr>
-					<tr>
-						<td>2020-04-19</td>
-						<td>Quick House Move</td>
-						<td>Ikeja, Lagos</td>
-						<td>Admiralty, Lekki</td>
-						<td>$100</td>
-						<td>Flat Bed Truck</td>
-					</tr>
-					<tr>
-						<td>2020-04-19</td>
-						<td>Quick House Move</td>
-						<td>Ikeja, Lagos</td>
-						<td>Admiralty, Lekki</td>
-						<td>$100</td>
-						<td>Flat Bed Truck</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<div class="market-container">
+        @foreach ($trucks as $truck)
+            <div class="market-card">
+                @foreach (json_decode($truck->images) as $image)
+                    @if ($loop->first)
+                    <div class="mcard-top">
+                        <img src="{{asset($image)}}" class="m-img" alt="Loaded Van">
+                    </div>
+                    @break
+                    @endif
+                @endforeach
+                
+                <div class="light-overlay text-center overlay{{$truck->id}}">
+                    <h6 class="small-text mt-3 text-white">Phone Number</h6>
+                    <h6 class="small-text mt-3">{{$truck->phone}}</h6>
+                    <div class="text-center mt-5">
+                    <button class="long-btn waves-effect waves-dark p-2" id="{{$truck->id}}" onclick="hideNumber(this.id)">Cancel</button>
+                    </div>
+                </div>  
+                <div class="mcard-bottom">
+                    <div class="mbottom-content mt-3">
+                        <h6 class="muted-small">Truck Type</h6>
+                        <h6 class="muted-small">Driver Name</h6>
+                    </div>
+                    <div class="mbottom-content mb-4">
+                        <h6 class="mbottom-txt">{{$truck->type}}</h6>
+                        <h6 class="mbottom-txt">{{$truck->name}}</h6>
+                    </div>
+                    <div class="text-center mb-2">
+                        <button class="long-btn waves-effect waves-dark p-2" id="{{$truck->id}}" onclick="showNumber(this.id)">Call</button>
+                    </div>
+                </div>        
+            </div>
+        @endforeach
 	</div>
 </section>
 @endsection
 @section('scripts')
-	@parent
-	<script src="/js/datatables.min.js" defer></script>
-	<script src="/js/datatables-select.min.js" defer></script>
-	<script type="module">
-		$(document).ready(function () {
-			$('#find-trucks').DataTable({
-				// "dom": '<"top"i>rt<"bottom"><"clear">'
-			});
-		});
-	</script>
-	<script type="module">
-		$('#find-trucks_filter').remove();
-	</script>
+    @parent
+    <script type="module">
+        window.showNumber = function(id)
+        {
+            $('.overlay'+id).addClass('d-flex justify-content-center flex-column')
+            $('.overlay'+id).show(500)
+        }
+        window.hideNumber = function(id) {
+            $('.overlay'+id).removeClass('d-flex justify-content-center align-items-end flex-column')
+            $('.overlay'+id).hide(500)
+        }
+    </script>
 @endsection

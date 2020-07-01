@@ -37,9 +37,8 @@
 				aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}
 				</a>
 				<div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
+                    <a class="dropdown-item" href="/users/profile">Profile</a>
 					<a href="{{ url('/logout') }}" class="dropdown-item">Logout</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
 				</div>
 			</li>
 		</ul>

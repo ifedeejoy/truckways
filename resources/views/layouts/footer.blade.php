@@ -20,7 +20,7 @@
                     </div>
                     <div class="col">
                         <h6><b>Phone Number</b></h6>
-                        <p>+234 909 884 5736</p>
+                        <p>08138815183, 09012881281</p>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="col">
                         <h6><b>Email Address</b></h6>
-                        <p>truckwaysng@gmail.com</p>
+                        <p>info@truckwaysng.com</p>
                     </div>
                 </div>
             </div>

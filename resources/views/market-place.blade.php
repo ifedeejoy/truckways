@@ -7,171 +7,54 @@
 
 <section class="latest-loads animated fadeInUp delay-1s mt-5">
 	<div class="market-container">
-        <div class="market-card">
-            <div class="mcard-top">
-                <img src="/images/market.png" class="m-img" alt="Loaded Van">
+        @foreach ($loads as $load)
+            <div class="market-card">
+                @foreach (json_decode($load->images) as $image)
+                    @if ($loop->first)
+                    <div class="mcard-top">
+                        <img src="{{asset($image)}}" class="m-img" alt="Loaded Van">
+                    </div>
+                    @break
+                    @endif
+                @endforeach
+                
+                <div class="light-overlay text-center overlay{{$load->id}}">
+                    <h6 class="small-text mt-3 text-white">Phone Number</h6>
+                    <h6 class="small-text mt-3">{{$load->phone}}</h6>
+                    <h6 class="text-white mt-3">Pickup & Delivery</h6>
+                    <h6 class="small-text mt-3">{{$load->pickup}}</h6>
+                    <h6 class="small-text mt-3">{{$load->delivery}}</h6>
+                    <div class="text-center mt-5">
+                    <button class="long-btn waves-effect waves-dark p-2" id="{{$load->id}}" onclick="hideNumber(this.id)">Cancel</button>
+                    </div>
+                </div>  
+                <div class="mcard-bottom">
+                    <div class="mbottom-content">
+                        <h6 class="muted-small">From</h6>
+                        <h6 class="muted-small">To</h6>
+                    </div>
+                    <div class="mbottom-content">
+                        <h6 class="mbottom-txt">{{Str::limit($load->pickup,15)}}</h6>
+                        <h6 class="mbottom-txt">{{Str::limit($load->delivery,15)}}</h6>
+                    </div>
+                    <div class="mbottom-content mt-3">
+                        <h6 class="muted-small">Trucktype</h6>
+                        <h6 class="muted-small">Posted</h6>
+                    </div>
+                    <div class="mbottom-content mb-4">
+                        <h6 class="mbottom-txt">{{$load->truck_type}}</h6>
+                        <h6 class="mbottom-txt">{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($load->created_at))) !!}</h6>
+                    </div>
+                    <div class="text-center mb-2">
+                    @if ($load->load_type == 0)
+                        <button class="long-btn waves-effect waves-dark p-2" id="{{$load->id}}" onclick="showNumber(this.id)">Call</button>
+                    @else
+                        <a class="long-btn waves-effect waves-dark p-2" href="drivers/load/{{$load->id}}">Bid</a>
+                    @endif
+                    </div>
+                </div>        
             </div>
-            <div class="light-overlay text-center overlay1">
-                <h6 class="small-text mt-3 text-white">Phone Number</h6>
-                <h6 class="small-text mt-3">+234 909 332 9909</h6>
-                <div class="text-center mt-5">
-                    <button class="long-btn waves-effect waves-dark p-2" id="1" onclick="hideNumber(this.id)">Cancel</button>
-                </div>
-            </div>  
-            <div class="mcard-bottom">
-                <div class="mbottom-content">
-                    <h6 class="muted-small">From</h6>
-                    <h6 class="muted-small">To</h6>
-                </div>
-                <div class="mbottom-content">
-                    <h6 class="mbottom-txt">Ikeja (Lagos)</h6>
-                    <h6 class="mbottom-txt">Ikorodu (Lagos)</h6>
-                </div>
-                <div class="mbottom-content mt-3">
-                    <h6 class="muted-small">Trucktype</h6>
-                    <h6 class="muted-small">Posted</h6>
-                </div>
-                <div class="mbottom-content mb-4">
-                    <h6 class="mbottom-txt">Flatbed Van</h6>
-                    <h6 class="mbottom-txt">2-2-2020</h6>
-                </div>
-                <div class="text-center mb-2">
-                    <button class="long-btn waves-effect waves-dark p-2" id="1" onclick="showNumber(this.id)">Call</button>
-                </div>
-            </div>        
-        </div>
-        <div class="market-card">
-            <div class="mcard-top">
-                <img src="/images/market.png" class="m-img" alt="Loaded Van">
-            </div>
-            <div class="light-overlay text-center overlay2">
-                <h6 class="small-text mt-3 text-white">Phone Number</h6>
-                <h6 class="small-text mt-3">+234 909 332 9909</h6>
-                <div class="text-center mt-5">
-                    <button class="long-btn waves-effect waves-dark p-2" id="2" onclick="hideNumber(this.id)">Cancel</button>
-                </div>
-            </div>  
-            <div class="mcard-bottom">
-                <div class="mbottom-content">
-                    <h6 class="muted-small">From</h6>
-                    <h6 class="muted-small">To</h6>
-                </div>
-                <div class="mbottom-content">
-                    <h6 class="mbottom-txt">Ikeja (Lagos)</h6>
-                    <h6 class="mbottom-txt">Ikorodu (Lagos)</h6>
-                </div>
-                <div class="mbottom-content mt-3">
-                    <h6 class="muted-small">Trucktype</h6>
-                    <h6 class="muted-small">Posted</h6>
-                </div>
-                <div class="mbottom-content mb-4">
-                    <h6 class="mbottom-txt">Flatbed Van</h6>
-                    <h6 class="mbottom-txt">2-2-2020</h6>
-                </div>
-                <div class="text-center mb-2">
-                    <button class="long-btn waves-effect waves-dark p-2" id="2" onclick="showNumber(this.id)">Call</button>
-                </div>
-            </div>        
-        </div>
-        <div class="market-card">
-            <div class="mcard-top">
-                <img src="/images/market.png" class="m-img" alt="Loaded Van">
-            </div>
-            <div class="light-overlay text-center overlay3">
-                <h6 class="small-text mt-3 text-white">Phone Number</h6>
-                <h6 class="small-text mt-3">+234 909 332 9909</h6>
-                <div class="text-center mt-5">
-                    <button class="long-btn waves-effect waves-dark p-2" id="3" onclick="hideNumber(this.id)">Cancel</button>
-                </div>
-            </div>  
-            <div class="mcard-bottom">
-                <div class="mbottom-content">
-                    <h6 class="muted-small">From</h6>
-                    <h6 class="muted-small">To</h6>
-                </div>
-                <div class="mbottom-content">
-                    <h6 class="mbottom-txt">Ikeja (Lagos)</h6>
-                    <h6 class="mbottom-txt">Ikorodu (Lagos)</h6>
-                </div>
-                <div class="mbottom-content mt-3">
-                    <h6 class="muted-small">Trucktype</h6>
-                    <h6 class="muted-small">Posted</h6>
-                </div>
-                <div class="mbottom-content mb-4">
-                    <h6 class="mbottom-txt">Flatbed Van</h6>
-                    <h6 class="mbottom-txt">2-2-2020</h6>
-                </div>
-                <div class="text-center mb-2">
-                    <button class="long-btn waves-effect waves-dark p-2" id="3" onclick="showNumber(this.id)">Call</button>
-                </div>
-            </div>        
-        </div>
-        <div class="market-card">
-            <div class="mcard-top">
-                <img src="/images/market.png" class="m-img" alt="Loaded Van">
-            </div>
-            <div class="light-overlay text-center overlay4">
-                <h6 class="small-text mt-3 text-white">Phone Number</h6>
-                <h6 class="small-text mt-3">+234 909 332 9909</h6>
-                <div class="text-center mt-5">
-                    <button class="long-btn waves-effect waves-dark p-2" id="4" onclick="hideNumber(this.id)">Cancel</button>
-                </div>
-            </div>  
-            <div class="mcard-bottom">
-                <div class="mbottom-content">
-                    <h6 class="muted-small">From</h6>
-                    <h6 class="muted-small">To</h6>
-                </div>
-                <div class="mbottom-content">
-                    <h6 class="mbottom-txt">Ikeja (Lagos)</h6>
-                    <h6 class="mbottom-txt">Ikorodu (Lagos)</h6>
-                </div>
-                <div class="mbottom-content mt-3">
-                    <h6 class="muted-small">Trucktype</h6>
-                    <h6 class="muted-small">Posted</h6>
-                </div>
-                <div class="mbottom-content mb-4">
-                    <h6 class="mbottom-txt">Flatbed Van</h6>
-                    <h6 class="mbottom-txt">2-2-2020</h6>
-                </div>
-                <div class="text-center mb-2">
-                    <button class="long-btn waves-effect waves-dark p-2" id="4" onclick="showNumber(this.id)">Call</button>
-                </div>
-            </div>        
-        </div>
-        <div class="market-card">
-            <div class="mcard-top">
-                <img src="/images/market.png" class="m-img" alt="Loaded Van">
-            </div>
-            <div class="light-overlay text-center overlay5">
-                <h6 class="small-text mt-3 text-white">Phone Number</h6>
-                <h6 class="small-text mt-3">+234 909 332 9909</h6>
-                <div class="text-center mt-5">
-                    <button class="long-btn waves-effect waves-dark p-2" id="5" onclick="hideNumber(this.id)">Cancel</button>
-                </div>
-            </div>  
-            <div class="mcard-bottom">
-                <div class="mbottom-content">
-                    <h6 class="muted-small">From</h6>
-                    <h6 class="muted-small">To</h6>
-                </div>
-                <div class="mbottom-content">
-                    <h6 class="mbottom-txt">Ikeja (Lagos)</h6>
-                    <h6 class="mbottom-txt">Ikorodu (Lagos)</h6>
-                </div>
-                <div class="mbottom-content mt-3">
-                    <h6 class="muted-small">Trucktype</h6>
-                    <h6 class="muted-small">Posted</h6>
-                </div>
-                <div class="mbottom-content mb-4">
-                    <h6 class="mbottom-txt">Flatbed Van</h6>
-                    <h6 class="mbottom-txt">2-2-2020</h6>
-                </div>
-                <div class="text-center mb-2">
-                    <button class="long-btn waves-effect waves-dark p-2" id="5" onclick="showNumber(this.id)">Call</button>
-                </div>
-            </div>        
-        </div>
+        @endforeach
 	</div>
 </section>
 @endsection

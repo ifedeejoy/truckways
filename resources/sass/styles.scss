@@ -1,36 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
-
-$title-font: 'Montserrat Alternates', sans-serif;
-$body-font: 'Montserrat', sans-serif;
+$title-font: 'Montserrat Alternates',
+sans-serif;
+$body-font: 'Montserrat',
+sans-serif;
 $white: #FFFFFF;
 $primary-color: #FF9011;
 $dark-bg: #1B202E;
 $black: #000000;
 $white: #FFFFFF;
 $shadow-color: #00000029;
-$left-dark-gradient: -webkit-linear-gradient(left, #1B202E, #485370);
+$left-dark-gradient: -webkit-linear-gradient(left,
+#1B202E,
+#485370);
 $light-bg: #2A3247;
 $carousel-control-icon-width: .75rem !default;
 $carousel-control-icon-height: .75rem !default;
 $muted-text: #959595;
-
-html,body,header,.view {
+$extra-muted: #70707099;
+html,
+body,
+header,
+.view {
     height: 100%;
     font-family: $body-font;
     color: $primary-color;
     background-color: $dark-bg;
 }
+
 // Carousel
 .carousel {
-    height: 100%; 
+    height: 100%;
     .carousel-inner {
-        height: 100%; 
-        .carousel-item, .carousel .carousel-inner .active {
-            height: 100%; 
+        height: 100%;
+        .carousel-item,
+        .carousel .carousel-inner .active {
+            height: 100%;
         }
     }
-    .carousel-control-prev, .carousel-control-next{
+    .carousel-control-prev,
+    .carousel-control-next {
         opacity: .8;
     }
     .carousel-control-prev-icon,
@@ -47,72 +56,82 @@ html,body,header,.view {
 }
 
 // Forms && Inputs
-.form-icons{
+.form-icons {
     height: 15px;
 }
-.input-group-text{
+
+.input-group-text {
     border: 1px solid #1B202E70 !important;
     border-right: none !important;
     background: transparent !important;
 }
 
 // Md Form
-.md-form > label{
+.login-input>label {
     color: $white;
 }
-.md-form {
-    input[type = text], input[type = email], textarea.md-textarea {
+
+.login-input {
+    input[type=text],
+    input[type=email],
+    textarea.md-textarea {
         border-bottom: 1.5px solid $white !important;
     }
-    input[type = text] + label, input[type = email] + label,  input[type = password] + label, textarea.md-textarea + label {
+    input[type=text]+label,
+    input[type=email]+label,
+    input[type=password]+label,
+    textarea.md-textarea+label {
         font-size: .80rem;
     }
 }
-.md-form input:not([type]):focus:not([readonly]),
-.md-form input[type=text]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=password]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=email]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=url]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=time]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=date]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=datetime]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=tel]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=number]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=search]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=phone]:not(.browser-default):focus:not([readonly]),
-.md-form input[type=search-md]:focus:not([readonly]),
-.md-form textarea.md-textarea:focus:not([readonly]) {
+
+.login-input input:not([type]):focus:not([readonly]),
+.login-input input[type=text]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=password]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=email]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=url]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=time]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=date]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=datetime]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=tel]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=number]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=search]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=phone]:not(.browser-default):focus:not([readonly]),
+.login-input input[type=search-md]:focus:not([readonly]),
+.login-input textarea.md-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #707070 !important;
     box-shadow: 0 1px 0 0 $primary-color !important;
 }
 
-.md-form input[type=text]:not(.browser-default):focus:not([readonly]) + label,
-.md-form input[type=password]:not(.browser-default):focus:not([readonly]) + label,
-.md-form input[type=email]:not(.browser-default):focus:not([readonly]) + label{
+.login-input input[type=text]:not(.browser-default):focus:not([readonly])+label,
+.login-input input[type=password]:not(.browser-default):focus:not([readonly])+label,
+.login-input input[type=email]:not(.browser-default):focus:not([readonly])+label {
     color: $primary-color;
     font-size: .80rem;
 }
 
-.prefix{
+.prefix {
     max-height: 15px;
     max-width: 15px;
 }
 
-.md-form .prefix.active{
+.login-input .prefix.active {
     color: $primary-color;
 }
 
 // Buttons
-.btn-primary{
+.btn-primary {
     background-color: $primary-color !important;
     border-color: $primary-color !important;
     box-shadow: 0px 3px 6px $shadow-color;
 }
-.btn-rounded{
+
+.btn-rounded {
     border-radius: 25px;
 }
-.btn-dark{
+
+.btn-dark {
     background: $dark-bg 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px $shadow-color;
     border: none;
@@ -123,7 +142,8 @@ html,body,header,.view {
     min-width: 8.5rem;
     color: $white;
 }
-.btn-primary-outline{
+
+.btn-primary-outline {
     border: 1px solid $primary-color !important;
     box-shadow: 0px 3px 6px $shadow-color;
     border-radius: 18px;
@@ -134,44 +154,61 @@ html,body,header,.view {
     padding-right: 1.2rem !important;
     background-color: transparent;
 }
-.btn-primary-outline:hover{
+
+.btn-primary-outline:hover {
     color: $primary-color;
 }
-.btn-none, .btn-none:hover{
+
+.btn-none,
+.btn-none:hover {
     background: none;
     border: none;
     box-shadow: none;
     color: inherit !important;
 }
+
 // Colors
-.black-bold{
+.black-bold {
     font-weight: 700 !important;
-    color: $black !important; 
+    color: $black !important;
 }
-.dark-bold{
+
+.dark-bold {
     font-weight: 700 !important;
     color: $dark-bg !important;
 }
-.primary-text{
+
+.primary-text {
     color: $primary-color !important;
 }
+
+.extra-muted {
+    color: $extra-muted !important;
+}
+
 // Margin
-.mt-40{
+.mt-40 {
     margin-top: 7.5rem !important;
+}
+
+.mt-n1-5 {
+    margin-top: -1.5rem;
 }
 
 // Navigation 
 .navbar {
-    background-color: rgba(0, 0, 0, 0.3); 
+    background-color: rgba(0, 0, 0, 0.3);
 }
-.navdark-bg{
+
+.navdark-bg {
     background-color: $dark-bg !important;
 }
 
 .top-nav-collapse {
-    background-color: $dark-bg; 
+    background-color: $dark-bg;
 }
-.long-btn{
+
+.long-btn {
     border: none;
     background: $primary-color 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px $shadow-color;
@@ -181,17 +218,19 @@ html,body,header,.view {
     font-weight: 800;
     color: $white;
 }
-.nav-link:hover{
+
+.nav-link:hover {
     border-bottom: 1px solid $white;
 }
-.nav-item{
-    .active{
+
+.nav-item {
+    .active {
         border-bottom: 1px solid $white;
     }
 }
 
 // Text Customizations
-.title{
+.title {
     font-family: $title-font;
     color: $white;
     font-weight: bold;
@@ -199,12 +238,14 @@ html,body,header,.view {
 }
 
 // File Input
-.file-input{
+.file-input {
     color: transparent;
 }
+
 .file-input::-webkit-file-upload-button {
     visibility: hidden;
 }
+
 .file-input::before {
     content: "Select images";
     color: $white;
@@ -221,41 +262,49 @@ html,body,header,.view {
     width: 70%;
     text-align: center;
 }
+
 .file-input:hover::before {
     border: none;
 }
+
 .file-input:active {
     outline: 0 !important;
 }
+
 .file-input:active::before {
     outline: 0 !important;
     background: $left-dark-gradient
 }
-.file-input:focus{
+
+.file-input:focus {
     outline: 0 !important;
 }
 
 // Banner
-.home-banner{
-    background-image: url('./images/home-banner.png'); 
-    background-repeat: no-repeat; 
+.home-banner {
+    background-image: url('./images/home-banner.png');
+    background-repeat: no-repeat;
     background-size: cover;
 }
-.home-mask{
+
+.home-mask {
     background: #0000009c url('./images/home-mask.svg') 0% 0% no-repeat padding-box;
 }
-.welcome-text{
+
+.welcome-text {
     text-shadow: 0px 3px 6px $shadow-color;
     color: $primary-color;
     font-weight: 700;
     font-size: 2.5rem;
 }
-.banner-cta{
+
+.banner-cta {
     color: $black !important;
     font-weight: 700 !important;
     font-size: 1rem !important;
 }
-.banner-form{
+
+.banner-form {
     background: #FFFFFF70 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px $shadow-color;
     border: 1px solid #FFC27D;
@@ -263,37 +312,44 @@ html,body,header,.view {
     padding: 1.5rem;
     overflow: auto;
 }
-.banner-txt{
+
+.banner-txt {
     color: $white;
 }
-.banner-input{
+
+.banner-input {
     border: 1px solid #1B202E70 !important;
     border-left: none !important;
     background-color: transparent !important;
 }
-.banner-input::placeholder{
+
+.banner-input::placeholder {
     color: white !important;
     font-size: .75rem;
 }
-.banner-input:focus{
+
+.banner-input:focus {
     color: $white !important;
     border-color: #1B202E70 !important;
     box-shadow: 0 0 0 0.2rem #1b202e66;
 }
-.banner-upload{
+
+.banner-upload {
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px $shadow-color;
     border-radius: 12px;
-    padding: 1.3rem;
+    padding: 1rem;
     overflow-y: scroll;
     overflow-x: auto;
     height: 10rem;
 }
-.banner-form-preview{
+
+.banner-form-preview {
     height: 100%;
     width: 100%;
 }
-.preview-card{
+
+.preview-card {
     width: 80px;
     height: 80px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -302,27 +358,28 @@ html,body,header,.view {
     margin-right: 1rem;
 }
 
-
-
 // Intro Section
-.intro-section{
+.intro-section {
     background-color: $dark-bg;
     color: $white !important;
 }
-.intro-left{
+
+.intro-left {
     border-top: 2px solid $primary-color;
     padding: 1.5rem;
 }
-.intro-right{
+
+.intro-right {
     padding: 1.5rem;
 }
-.about-txt{
+
+.about-txt {
     font-weight: 900 !important;
     font-size: 2rem !important;
 }
 
 // What we do
-.wwd-section{
+.wwd-section {
     background-color: $light-bg;
     display: flex;
     justify-content: space-between;
@@ -330,97 +387,108 @@ html,body,header,.view {
     width: 100%;
 }
 
-.wwd-container{
+.wwd-container {
     display: flex;
     justify-content: flex-start;
     padding: 4rem;
     flex-wrap: wrap;
 }
 
-.wwd-container2{
+.wwd-container2 {
     display: flex;
     justify-content: flex-end;
 }
-.wwd-box1, .wwd-box2{
+
+.wwd-box1,
+.wwd-box2 {
     color: $white !important;
     border: 1px solid $primary-color;
     background: transparent;
     height: 25rem;
     width: 40rem;
 }
-.wwd-box2{
+
+.wwd-box2 {
     border: 1px solid $primary-color;
     margin-left: 2rem;
     margin-top: 3rem;
     padding: 2rem;
 }
-.wwd-head{
+
+.wwd-head {
     color: $primary-color !important;
 }
-.truckClip{
+
+.truckClip {
     background-image: url('./images/truckClip.png');
     background-repeat: no-repeat;
     background-size: contain;
     width: 30rem;
 }
-.truckMask{
+
+.truckMask {
     width: 100%;
     height: 100%;
     margin-top: -3.3rem;
 }
 
 // Latest Loads
-.ll-container{
+.ll-container {
     display: flex;
     justify-content: space-around;
 }
-.ll-text{
+
+.ll-text {
     font-weight: 900 !important;
     font-size: 2rem !important;
     border-top: 3px solid $primary-color;
     padding: 2rem;
     width: 50%;
 }
-.table{
+
+.table {
     background: $light-bg 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px $shadow-color;
     border: 2px solid $primary-color;
     color: $white;
     text-align: center;
-    thead, tfoot{
+    thead,
+    tfoot {
         color: $primary-color;
-        th{
+        th {
             font-weight: bolder;
         }
     }
-    th, td {
+    th,
+    td {
         border-bottom: 1px solid $primary-color !important;
     }
 }
 
 // Vehicle Range
-.vehicle-range, .test-cont{
+.vehicle-range,
+.test-cont {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.vehicle-img{
+.vehicle-img {
     width: 200px;
     height: 200px;
     margin-bottom: 1.5rem !important;
     box-shadow: 0px 3px 6px $shadow-color;
     color: $primary-color;
     background-color: $white;
-    img{
+    img {
         width: 100%;
         height: 100%;
     }
 }
 
 // testimonial
-.testimonial-container{
+.testimonial-container {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -429,27 +497,32 @@ html,body,header,.view {
     text-align: center;
     margin-bottom: 3rem !important;
 }
-.testimonial-txt{
+
+.testimonial-txt {
     width: 100%;
     font-weight: 900 !important;
     font-size: 2rem !important;
     color: $white;
 }
-.short-cont{
+
+.short-cont {
     width: 100%;
     padding-left: 38%;
 }
-.short-border{
+
+.short-border {
     height: 10px;
     width: 20%;
     border-bottom: 2.5px solid $primary-color;
 }
-.test-numbers{
+
+.test-numbers {
     background: $primary-color 0% 0% no-repeat padding-box;
     padding: 2rem;
     color: $dark-bg;
 }
-.user-test{
+
+.user-test {
     background: $light-bg 0% 0% no-repeat padding-box;
     padding: 1rem;
     display: flex;
@@ -457,13 +530,16 @@ html,body,header,.view {
     flex-direction: row;
     align-items: center;
 }
-.test-box1, .test-box2{
+
+.test-box1,
+.test-box2 {
     border: 1px solid $primary-color;
     background: transparent;
     height: 20rem;
     width: 35rem;
 }
-.test-box2{
+
+.test-box2 {
     margin-top: 7px;
     margin-left: 15px;
     font-size: 1rem !important;
@@ -473,18 +549,19 @@ html,body,header,.view {
     justify-content: center;
     align-items: center;
 }
-.test-header{
+
+.test-header {
     display: flex;
     align-items: flex-start;
     flex-direction: row;
-    img{
+    img {
         height: 75px;
         width: 75px;
     }
 }
 
 // Footer
-.footer{
+.footer {
     background-color: $primary-color;
     color: $white !important;
     padding: 2rem !important;
@@ -496,12 +573,14 @@ html,body,header,.view {
     padding-left: 6rem !important;
     padding-right: 6rem !important;
 }
-.footer-heading{
+
+.footer-heading {
     color: $dark-bg !important;
     font-size: 1.5rem;
     font-weight: 900;
 }
-.footer-box{
+
+.footer-box {
     background: #CE7510 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     padding: 1.5rem;
@@ -509,42 +588,46 @@ html,body,header,.view {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    h6{
+    h6 {
         font-weight: bolder;
     }
-    p{
+    p {
         font-size: .75rem;
     }
-    img{
+    img {
         max-width: 32px !important;
-        height: 24px !important; 
+        height: 24px !important;
     }
-    .addresses{
+    .addresses {
         max-height: 117px !important;
     }
-    .md-form {
-        input[type = text], input[type = email], textarea.md-textarea {
+    .login-input {
+        input[type=text],
+        input[type=email],
+        textarea.md-textarea {
             border-bottom: 1.5px solid $white;
             width: 100%;
         }
     }
 }
-.footer-contact{
-    
+
+.footer-contact {
     padding-bottom: 1rem !important;
     display: flex;
     justify-content: center;
-    .btn-dark{
+    .btn-dark {
         width: 5rem !important;
     }
 }
-.footer-title{
+
+.footer-title {
     font-family: $title-font;
     color: $dark-bg;
     font-weight: bold;
     font-size: 1.1rem;
 }
-.copyright{
+
+.copyright {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -552,48 +635,54 @@ html,body,header,.view {
     background-color: $primary-color;
     justify-content: flex-end;
 }
-.copy-img{
+
+.copy-img {
     height: 31px;
     width: 31px;
 }
 
 // Other Pages Banner
-.quarter-page-intro{
+.quarter-page-intro {
     margin-top: 4rem;
     height: 35%;
     width: 100%;
     background-repeat: no-repeat !important;
     background-size: cover !important;
 }
-.quarter-mask{
+
+.quarter-mask {
     width: 100%;
     height: 100%;
     background: transparent url('./images/find-truck.svg') 0% 0% no-repeat padding-box;
     padding: 5rem;
 }
-.page-title{
+
+.page-title {
     font-size: 2rem;
     color: $primary-color;
     font-weight: bolder;
 }
-.page-caption{
+
+.page-caption {
     font-size: 1.1rem;
     font-weight: bold;
     color: $white;
 }
-.pagination .page-item.active .page-link{
+
+.pagination .page-item.active .page-link {
     background-color: $primary-color !important;
 }
 
 // Market Place
-.market-container{
+.market-container {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     padding: 4rem;
     flex-wrap: wrap;
 }
-.market-card{
+
+.market-card {
     border-radius: 24px !important;
     background-color: $light-bg;
     overflow: hidden!important;
@@ -602,45 +691,52 @@ html,body,header,.view {
     position: relative;
     margin-bottom: 2rem;
 }
-.mcard-top{
+
+.mcard-top {
     height: 250px;
     width: 300px;
     border-radius: 24px 24px 0px 0px;
     overflow: hidden!important;
     position: relative;
 }
-.m-img{
+
+.m-img {
     width: 400px;
     height: 400px;
     margin-left: -2rem;
     margin-top: -2rem;
 }
-.mcard-bottom{
+
+.mcard-bottom {
     padding: 1.2rem;
     margin-top: 1rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 }
-.mbottom-content{
+
+.mbottom-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.muted-small{
+
+.muted-small {
     color: $muted-text;
     font-size: 10px;
     margin-bottom: .55rem;
     text-align: center;
 }
-.mbottom-txt{
+
+.mbottom-txt {
     color: $white;
     font-size: 12px;
     font-weight: bolder;
 }
-.light-overlay{
-	position: absolute;
-	height: 110%;
+
+.light-overlay {
+    position: absolute;
+    height: 110%;
     width: 120%;
     margin-left: -2rem;
     margin-top: -2rem;
@@ -654,23 +750,27 @@ html,body,header,.view {
 }
 
 // Login Form
-.login-form{
+.login-form {
     background: $light-bg 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px $shadow-color;
     border: 1px solid $primary-color;
     border-radius: 36px;
     padding: 3rem;
-    .md-form{
-        input[type = text], input[type = email], input[type = password], textarea.md-textarea {
+    .login-input {
+        input[type=text],
+        input[type=email],
+        input[type=password],
+        textarea.md-textarea {
             border-bottom: 1.5px solid #707070 !important;
         }
     }
-    .login-liner{
+    .login-liner {
         margin-top: 2rem;
         border-bottom: 1.5px solid #666;
     }
 }
-.login-option{
+
+.login-option {
     background-color: $light-bg;
     padding: 1.5rem;
     padding-right: 2rem !important;
@@ -682,108 +782,140 @@ html,body,header,.view {
 }
 
 // Login Screen
-.login-banner-img{
+.login-banner-img {
     height: 50%;
     margin-top: -10rem;
 }
-.login-banner{
+
+.login-banner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 3rem;
 }
-.login-welcome-text{
+
+.login-welcome-text {
     margin-left: 40%;
     margin-top: 20%;
 }
-.login-right{
+
+.login-right {
     height: 100%;
     display: flex;
     justify-content: center;
     padding: 5rem;
-    .login-form{
+    .login-form {
         height: 100%;
     }
 }
 
+// Driver Profile
+.shadow-card {
+    padding: 2rem;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 50px #0000001C;
+    align-self: center;
+}
+
+.w-60 {
+    width: 60% !important;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+}
+
+.dark-hr {
+    border-color: $extra-muted !important;
+}
+
 // Media Queries
 @media only screen and (max-width: 768px) {
-    html,body,header,.view {
+    html,
+    body,
+    header,
+    .view {
         height: 1000px;
     }
     .full-page-intro {
-        height: 1000px; 
-    } 
+        height: 1000px;
+    }
     .carousel {
-        height: 100%; 
-    } 
-  	.navbar {
-		background-color: $dark-bg !important;
-    } 
-    .wwd-container{
+        height: 100%;
+    }
+    .navbar {
+        background-color: $dark-bg !important;
+    }
+    .wwd-container {
         flex-direction: column;
         padding: 2rem;
         min-width: 20rem;
         flex-wrap: wrap;
         overflow: hidden;
     }
-    .wwd-container2{
+    .wwd-container2 {
         display: none;
     }
-    .wwd-box1{
+    .wwd-box1 {
         max-width: 10rem;
     }
-    .wwd-box2{
+    .wwd-box2 {
         max-width: 20rem;
         background-color: $light-bg;
-        h4{
+        h4 {
             font-size: 1rem;
         }
     }
-    .ll-text{
+    .ll-text {
         width: 100%;
     }
-    .vehicle-range{
+    .vehicle-range {
         flex-direction: column;
     }
-    .short-cont{
+    .short-cont {
         width: 100%;
         padding-left: 8%;
     }
-    .short-border{
+    .short-border {
         height: 10px;
         width: 40%;
         border-bottom: 2.5px solid $primary-color;
     }
-    .login-banner{
+    .login-banner {
         flex-direction: column;
     }
-    .login-banner-img{
+    .login-banner-img {
         display: none !important;
     }
-    .login-welcome-text{
+    .login-welcome-text {
         margin: auto;
         padding: 1rem;
         text-align: center;
         margin-top: 5%;
     }
 }
+
 @media (min-width: 800px) and (max-width: 850px) {
-    html,body,header,.view {
+    html,
+    body,
+    header,
+    .view {
         height: auto;
     }
     .navbar:not(.top-nav-collapse) {
         background: $dark-bg !important;
     }
-    // .wwd-box1, .wwd-box2{
-    //     border: 1px solid #FF9011;
-    //     background: transparent;
-    //     height: auto;
-    //     width: auto;
-    // }
-    // .wwd-box2{
-    //     margin-top: -3rem;
-    //     margin-left: 2rem;
-    //     padding: 1.5rem;
-    // }
+    .wwd-box1,
+    .wwd-box2 {
+        border: 1px solid #FF9011;
+        background: transparent;
+        height: auto;
+        width: auto;
+    }
+    .wwd-box2 {
+        margin-top: -3rem;
+        margin-left: 2rem;
+        padding: 1.5rem;
+    }
 }

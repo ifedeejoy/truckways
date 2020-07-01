@@ -62,6 +62,37 @@
                     </div>
                 </div>
             </div>
+            @if (count($bids) > 0)
+            <div class="home-options bg-primary">
+                <h4 class="text-white">Bids</h6>
+            </div>
+            <div class="load-container">
+                @foreach ($bids as $bid)
+                    <div class="load-cards">
+                        <div class="d-flex justify-content-between">
+                            <h6 class="smaller-text text-center">{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($bid->created_at))) !!}</h6>
+                        </div>
+                        <div class="d-flex justify-content-between text-center">
+                            <h6 class="smaller-text primary-text">{{$load->pickup}}</h6>
+                            <h6 class="smaller-text primary-text">{{$load->delivery}}</h6>
+                        </div>
+                        <div class="text-center mt-3">
+                            <h5 class="load-title bold">{{$bid->name}}</h5>
+                            <h5 class="load-title bold">{{$bid->phone}}</h5>
+                            <h5 class="load-title bold mt-2">{{number_format($bid->amount)}}</h5>
+                        </div>
+                        <div class="row">
+                            <form action="{{route('accept-bid', $bid->bid_id)}}" method="post">
+                                @csrf
+                                <button class="btn btn-success btn-sm">Accept Bid</button>
+                            </form>
+                            <a href="/users/driver/{{$bid->driver}}" class="btn btn-primary btn-sm">View Driver</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            @endif
+            
         </div>
     </div>
 @endsection

@@ -4,61 +4,59 @@
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card">
             <div class="home-options bg-primary">
-                <h4 class="text-white">Load Details</h6>
+                <h4 class="text-white">{{$load->title}}</h6>
             </div>
             <div class="col-sm-12 p-4">
                 <div class="row d-flex justify-content-between">
-                    <div class="gray-card col-sm-6 mb-4">
-                        <div class="d-flex flex-row w-100 mb-5 justify-content-between">
-                            <h6 class="gray-text bold">TWY{{$load->reference}}</h6>
-                        </div>
-                        <div class="col mb-4">
-                            <label for="title">Title</label>
-                            <h6 class="gray-text">{{$load->title}}</h6>
-                        </div>
-                        <div class="col mb-4">
-                            <label for="description">Load description</label>
-                            <h6 class="gray-text">{{$load->description}}</h6>
-                        </div>
-                        <div class="banner-upload text-center mb-3">
-                            <h6 class="dark-bold mb-3">Load Images</h6>
+                    <div class="col-sm-6 mb-4 container">
+                        @foreach (json_decode($load->images) as $image)
+                            @if($loop->first)
+                                <img src="{{asset($image)}}" class="img-fluid" alt="">
+                                @break
+                            @endif
+                        @endforeach
+                        <div class="text-center mb-3">
                             <div class="row mt-4">
                                 @foreach (json_decode($load->images) as $image)
                                 <div class='preview-card'>
                                     <img class='banner-form-preview' src="{{asset($image)}}">
                                 </div>
                                 @endforeach
-                                
                             </div>
                         </div>
                     </div>
-                    <div class="gray-card col-sm-5 mb-4">
-                        <h6 class="primary-text mb-5 bold">Booking Details</h6>
-                        <div class="col mb-4">
-                            <label for="title">Pickup address</label>
-                            <h6 class="gray-text">{{$load->pickup}}</h6>
+                    <div class="col-sm-6 mb-4 d-flex flex-column">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h5 class="bold">{{$load->title}}</h5>
+                            <h6 class="smaller-text text-center">{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($load->created_at))) !!}</h6>
                         </div>
-                        <div class="col mb-4">
-                            <label for="title">Delivery address</label>
-                            <h6 class="gray-text">{{$load->delivery}}</h6>
+                        <p class="small-text primary-text">{{$load->pickup}} - {{$load->delivery}}</p>
+                        <h6 class="load-title mb-5">{{$load->description}}</h6>
+                        <form action="{{route('send-bid', $load->id)}}" id="send-bid" method="POST" class="mb-5">
+                            @csrf
+                            <div class="md-form col">
+                                <input type="number" class="form-control" name="amount">
+                                <label class="black-text" for="amount">Bid Amount </label>
+                            </div>
+                            <h6 class="small-text mb-5">We deduct 5% service charge from driver’s pay</h6>
+                        </form>
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <strong>Sorry!</strong> There were more problems with your HTML input.<br><br>
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                            </ul>
                         </div>
-                        <div class="col mb-4">
-                            <label for="title">Truck type</label>
-                            <h6 class="gray-text text-capitalize">{{$load->truck_type}}</h6>
-                        </div>
-                        <div class="col mb-4">
-                            <label for="budget">Your budget</label>
-                            <h6 class="gray-text">{{number_format($load->budget)}}</h6>
-                        </div>
-                        <div class="col mb-4">
-                            <h6>Posted As</h6>
-                            @if ($load->load_type == 0)
-                            <h6 class="gray-text">Basic</h6>
-                            @else
-                            <h6 class="gray-text">Premium</h6>
-                            @endif
-                            
-                        </div>
+                        @endif
+
+                        @if(session('success'))
+                        <div class="alert alert-success">
+                        {{ session('success') }}
+                        </div> 
+                        @endif
+                        <button type="submit" form="send-bid" class="btn btn-lg btn-primary align-self-end mt-5">Send Bid</button>
                     </div>
                 </div>
             </div>

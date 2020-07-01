@@ -6,32 +6,32 @@
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card">
             <div class="home-options">
-                <h6 class="small-text bold"> active loads</h6>
+                <h6 class="small-text bold"> available loads</h6>
                 <h6 class="small-text bold"> trucks available</h6>
                 <h6 class="small-text bold"> pending bills</h6>
             </div>
             <div class="noshadow-card">
-                <div class="card-box clickable-row" data-href="/users/post-load">
+                <div class="card-box clickable-row" data-href="/drivers/loads">
                     <img src="/images/post.png" alt="">
-                    <h6>Post a load</h6>
+                    <h6>Available Loads</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="/users/check-load">
+                <div class="card-box clickable-row" data-href="/drivers/my-bids">
                     <img src="/images/load-status.png" alt="">
-                    <h6>Check load status</h6>
+                    <h6>My Bids</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="/users/view-records">
+                <div class="card-box clickable-row" data-href="/drivers/active-journeys">
                     <img src="/images/view-records.png" alt="">
-                    <h6>View records</h6>
+                    <h6>Active Journeys</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="/users/bids">
+                <div class="card-box clickable-row" data-href="/drivers/destinations">
                     <img src="/images/bids.png" alt="">
-                    <h6>Bids</h6>
+                    <h6>Preferred Destinations</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="/users/trucks">
+                <div class="card-box clickable-row" data-href="/drivers/trucks">
                     <img src="/images/explore-trucks.svg" alt="">
-                    <h6>Explore trucks</h6>
+                    <h6>My Vehicles</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="/users/profile">
+                <div class="card-box clickable-row" data-href="/drivers/profile">
                     <img src="/images/manage-account.png" alt="">
                     <h6>Manage Account</h6>
                 </div>

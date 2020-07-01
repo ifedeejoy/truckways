@@ -18,11 +18,11 @@ class Loads extends Model
 
     public function bids()
     {
-        return $this->hasMany(Bids::class);
+        return $this->hasMany(Bids::class, 'load');
     }
 
     public function driver()
     {
-        return $this->hasOne(Drivers::class);
+        return $this->hasOne(Drivers::class, 'id');
     }
 }

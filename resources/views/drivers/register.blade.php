@@ -4,7 +4,8 @@
     
 <div class="login-banner">
     <div class="login-left mt-2">
-        <h4 class="welcome-text login-welcome-text">Get trucks, Move stuffs, <br> Live Simple.</h4>
+        <h4 class="welcome-text login-welcome-text">Pick up loads and get more loads on
+            <br> your return trips now!</h4>
         <img src="/images/illus.png" class="login-banner-img" alt="Delivery Van Being Loaded">
     </div>
     <div class="login-right mt-0">
