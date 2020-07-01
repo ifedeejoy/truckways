@@ -45,11 +45,11 @@
 								<input type="text" class="form-control banner-input" placeholder="Select Vehicle Type" aria-label="Select Vehicle Type" aria-describedby="basic-addon5">
 							</div>
 							<div class="banner-upload text-center mb-3">
-								<h6 class="dark-bold mb-3">Upload images of goods</h6>
+								<h6 class="dark-bold mb-2">Upload images of goods</h6>
 								<div class="align-self-center">
 									<input type="file" name="productImages[]" id="fileUpload" class="file-input" onChange='getfileInfo(event)' accept="image/*" multiple>
 								</div>
-								<div class="row mt-4" id="previewUploads">
+								<div class="row" id="previewUploads">
 
 								</div>
 							</div>
@@ -75,7 +75,7 @@
             <form action="{{ route('login') }}" method="POST" class="mt-5">
                 @csrf
 
-                <div class="md-form mb-3">
+                <div class="md-form login-input mb-3">
                     <img src="/images/username.svg" class="prefix" alt="Username Icon">
                     <input type="email" class="form-control primary-text @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     <label for="email">{{ __('E-Mail Address') }}</label>
@@ -85,7 +85,7 @@
                         </span>
                     @enderror
                 </div>
-                <div class="md-form mb-5">
+                <div class="md-form login-input mb-5">
                     <img src="/images/password.svg" class="prefix" alt="Password Icon">
                     <input id="password" type="password" class="form-control primary-text @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     <label for="password">Password</label>
@@ -136,7 +136,7 @@
             <p class="text-center"><b>Signup !</b></p>
             <form action="{{ route('register') }}" method="POST" class="mt-5">
                 @csrf
-                <div class="md-form mb-3">
+                <div class="md-form login-input mb-3">
                     <img src="/images/username.svg" class="prefix" alt="Username Icon">
                     <input id="name" type="text" class="form-control primary-text @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="off" autofocus>
                     <label for="name">{{ __('Name') }}</label>
@@ -147,7 +147,7 @@
                     @enderror
                 </div>
 
-                <div class="md-form mb-3">
+                <div class="md-form login-input mb-3">
                     <img src="/images/username.svg" class="prefix" alt="Username Icon">
                     <input type="email" class="form-control primary-text @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email') }}" required autocomplete="off" autofocus>
                     <label for="email">{{ __('E-Mail Address') }}</label>
@@ -157,7 +157,7 @@
                         </span>
                     @enderror
                 </div>
-                <div class="md-form mb-3">
+                <div class="md-form login-input mb-3">
                     <img src="/images/password.svg" class="prefix" alt="Password Icon">
                     <input id="password" type="password" class="form-control primary-text @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                     <label>{{ __('Password') }}</label>
@@ -168,7 +168,7 @@
                     @enderror
                 </div>
 
-                <div class="md-form mb-3">
+                <div class="md-form login-input mb-3">
                     <img src="/images/password.svg" class="prefix" alt="Password Icon">
                     <input id="password-confirm" type="password" class="form-control primary-text" name="password_confirmation" required autocomplete="new-password">
                     <label for="password-confirm">{{ __('Confirm Password') }}</label>

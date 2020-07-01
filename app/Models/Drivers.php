@@ -23,11 +23,16 @@ class Drivers extends Authenticatable
 
     public function loads()
     {
-        return $this->belongsTo(Loads::class);
+        return $this->belongsTo(Loads::class, 'id');
     }
 
     public function bids()
     {
-        return $this->hasMany(Bids::class);
+        return $this->hasMany(Bids::class, 'id');
+    }
+
+    public function trucks()
+    {
+        return $this->hasMany(Trucks::class, 'driver');
     }
 }

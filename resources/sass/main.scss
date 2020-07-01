@@ -10,10 +10,13 @@ $body-font: 'Montserrat',
 sans-serif;
 $semi-gray: #ADB8C6;
 $dark-gray: #707070;
+$light-gray: #F1F1F1;
+$shadow-color: #00000029;
 // Utilities
 body,
+html,
 main {
-    background-color: #F2F2F2;
+    background-color: #F2F2F2 !important;
     font-family: $body-font;
     color: $black !important;
 }
@@ -62,6 +65,11 @@ main {
     color: $dark-gray;
 }
 
+// Marging Utilities
+.ml-n10 {
+    margin-left: -10rem !important;
+}
+
 // Button & Paginition Utilities
 .pagination .page-item.active .page-link {
     background-color: $primary-color !important;
@@ -71,18 +79,18 @@ main {
 .btn-primary {
     background-color: $primary-color !important;
     border-color: $primary-color !important;
-    box-shadow: 0px 3px 6px #00000029 !important;
+    box-shadow: 0px 3px 6px $shadow-color !important;
 }
 
 .btn-secondary {
     background-color: $dark-gray !important;
     border-color: $dark-gray !important;
-    box-shadow: 0px 3px 6px #00000029 !important;
+    box-shadow: 0px 3px 6px $shadow-color !important;
 }
 
 .btn-gray {
     background: $semi-gray 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0px 3px 6px $shadow-color;
     color: $white;
 }
 
@@ -129,13 +137,13 @@ main {
 .table-border {
     border: 2px solid $primary-color;
     thead {
-        box-shadow: 0px 3px 6px #00000029;
+        box-shadow: 0px 3px 6px $shadow-color;
         th {
             border-bottom: 2px solid $primary-color !important;
         }
     }
     tfoot {
-        box-shadow: 0px 3px 6px #00000029;
+        box-shadow: 0px 3px 6px $shadow-color;
         th {
             border-top: 2px solid $primary-color !important;
         }
@@ -178,7 +186,7 @@ main {
 .sidenav-menu {
     background: $white 0% 0% no-repeat padding-box;
     margin-top: 1rem;
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0px 3px 6px $shadow-color;
     padding: 1.5rem;
     text-align: center;
     a {
@@ -231,7 +239,7 @@ footer {
     flex: 1 0 25%;
     margin: 2rem;
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0px 3px 6px $shadow-color;
     border-radius: 15px;
     padding: 2rem;
     color: $black;
@@ -245,8 +253,8 @@ footer {
 }
 
 .gray-card {
-    background: #F1F1F1 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
+    background: $light-gray 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px $shadow-color;
     border-radius: 18px;
     padding: 2rem;
 }
@@ -255,7 +263,7 @@ footer {
     padding: 0em !important;
     background: transparent url('./images/2020-02-10\ 17.30.01.png') 0% 0% no-repeat padding-box;
     background-size: 100% 100%;
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 0px 3px 6px $shadow-color;
     border-radius: 18px;
     align-self: flex-start !important;
     height: 20rem !important;
@@ -271,6 +279,87 @@ footer {
 //  Post Load
 .banner-upload {
     height: auto !important;
+}
+
+// Driver Loads
+.load-container {
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #FBFBFB;
+}
+
+.smaller-text {
+    font-size: .7rem !important;
+}
+
+.load-title {
+    font-size: .95rem !important;
+}
+
+.load-cards {
+    flex: 1 0 28%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px $shadow-color;
+    margin: 1rem;
+    padding: 1rem;
+    img {
+        height: 163px;
+        width: 262px;
+        border-radius: 2rem;
+    }
+}
+
+// Add trucks
+.truck-card {
+    flex: 1 0 20%;
+    background: $light-gray;
+    box-shadow: 0px 3px 6px $shadow-color;
+    border-radius: 18px;
+    padding: 2rem;
+    margin: 1rem;
+}
+
+.truck-form {
+    flex-grow: 2;
+}
+
+.transparent-truck {
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.truck-file::before {
+    width: 100% !important;
+    background: $primary-color !important;
+}
+
+.user-truck {
+    background-color: $white !important;
+    border-color: $white !important;
+    color: $primary-color !important;
+    box-shadow: 0px 3px 6px $shadow-color !important;
+    border: 1px solid $dark-gray !important;
+    img {
+        min-height: 200px;
+        width: 300px;
+        margin-top: 0;
+    }
+}
+
+.light-overlay {
+    background-color: $white !important;
+}
+
+.payment-card {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 10px #00000029;
+    border-radius: 20px;
+    padding: 2rem;
 }
 
 @media only screen and (max-width: 768px) {

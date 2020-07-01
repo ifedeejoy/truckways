@@ -1,7 +1,7 @@
 @extends('layouts.users.app')
 @section('title', 'Active Loads')
 @section('content')
-    <div class="col-sm-12 p-3 pr-5 pl-5">
+    <div class="col-sm-12 p-3 pr-5 pl-5 mb-5">
         <div class="custom-card p-3">
             <div class="row pl-4 pt-3">
                 <a href="/users/post-load" class="btn btn-md btn-primary rounded-btn"> <span class="plus-icon"><i class="fas fa-plus"></i></span> New Load</a>
@@ -30,12 +30,12 @@
                     </tfoot>
                     <tbody>
                         @foreach ($loads as $load)
-                        <tr class="clickable-row" data-href="/users/load/{{$load->reference}}">
-                            <td>2020-04-19</td>
+                        <tr class="clickable-row" data-href="/users/active-load/{{$load->id}}">
+                            <td>{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($load->created_at))) !!}</td>
                             <td>{{$load->reference}}</td>
                             <td>{{$load->pickup}}</td>
                             <td>{{$load->delivery}}</td>
-                            <td>$100</td>
+                            <td>{{$load->price}}</td>
                             <td>{{$load->truck_type}}</td>
                         </tr>
                         @endforeach

@@ -33,7 +33,7 @@ class RegisterController extends Controller
      */
 
     protected $redirectTo = '/users/home';
-
+    protected $validate;
     /**
      * Create a new controller instance.
      *
@@ -42,6 +42,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->validate = null;
         // $this->middleware('guest:admin')->except('logout');
         // $this->middleware('guest:truck_drivers')->except('logout');
     }
@@ -53,6 +54,15 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+    protected function driverValidator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -85,7 +95,7 @@ class RegisterController extends Controller
 
     public function driverRegister(Request $request)
     {
-        $this->validator($request->all())->validate();
+        $this->driverValidator($request->all())->validate();
         $driver = Drivers::create([
             'name' => $request->name,
             'email' => $request->email,

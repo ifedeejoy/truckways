@@ -16,8 +16,12 @@ class CreateTrucksTable extends Migration
         Schema::create('trucks', function (Blueprint $table) {
             $table->id();
             $table->integer('driver');
+            $table->string('name');
+            $table->string('model');
             $table->string('type');
-            $table->string('size');
+            $table->string('plate_number');
+            $table->json('images');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

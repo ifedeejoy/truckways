@@ -4,7 +4,8 @@
     
 <div class="login-banner">
     <div class="login-left mt-2">
-        <h4 class="welcome-text login-welcome-text">Get trucks, Move stuffs, <br> Live Simple.</h4>
+        <h4 class="welcome-text login-welcome-text">Pick up loads and get more loads on
+            <br> your return trips now!</h4>
         <img src="/images/illus.png" class="login-banner-img" alt="Delivery Van Being Loaded">
     </div>
     <div class="login-right mt-0">
@@ -13,7 +14,7 @@
             <form action="{{ route('login-driver') }}" method="POST" class="mt-5">
                 @csrf
                 <div class="col mb-3">
-                    <label for="email">E-Mail Address'</label>
+                    <label for="email">E-Mail Address</label>
                     <input type="email" class="form-control primary-text " name="email" id="email" value="{{ old('email') }}" required autocomplete="off" autofocus>
                     
                 </div>
@@ -28,11 +29,10 @@
                         {{ __('login') }}
                     </button>
                 </div>
-
-                @if (count($errors))
-                    @foreach ($errors->all() as $error)
-                        {{ $error }}
-                    @endforeach
+                @if(session('error'))
+                    <div class="alert alert-warning">
+                        {{ session('error') }}
+                    </div> 
                 @endif
                 <div class="login-liner mt-2"></div>
                 <div class="text-center mb-4 mt-4">

@@ -9,7 +9,8 @@
 				<h4 class="about-txt">ABOUT US</h4>
 			</div>
 			<div class="col-sm-9 animated fadeInRight delay-1s intro-right">
-				<p>We aspire to become the preferred networking portal for haulage/cargo transport over the years. We hope tp allow all logistic businesses to work more closely, effectively, and efficiently, using truckwaysng.com as their trusted online haulage booking marketplace.</p>
+				<p>We are an innovative, cross-functional logistics platform that aggregates end-to-end transportation operations for effective regular and reverse logistics operations and management.
+                </p>
 			</div>
 		</div>
 	</div>
@@ -18,12 +19,13 @@
 	<div class="wwd-container">
 		<div class="wwd-box1">
 			<div class="wwd-box2">
-				<h2 class="wwd-head">Why us?</h2>
+                <h2 class="wwd-head">Why us?</h2>
+                <p>We provide an effective and reliable platform for logistics networking between load/goods owners and drivers for;
+                </p>
 				<div class="wwd-content mt-3">
 					<h4 class="mb-3">Interstate Goods Delivery</h4>
-					<h4 class="mb-3">Fast & Best Delivery Service</h4>
 					<h4 class="mb-3">Competitive Pricing</h4>
-					<h4 class="mb-3">Safe And Secure System</h4>
+					<h4 class="mb-3">Safe And Secure Moves</h4>
 					<h4 class="mb-3">Timely Delivery</h4>
 				</div>
 			</div>
@@ -48,7 +50,7 @@
 						<th>Load Title</th>
 						<th>Location</th>
 						<th>Destination</th>
-						<th>Price</th>
+						<th>Budget</th>
 						<th>Truck Type</th>
 					</tr>
 				</thead>
@@ -58,51 +60,23 @@
 						<th>Load Title</th>
 						<th>Location</th>
 						<th>Destination</th>
-						<th>Price</th>
+						<th>Budget</th>
 						<th>Truck Type</th>
 					</tr>
 				</tfoot>
 				<tbody>
-					<tr>
-						<td>2020-04-19</td>
-						<td>Quick House Move</td>
-						<td>Ikeja, Lagos</td>
-						<td>Admiralty, Lekki</td>
-						<td>$100</td>
-						<td>Flat Bed Truck</td>
-					</tr>
-					<tr>
-						<td>2020-04-19</td>
-						<td>Quick House Move</td>
-						<td>Ikeja, Lagos</td>
-						<td>Admiralty, Lekki</td>
-						<td>$100</td>
-						<td>Flat Bed Truck</td>
-					</tr>
-					<tr>
-						<td>2020-04-19</td>
-						<td>Quick House Move</td>
-						<td>Ikeja, Lagos</td>
-						<td>Admiralty, Lekki</td>
-						<td>$100</td>
-						<td>Flat Bed Truck</td>
-					</tr>
-					<tr>
-						<td>2020-04-19</td>
-						<td>Quick House Move</td>
-						<td>Ikeja, Lagos</td>
-						<td>Admiralty, Lekki</td>
-						<td>$100</td>
-						<td>Flat Bed Truck</td>
-					</tr>
-					<tr>
-						<td>2020-04-19</td>
-						<td>Quick House Move</td>
-						<td>Ikeja, Lagos</td>
-						<td>Admiralty, Lekki</td>
-						<td>$100</td>
-						<td>Flat Bed Truck</td>
-					</tr>
+                    @foreach ($loads as $load)
+                    @if ($loop->iteration <= 10 && $load->load_type == 0)
+                    <tr>
+                        <td>{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($load->created_at))) !!}</td>
+                        <td>{{$load->title}}</td>
+                        <td>{{$load->pickup}}</td>
+                        <td>{{$load->delivery}}</td>
+                        <td>{{$load->budget}}</td>
+                        <td>{{$load->truck_type}}</td>
+                    </tr>
+                    @endif
+                    @endforeach
 				</tbody>
 			</table>
 		</div>
@@ -115,22 +89,34 @@
 				<h4 class="ll-text" style="width:100%"><b>Our Vehicle Range</b></h4>
 			</div>
 		</div>
-		<div class="vehicle-range">
-			<div class="vehicle-img text-center">
-				<img class="img-fluid" src="/images/small-mini.png" alt="Small Mini Truck">
-				<h6 class="mt-2">Small Mini Truck</h6>
-			</div>
-			<div class="vehicle-img text-center">
+		<div class="vehicle-range justify-content-around">
+            <div class="vehicle-img text-center mb-4">
 				<img class="img-fluid" src="/images/light-mini.png" alt="Light Mini Van">
-				<h6 class="mt-2">Light Mini Van</h6>
+				<h6 class="mt-2">Vans</h6>
+            </div>
+            <div class="vehicle-img text-center mb-4">
+				<img class="img-fluid" src="/images/mini-van.jpg" alt="Mini Van">
+				<h6 class="mt-2">Mini-Vans</h6>
+            </div>
+            <div class="vehicle-img text-center mb-4">
+				<img class="img-fluid" src="/images/covered-body.png" alt="Covered Body Truck">
+				<h6 class="mt-2">Covered Body Trucks</h6>
+            </div>
+			<div class="vehicle-img text-center mb-4">
+				<img class="img-fluid" src="/images/sided-body.jpeg" alt="Sided Body Trucks">
+				<h6 class="mt-2">Sided Body Trucks</h6>
 			</div>
-			<div class="vehicle-img text-center">
-				<img class="img-fluid" src="/images/light-cab.png" alt="Light Cab Forward">
-				<h6 class="mt-2">Light Cab Forward</h6>
+			<div class="vehicle-img text-center mb-4">
+				<img class="img-fluid" src="/images/trailer.jpg" alt="Trailer Truck">
+				<h6 class="mt-2">Trailers</h6>
 			</div>
-			<div class="vehicle-img text-center">
-				<img class="img-fluid" src="/images/medium-cutaway.png" alt="Medium Cutaway Van">
-				<h6 class="mt-2">Medium Cutaway Van</h6>
+			<div class="vehicle-img text-center mb-4 mt-4">
+				<img class="img-fluid" src="/images/tipper.jpg" alt="Tipper Truck">
+				<h6 class="mt-2">Tippers</h6>
+            </div>
+            <div class="vehicle-img text-center mb-4 mt-4">
+				<img class="img-fluid" src="/images/heavy-duty.jpg" alt="Heavy Duty Trucks">
+				<h6 class="mt-2">Heavy Duty Trucks</h6>
 			</div>
 		</div>
 	</div>

@@ -27,7 +27,7 @@
                             <div class="banner-upload text-center mb-3">
                                 <h6 class="dark-bold mb-3">Upload images of goods</h6>
                                 <div class="d-flex text-center align-self-center">
-                                    <input type="file" name="loadImages[]" id="fileUpload" class="file-input" onChange='getfileInfo(event)' accept="image/*" multiple>
+                                    <input type="file" name="loadImages[]" id="fileUpload" class="file-input truck-file" onChange='getfileInfo(event)' accept="image/*" multiple>
                                 </div>
                                 <div class="row mt-4" id="previewUploads">
 
@@ -35,22 +35,15 @@
                             </div>
                         </div>
                         <div class="gray-card col-sm-5 mb-4">
-                        @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            <strong>Sorry!</strong> There were more problems with your HTML input.<br><br>
-                            <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                            </ul>
-                        </div>
-                        @endif
-
-                        @if(session('success'))
-                        <div class="alert alert-success">
-                        {{ session('success') }}
-                        </div> 
-                        @endif
+                            @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                            @elseif(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div> 
+                            @endif
                             <h6 class="primary-text mb-5 bold">Booking Details</h6>
                             <div class="col mb-4">
                                 <label for="title">Pickup address</label>

@@ -11,7 +11,7 @@ window.getfileInfo = function(event) {
     const ext = name.substring(lastDot + 1);
     var totalFile = document.getElementById("fileUpload").files.length;
     for (var i = 0; i < totalFile; i++) {
-        $('#previewUploads').append("<div class='preview-card'><img class='banner-form-preview' src='" + URL.createObjectURL(event.target.files[i]) + "'></div>");
+        $('#previewUploads').append("<div class='preview-card mt-n1-5'><img class='banner-form-preview' src='" + URL.createObjectURL(event.target.files[i]) + "'></div>");
     }
 }
 
