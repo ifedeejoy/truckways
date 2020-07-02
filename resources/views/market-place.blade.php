@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Find Truck')
-@section('bg', 'home-banner.png')
+@section('bg', 'https://res.cloudinary.com/ifedeejoy/image/upload/v1593688514/home-banner_rskkgy.png')
 @section('page-title', 'Market Place')
 @section('page-caption', 'Check for latest loads and contact the posters')
 @section('content')

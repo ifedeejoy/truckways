@@ -1,57 +1,35 @@
-@extends('layouts.users.app')
-@section('title', 'Dashboard')
-@section('content')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{ config('app.name') }} - @yield('title')</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+        <main>
     
-    <div class="col-sm-12 p-3 pr-5 pl-5">
-        <div class="custom-card">
-            <div class="home-options bg-primary">
-                <h4 class="text-white">Post a load</h6>
-            </div>
-            <div class="col-sm-12 p-4">
-            <form action="{{route('create-load')}}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row d-flex justify-content-between">
-                        <div class="gray-card col-sm-6 mb-4">
-                            <div class="d-flex flex-row w-100 mb-5 justify-content-between">
-                                <h6 class="primary-text bold">Load Details</h6>
-                                <h6 class="gray-text bold">{{mt_rand()}}</h6>
-                            </div>
-                            <div class="col mb-4">
-                                <label for="title">Title</label>
+            <div class="login-banner">
+                <div class="login-left mt-2">
+                    <h4 class="welcome-text login-welcome-text">You're almost there!
+                        <br> Let's Go!</h4>
+                    <img src="/images/illus.png" class="login-banner-img" alt="Delivery Van Being Loaded">
+                </div>
+                <div class="login-right mt-0">
+                    <div class="login-form bg-white">
+                        <p class="text-center"><b>Continue Registration!</b></p>
+                        <form action="{{ route('finish-post') }}" method="POST" class="mt-5">
+                            @csrf
+                            <div class="col mb-3">
+                                <label for="title">Load Title</label>
                                 <input type="text" name="title" class="form-control">
                             </div>
-                            <div class="col mb-4">
+                            <div class="col mb-3">
                                 <label for="description">Load description</label>
                                 <input type="text" name="description" class="form-control">
-                            </div>
-                            <div class="banner-upload text-center mb-3">
-                                <h6 class="dark-bold mb-3">Upload images of goods</h6>
-                                <div class="d-flex text-center align-self-center">
-                                    <input type="file" name="loadImages[]" id="fileUpload" class="file-input truck-file" onChange='getfileInfo(event)' accept="image/*" multiple>
-                                </div>
-                                <div class="row mt-4" id="previewUploads">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="gray-card col-sm-5 mb-4">
-                            @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                            @elseif(session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div> 
-                            @endif
-                            <h6 class="primary-text mb-5 bold">Booking Details</h6>
-                            <div class="col mb-4">
-                                <label for="title">Pickup address</label>
-                                <input type="text" name="pickup" class="form-control">
-                            </div>
-                            <div class="col mb-4">
-                                <label for="title">Delivery address</label>
-                                <input type="text" name="delivery" class="form-control">
                             </div>
                             <div class="col mb-4">
                                 <select class="custom-select form-control" name="truck_type" id="truck-type" onchange="otherTrucks(this.value)">
@@ -77,13 +55,33 @@
                                     <option value="others">Other (please specify)</option>
                                 </select>
                             </div>
-                            <div class="col mb-4 d-none" id="other-trucks">
+                            <div class="col mb- d-none" id="other-trucks">
                                 <label for="title">Truck type</label>
                                 <input type="text" name="truck_type" id="other-truck" class="form-control" disabled>
                             </div>
-                            <div class="col mb-4">
+                            <div class="col mb-3">
                                 <label for="budget">Your budget</label>
                                 <input type="text" name="budget" class="form-control">
+                            </div>
+                            <div class="col mb-3">
+                                <label for="title">Your email</label>
+                                <input type="text" name="email" class="form-control">
+                            </div>
+                            <div class="col mb-3">
+                                <label>Choose a password (min of 8 characters)</label>
+                                <input id="password" type="password" class="form-control primary-text @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+                            <div class="col mb-3">
+                                <label for="password-confirm">Confirm your password</label>
+                                <input id="password-confirm" type="password" class="form-control primary-text" name="password_confirmation" required autocomplete="new-password">
+                                
                             </div>
                             <div class="col mb-4">
                                 <h6>Post Load As</h6>
@@ -116,18 +114,26 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary btn-rounded">Post Load</button>
+                            @if (session('error'))
+                            <div class="alert alert-danger mt-3">
+                                {{ session('error') }}
                             </div>
-                        </div>
+                            @elseif(session('success'))
+                            <div class="alert alert-success mt-3">
+                                {{ session('success') }}
+                            </div> 
+                            @endif
+                            <div class="text-center mb-3">
+                                <button type="submit" class="long-btn waves-effect waves-dark p-2">Post Load</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
-@endsection
-@section('scripts')
-    @parent
+        </main>
+    </body>
+    <script src="/js/app.js" defer></script>
+    <script src="/js/mdb.min.js" defer></script>
     <script>
         function otherTrucks(val)
         {
@@ -153,4 +159,4 @@
             }
         }
     </script>
-@endsection
+</html>

@@ -87,6 +87,7 @@
                 <div class="d-flex flex-row w-100 mb-2 justify-content-between">
                     <h6 class="primary-text small-text bold">Tracking</h6>
                 </div>
+                @if (count($journeys) < 1)
                 <div class="progress" style="height: 30px; border-radius: 18px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary text-right" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
                         <h5 class="mt-2 mr-3"><i class="fas fa-check-circle"></i></h5>
@@ -108,6 +109,90 @@
                         <h6 class="gray-text smaller-text">{{date("Y-m-d", strtotime($load->accepted_at))}}</h6>
                         <h6 class="gray-text smaller-text">{{date("H:i", strtotime($load->accepted_at))}}</h6>
                     </div>
+                </div>
+                @else
+                    @foreach ($journeys as $journey) 
+                        @if ($loop->iteration == 1 && $loop->last)
+                        <div class="progress" style="height: 30px; border-radius: 18px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary text-right" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                                <h5 class="mt-2 mr-3"><i class="fas fa-check-circle"></i></h5>
+                            </div>
+                        </div>
+                        @elseif($loop->iteration == 2 && $loop->last)
+                        <div class="progress" style="height: 30px; border-radius: 18px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary text-right" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                                <h5 class="mt-2 mr-3"><i class="fas fa-check-circle"></i></h5>
+                            </div>
+                        </div>
+                        @elseif($loop->iteration == 3 && $loop->last)
+                        <div class="progress" style="height: 30px; border-radius: 18px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary text-right" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                <h5 class="mt-2 mr-3"><i class="fas fa-check-circle"></i></h5>
+                            </div>
+                        </div>
+                        @endif
+                    @endforeach
+                    <div class="row">
+                        <div class="p-3 mb-2 text-center ml-2 mr-5">
+                            <h6 class="black-text smaller-text bold">Requested</h6>
+                            <h6 class="gray-text smaller-text">{{date("Y-m-d", strtotime($load->created_at))}}</h6>
+                            <h6 class="gray-text smaller-text">{{date("H:i", strtotime($load->created_at))}}</h6>
+                        </div>
+                        <div class="p-3 mb-2 text-center mr-5">
+                            <h6 class="black-text smaller-text bold">Bidded</h6>
+                            <h6 class="gray-text smaller-text">{{date("Y-m-d", strtotime($load->bid_at))}}</h6>
+                            <h6 class="gray-text smaller-text">{{date("H:i", strtotime($load->bid_at))}}</h6>
+                        </div>
+                        <div class="p-3 mb-2 text-center mr-5">
+                            <h6 class="black-text smaller-text bold">Bid Accepted</h6>
+                            <h6 class="gray-text smaller-text">{{date("Y-m-d", strtotime($load->accepted_at))}}</h6>
+                            <h6 class="gray-text smaller-text">{{date("H:i", strtotime($load->accepted_at))}}</h6>
+                        </div>
+                        @foreach ($journeys as $journey)
+                        <div class="p-3 mb-2 text-center mr-5">
+                            <h6 class="black-text smaller-text bold text-capitalize">{{$journey->event}}</h6>
+                            <h6 class="gray-text smaller-text">{{date("Y-m-d", strtotime($journey->updated_at))}}</h6>
+                            <h6 class="gray-text smaller-text">{{date("H:i", strtotime($journey->updated_at))}}</h6>
+                        </div>
+                        @endforeach 
+                    </div>
+                @endif
+                
+                <div class="d-flex flex-row w-100 mt-5 mb-2 justify-content-between">
+                    <h6 class="primary-text small-text bold">Updates</h6>
+                </div>
+                <div class="table-resposnive">
+                    <table class="table event-table">
+                        <thead>
+                            <th scope="col">Date</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Event</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="col" class="smaller-text text-capitalize">{{date("Y-m-d", strtotime($load->updated_at))}} <br> {{date("H:i", strtotime($load->updated_at))}}</td>
+                                <td colspan="col" class="smaller-text text-capitalize"></td>
+                                <td colspan="col" class="smaller-text text-capitalize">Requested</td>
+                            </tr>
+                            <tr>
+                                <td colspan="col" class="smaller-text text-capitalize">{{date("Y-m-d", strtotime($load->bid_at))}} <br> {{date("H:i", strtotime($load->bid_at))}}</td>
+                                <td colspan="col" class="smaller-text text-capitalize"></td>
+                                <td colspan="col" class="smaller-text text-capitalize">Bidded</td>
+                            </tr>
+                            <tr>
+                                <td colspan="col" class="smaller-text text-capitalize">{{date("Y-m-d", strtotime($load->accepted_at))}} <br> {{date("H:i", strtotime($load->accepted_at))}}</td>
+                                <td colspan="col" class="smaller-text text-capitalize"></td>
+                                <td colspan="col" class="smaller-text text-capitalize">Bid Accepted</td>
+                            </tr>
+                            @foreach ($journeys as $journey)
+                            <tr>
+                                <td colspan="col" class="smaller-text text-capitalize">{{date("Y-m-d", strtotime($journey->updated_at))}} <br> {{date("H:i", strtotime($journey->updated_at))}}</td>
+                                <td colspan="col" class="smaller-text text-capitalize">{{$journey->location}}</td>
+                                <td colspan="col" class="smaller-text text-capitalize">{{$journey->event}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
             @endif

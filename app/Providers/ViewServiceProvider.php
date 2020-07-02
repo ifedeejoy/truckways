@@ -44,7 +44,7 @@ class ViewServiceProvider extends ServiceProvider
             $count = $trucks->count();
             $view->with('trucks', $trucks)->with('availableTrucks', $count);
         });
-        View::composer('*', function($view){
+        View::composer('users.home', function($view){
             $id = Auth::user()->id;
             $user = User::findOrFail($id);
             $loads = $user->loads->where("status", "active")->count();

@@ -17,6 +17,9 @@ Route::view('/', 'welcome');
 Route::view('find-truck', 'find-truck');
 Route::view('market-place', 'market-place');
 Route::view('contact-us', 'contact');
+Route::get('continue-registration', 'UserController@showReg')->name('continue-reg');
+Route::post('post-load', 'UserController@index')->name('post-load');
+Route::post('finish-post', 'UserController@create')->name('finish-post');
 
 Auth::routes(['verify' => true]);
 
@@ -58,6 +61,8 @@ Route::post('drivers/edit-truck/{id}', 'TrucksController@update')->name('edit-tr
 Route::post('drivers/edit-profile/{id}', 'DriversController@update')->name('driver-edit')->middleware('auth:truck_drivers');
 Route::post('drivers/edit-profile/{id}', 'DriversController@update')->name('driver-edit')->middleware('auth:truck_drivers');
 Route::post('drivers/request-verification/{id}', 'DriversController@requestVerification')->name('driver-verification')->middleware('auth:truck_drivers');
+Route::post('drivers/update-journey', 'JourneyController@store')->name('update-journey')->middleware('auth:truck_drivers');
+
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('isAdmin');
 
 

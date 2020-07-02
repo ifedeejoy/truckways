@@ -66,6 +66,10 @@ header,
     background: transparent !important;
 }
 
+.small-text {
+    font-size: .85rem !important;
+}
+
 // Md Form
 .login-input>label {
     color: $white;
@@ -282,13 +286,13 @@ header,
 
 // Banner
 .home-banner {
-    background-image: url('./images/home-banner.png');
+    background-image: url('https://res.cloudinary.com/ifedeejoy/image/upload/v1593688514/home-banner_rskkgy.png');
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .home-mask {
-    background: #0000009c url('./images/home-mask.svg') 0% 0% no-repeat padding-box;
+    background: #0000009c url('https://res.cloudinary.com/ifedeejoy/image/upload/v1593690052/home-mask_xiagek.svg') 0% 0% no-repeat padding-box;
 }
 
 .welcome-text {
@@ -420,7 +424,7 @@ header,
 }
 
 .truckClip {
-    background-image: url('./images/truckClip.png');
+    background-image: url('https://res.cloudinary.com/ifedeejoy/image/upload/v1593688514/truckClip_kiil9j.png');
     background-repeat: no-repeat;
     background-size: contain;
     width: 30rem;
@@ -470,14 +474,14 @@ header,
 .test-cont {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
 .vehicle-img {
     width: 200px;
     height: 200px;
-    margin-bottom: 1.5rem !important;
+    margin: 1.5rem !important;
     box-shadow: 0px 3px 6px $shadow-color;
     color: $primary-color;
     background-color: $white;
@@ -557,6 +561,12 @@ header,
     img {
         height: 75px;
         width: 75px;
+    }
+}
+
+.test-message {
+    p {
+        font-size: .75rem !important;
     }
 }
 
@@ -653,7 +663,7 @@ header,
 .quarter-mask {
     width: 100%;
     height: 100%;
-    background: transparent url('./images/find-truck.svg') 0% 0% no-repeat padding-box;
+    background: transparent url('https://res.cloudinary.com/ifedeejoy/image/upload/v1593688512/find-truck_hg1wnx.png') 0% 0% no-repeat padding-box;
     padding: 5rem;
 }
 
@@ -830,6 +840,19 @@ header,
     border-color: $extra-muted !important;
 }
 
+.banner-content {
+    position: absolute !important;
+    top: 5rem !important;
+    z-index: 10 !important;
+    justify-self: center !important;
+    width: 100%;
+    padding-left: 15rem;
+}
+
+.banner-file::before {
+    width: 50% !important;
+}
+
 // Media Queries
 @media only screen and (max-width: 768px) {
     html,
@@ -852,19 +875,21 @@ header,
         padding: 2rem;
         min-width: 20rem;
         flex-wrap: wrap;
-        overflow: hidden;
     }
     .wwd-container2 {
         display: none;
     }
     .wwd-box1 {
-        max-width: 10rem;
+        width: 10rem;
     }
     .wwd-box2 {
-        max-width: 20rem;
+        width: 20rem;
         background-color: $light-bg;
         h4 {
-            font-size: 1rem;
+            font-size: .80rem !important;
+        }
+        p {
+            font-size: .90rem;
         }
     }
     .ll-text {
@@ -872,6 +897,7 @@ header,
     }
     .vehicle-range {
         flex-direction: column;
+        justify-content: center;
     }
     .short-cont {
         width: 100%;
@@ -885,14 +911,40 @@ header,
     .login-banner {
         flex-direction: column;
     }
+    .reg-banner {
+        background-image: url('https://res.cloudinary.com/ifedeejoy/image/upload/v1593688512/illus_upwhlp.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-top: 0px !important;
+    }
     .login-banner-img {
-        display: none !important;
+        display: none;
     }
     .login-welcome-text {
         margin: auto;
         padding: 1rem;
         text-align: center;
         margin-top: 5%;
+    }
+    .test-box1,
+    .test-box2 {
+        width: 17rem !important;
+    }
+    .banner-content {
+        top: 0rem !important;
+        z-index: 10 !important;
+        justify-self: center !important;
+        width: 100%;
+        padding-left: 0rem !important;
+    }
+    .welcome-text {
+        font-size: 1.2rem;
+    }
+    .banner-file::before {
+        width: 80% !important;
+    }
+    .reg-text {
+        color: $dark-bg !important;
     }
 }
 
@@ -906,16 +958,16 @@ header,
     .navbar:not(.top-nav-collapse) {
         background: $dark-bg !important;
     }
-    .wwd-box1,
-    .wwd-box2 {
-        border: 1px solid #FF9011;
-        background: transparent;
-        height: auto;
-        width: auto;
-    }
-    .wwd-box2 {
-        margin-top: -3rem;
-        margin-left: 2rem;
-        padding: 1.5rem;
-    }
+    // .wwd-box1,
+    // .wwd-box2 {
+    //     border: 1px solid #FF9011;
+    //     background: transparent;
+    //     height: auto;
+    //     width: auto;
+    // }
+    // .wwd-box2 {
+    //     margin-top: -3rem;
+    //     margin-left: 2rem;
+    //     padding: 1.5rem;
+    // }
 }

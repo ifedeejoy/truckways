@@ -261,7 +261,7 @@ footer {
 
 .map-card {
     padding: 0em !important;
-    background: transparent url('./images/2020-02-10\ 17.30.01.png') 0% 0% no-repeat padding-box;
+    background: transparent url('https://res.cloudinary.com/ifedeejoy/image/upload/v1593690219/2020-02-10_17.30.01_d8l9ls.png') 0% 0% no-repeat padding-box;
     background-size: 100% 100%;
     box-shadow: 0px 3px 6px $shadow-color;
     border-radius: 18px;
@@ -360,6 +360,19 @@ footer {
     box-shadow: 0px 3px 10px #00000029;
     border-radius: 20px;
     padding: 2rem;
+}
+
+// Event
+.event-table {
+    border: none !important;
+    color: $black !important;
+    background: transparent;
+    th,
+    td {
+        border-bottom: none !important;
+        text-align: center !important;
+        color: $black !important;
+    }
 }
 
 @media only screen and (max-width: 768px) {
