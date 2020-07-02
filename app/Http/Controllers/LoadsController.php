@@ -8,7 +8,7 @@ use App\Models\Drivers;
 use App\Models\Bids;
 use AfricasTalking\SDK\AfricasTalking;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Journey;
 class LoadsController extends Controller
 {
     /**
@@ -44,8 +44,11 @@ class LoadsController extends Controller
     public function activeLoads()
     {
         $id = auth()->user()->id;
-        $user = User::findOrFail($id);
-        $loads = $user->loads->where("status", "active");
+        $loads = DB::table('loads')
+                    ->where('user', $id)
+                    ->where('status', 'active')
+                    ->orWhere('status', 'in-progress')
+                    ->get();
         return view("users.active-loads")->with("loads",$loads);
     }
     /**
@@ -90,12 +93,14 @@ class LoadsController extends Controller
             return redirect("users/post-load")->with('error', 'Please add images of your load');
         endif;
         $this->loads->images = json_encode($file);
+        if($request->load_type > 0):
         $phones = formatPhone((array)$drivers);
         $sms = $AT->sms();
         $sendsms = $sms->send([
             'to' => $phones,
             'message' => "A new load request has been made to move items from $request->pickup to $request->delivery using a $request->truck_type, visit this link https://truckwaysng.com/drivers/load/$ref or call 08138815183, 09012881281",
         ]);
+        endif;
         $this->loads->save();
         return redirect("users/post-load")->with('success', 'Load posted successfully');
     }
@@ -144,6 +149,7 @@ class LoadsController extends Controller
 
     public function showActive($id, Request $request)
     {
+        $journey = $this->loads->find($id)->journey;
         $load = DB::table('loads')
                     ->join('drivers', 'loads.driver', 'drivers.id')
                     ->join('bids', 'loads.id', 'bids.load')
@@ -151,7 +157,7 @@ class LoadsController extends Controller
                     ->where('bids.status', 'accepted')
                     ->select('loads.*', 'drivers.*', 'bids.created_at as bid_at', 'bids.updated_at as accepted_at')
                     ->first();
-        return view("users.active-load")->with("load", $load);
+        return view("users.active-load")->with(["load" => $load, "journeys" => $journey]);
     }
     /**
      * Show the form for editing the specified resource.

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Contact Us')
-@section('bg', 'map.png')
+@section('bg', 'https://res.cloudinary.com/ifedeejoy/image/upload/v1593688512/Map_isjozu.png')
 @section('content')
 
 <section class="latest-loads animated fadeInUp delay-1s mt-5">

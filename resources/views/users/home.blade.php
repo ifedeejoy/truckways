@@ -10,6 +10,15 @@
                 <h6 class="small-text bold">{{$availableTrucks}} trucks available</h6>
                 <h6 class="small-text bold"> pending bills</h6>
             </div>
+            @if (session('error'))
+            <div class="alert alert-danger mt-3">
+                {{ session('error') }}
+            </div>
+            @elseif(session('success'))
+            <div class="alert alert-success mt-3">
+                {{ session('success') }}
+            </div> 
+            @endif
             <div class="noshadow-card">
                 <div class="card-box clickable-row" data-href="/users/post-load">
                     <img src="/images/post.png" alt="">

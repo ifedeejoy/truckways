@@ -19,6 +19,11 @@
                     </li>
                 </ul>
             </div>
+            @if(session('success'))
+            <div class="alert alert-success">
+            {{ session('success') }}
+            </div> 
+            @endif
             <div class="tab-content">
                 <div id="bids-won" class="tab-pane fadeIn active">
                     <div class="load-container">
@@ -44,10 +49,32 @@
                                 <div class="text-center mt-3">
                                     <h5 class="load-title bold mt-2">{{number_format($bid->budget)}}</h5>
                                     <p>{{Str::limit($bid->description,100)}}</p>
-                                    @if ($bid->load_type > 0)
-                                    <form action="" method="post">
+                                    @if ($bid->load_type > 0 && $bid->status == 'active')
+                                    <form action="{{route('update-journey')}}" method="post">
                                         @csrf
+                                        <input type="hidden" name="load" value="{{$bid->load}}">
+                                        <input type="hidden" name="event" value="heading to pickup">
+                                        <input type="hidden" name="location" value="null">
+                                        <input type="hidden" name="updatedBy" value="{{auth()->guard('truck_drivers')->user()->id}}">
                                         <button class="btn btn-sm btn-primary" type="submit">Start Journey</button>
+                                    </form>
+                                    @elseif($bid->load_type > 0 && $bid->status == 'in-progress')
+                                    <form action="{{route('update-journey')}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="load" value="{{$bid->load}}">
+                                        <input type="hidden" name="event" value="items picked up">
+                                        <input type="hidden" name="location" value="null">
+                                        <input type="hidden" name="updatedBy" value="{{auth()->guard('truck_drivers')->user()->id}}">
+                                        <button class="btn btn-sm btn-primary" type="submit">Pick Up Items</button>
+                                    </form>
+                                    @elseif($bid->load_type > 0 && $bid->status == 'in-progress')
+                                    <form action="{{route('update-journey')}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="load" value="{{$bid->load}}">
+                                        <input type="hidden" name="event" value="completed">
+                                        <input type="hidden" name="location" value="null">
+                                        <input type="hidden" name="updatedBy" value="{{auth()->guard('truck_drivers')->user()->id}}">
+                                        <button class="btn btn-sm btn-primary" type="submit">Complete Delivery</button>
                                     </form>
                                     @else
                                     <a class="btn btn-sm btn-primary" href="/drivers/load/{{$bid->reference}}">View Load</a>

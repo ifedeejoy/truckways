@@ -2,15 +2,15 @@
 @section('title', 'Driver Signup')
 @section('content')
     
-<div class="login-banner">
+<div class="login-banner reg-banner">
     <div class="login-left mt-2">
-        <h4 class="welcome-text login-welcome-text">Pick up loads and get more loads on
+        <h4 class="welcome-text login-welcome-text reg-text">Pick up loads and get more loads on
             <br> your return trips now!</h4>
         <img src="/images/illus.png" class="login-banner-img" alt="Delivery Van Being Loaded">
     </div>
     <div class="login-right mt-0">
         <div class="login-form bg-white">
-            <p class="text-center"><b>Signup !</b></p>
+            <p class="text-center"><b>Login!</b></p>
             <form action="{{ route('login-driver') }}" method="POST" class="mt-5">
                 @csrf
                 <div class="col mb-3">

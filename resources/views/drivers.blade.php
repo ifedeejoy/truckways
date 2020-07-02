@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Explore Drivers')
-@section('bg', 'driver.png')
+@section('bg', 'https://res.cloudinary.com/ifedeejoy/image/upload/v1593688511/driver_wldyjt.png')
 @section('page-title', 'Explore Drivers')
 @section('page-caption', 'Check for the drivers on our platforms. They are verified and reliable.')
 @section('content')

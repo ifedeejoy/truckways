@@ -25,4 +25,9 @@ class Loads extends Model
     {
         return $this->hasOne(Drivers::class, 'id');
     }
+
+    public function journey()
+    {
+        return $this->hasMany(Journey::class, 'load');
+    }
 }

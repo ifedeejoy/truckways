@@ -76,7 +76,7 @@ class BidsController extends Controller
     {
         $driver = auth()->guard('truck_drivers')->user()->id;
         $bids = DB::table('bids')
-                    ->join('loads', 'bids.load', '=', 'loads.id')
+                    ->join('loads', 'bids.load', 'loads.id')
                     ->where('bids.driver', $driver)
                     ->select('bids.*', 'bids.status as bid_status', 'loads.*')
                     ->get();

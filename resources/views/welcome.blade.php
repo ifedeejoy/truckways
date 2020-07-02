@@ -20,8 +20,7 @@
 		<div class="wwd-box1">
 			<div class="wwd-box2">
                 <h2 class="wwd-head">Why us?</h2>
-                <p>We provide an effective and reliable platform for logistics networking between load/goods owners and drivers for;
-                </p>
+                <p>We provide an effective and reliable platform for logistics networking between load/goods owners and drivers for:</p>
 				<div class="wwd-content mt-3">
 					<h4 class="mb-3">Interstate Goods Delivery</h4>
 					<h4 class="mb-3">Competitive Pricing</h4>
@@ -89,33 +88,33 @@
 				<h4 class="ll-text" style="width:100%"><b>Our Vehicle Range</b></h4>
 			</div>
 		</div>
-		<div class="vehicle-range justify-content-around">
-            <div class="vehicle-img text-center mb-4">
-				<img class="img-fluid" src="/images/light-mini.png" alt="Light Mini Van">
+		<div class="vehicle-range">
+            <div class="vehicle-img text-center">
+				<img class="img-fluid" src="https://res.cloudinary.com/ifedeejoy/image/upload/v1593688512/light-mini_zmvxxp.png" alt="Light Mini Van">
 				<h6 class="mt-2">Vans</h6>
             </div>
-            <div class="vehicle-img text-center mb-4">
-				<img class="img-fluid" src="/images/mini-van.jpg" alt="Mini Van">
+            <div class="vehicle-img text-center">
+				<img class="img-fluid" src="https://res.cloudinary.com/ifedeejoy/image/upload/v1593688512/mini-van_ugpaia.jpg" alt="Mini Van">
 				<h6 class="mt-2">Mini-Vans</h6>
             </div>
-            <div class="vehicle-img text-center mb-4">
-				<img class="img-fluid" src="/images/covered-body.png" alt="Covered Body Truck">
+            <div class="vehicle-img text-center">
+				<img class="img-fluid" src="https://res.cloudinary.com/ifedeejoy/image/upload/v1593688511/covered-body_rrqqae.png" alt="Covered Body Truck">
 				<h6 class="mt-2">Covered Body Trucks</h6>
             </div>
-			<div class="vehicle-img text-center mb-4">
-				<img class="img-fluid" src="/images/sided-body.jpeg" alt="Sided Body Trucks">
+			<div class="vehicle-img text-center">
+				<img class="img-fluid" src="https://res.cloudinary.com/ifedeejoy/image/upload/v1593688513/sided-body_okfxkt.jpg" alt="Sided Body Trucks">
 				<h6 class="mt-2">Sided Body Trucks</h6>
 			</div>
-			<div class="vehicle-img text-center mb-4">
-				<img class="img-fluid" src="/images/trailer.jpg" alt="Trailer Truck">
+			<div class="vehicle-img text-center">
+				<img class="img-fluid" src="https://res.cloudinary.com/ifedeejoy/image/upload/v1593688513/trailer_zkbzss.jpg" alt="Trailer Truck">
 				<h6 class="mt-2">Trailers</h6>
 			</div>
-			<div class="vehicle-img text-center mb-4 mt-4">
-				<img class="img-fluid" src="/images/tipper.jpg" alt="Tipper Truck">
+			<div class="vehicle-img text-center">
+				<img class="img-fluid" src="https://res.cloudinary.com/ifedeejoy/image/upload/v1593688513/tipper_khpbre.jpg" alt="Tipper Truck">
 				<h6 class="mt-2">Tippers</h6>
             </div>
-            <div class="vehicle-img text-center mb-4 mt-4">
-				<img class="img-fluid" src="/images/heavy-duty.jpg" alt="Heavy Duty Trucks">
+            <div class="vehicle-img text-center">
+				<img class="img-fluid" src="https://res.cloudinary.com/ifedeejoy/image/upload/v1593688512/heavy-duty_egs45x.jpg" alt="Heavy Duty Trucks">
 				<h6 class="mt-2">Heavy Duty Trucks</h6>
 			</div>
 		</div>

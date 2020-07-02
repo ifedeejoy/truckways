@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth as Authenticate;
 
 class RegisterController extends Controller
 {
@@ -103,6 +104,7 @@ class RegisterController extends Controller
             'address' => $request->address,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->intended('drivers/login');
+        Authenticate::guard('truck_drivers')->login($driver);
+        return redirect()->intended('drivers/home');
     }
 }
