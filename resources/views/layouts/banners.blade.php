@@ -98,7 +98,7 @@
 <div class="login-banner">
     <div class="login-left">
         <h4 class="welcome-text login-welcome-text">Get trucks, Move stuffs, <br> Live Simple.</h4>
-        <img src="/images/illus.png" class="login-banner-img" alt="Delivery Van Being Loaded">
+        <img src="https://res.cloudinary.com/ifedeejoy/image/upload/v1593688512/illus_upwhlp.png" class="login-banner-img" alt="Delivery Van Being Loaded">
     </div>
     <div class="login-right">
         <div class="login-form">
