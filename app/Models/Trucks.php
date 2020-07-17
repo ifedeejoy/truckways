@@ -21,4 +21,9 @@ class Trucks extends Model
     {
         return $this->hasMany(Bids::class);
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admins::class);
+    }
 }

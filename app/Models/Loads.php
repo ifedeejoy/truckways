@@ -30,4 +30,9 @@ class Loads extends Model
     {
         return $this->hasMany(Journey::class, 'load');
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admins::class);
+    }
 }

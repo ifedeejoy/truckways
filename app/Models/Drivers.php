@@ -35,4 +35,9 @@ class Drivers extends Authenticatable
     {
         return $this->hasMany(Trucks::class, 'driver');
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admins::class);
+    }
 }

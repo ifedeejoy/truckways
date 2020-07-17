@@ -14,4 +14,9 @@ class Journey extends Model
     {
         return $this->belongsTo(Loads::class, 'id');
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admins::class);
+    }
 }

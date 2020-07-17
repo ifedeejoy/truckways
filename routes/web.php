@@ -64,7 +64,10 @@ Route::post('drivers/request-verification/{id}', 'DriversController@requestVerif
 Route::post('drivers/update-journey', 'JourneyController@store')->name('update-journey')->middleware('auth:truck_drivers');
 
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('isAdmin');
-
+Route::get('admin/analytics', 'AdminController@index')->middleware('isAdmin');
+Route::get('admin/applications', 'AdminController@driverApplications')->middleware('isAdmin');
+Route::get('admin/driver/{id}', 'AdminController@showDriver')->middleware('isAdmin');
+Route::post('admin/verify-driver/{id}', 'AdminController@update')->name('verify-driver')->middleware('isAdmin');
 
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('config:clear');

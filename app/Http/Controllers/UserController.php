@@ -136,12 +136,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDriver($id)
+    public function showDriver($id, Request $request)
     {
         $driver = $this->drivers->find($id);
         $trucks = $driver->trucks()->get();
         $bids = $driver->bids()->where('status', 'accepted')->count();
-        return view('users.driver')->with('driver', $driver)->with('trucks', $trucks)->with('bids', $bids);
+        return view('users.driver')->with(['driver' => $driver, 'trucks' => $trucks, 'bids' => $bids]);
     }
     /**
      * Show the form for editing the specified resource.

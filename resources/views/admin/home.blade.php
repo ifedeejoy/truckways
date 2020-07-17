@@ -1,8 +1,6 @@
-@extends('layouts.users.app')
+@extends('layouts.admin.app')
 @section('title', 'Dashboard')
 @section('content')
-@inject('user', 'App\Http\Controllers\LoadsController')
-    
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card">
             <div class="home-options">
@@ -20,23 +18,27 @@
             </div> 
             @endif
             <div class="noshadow-card">
-                <div class="card-box clickable-row" data-href="/users/post-load">
+                <div class="card-box clickable-row" data-href="/admin/applications">
                     <img src="/images/post.png" alt="">
-                    <h6>Post a load</h6>
+                    <h6>Driver Applications</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="#" data-toggle="modal" data-target="#check-load">
-                    <img src="/images/load-status.png" alt="">
-                    <h6>Check load status</h6>
+                <div class="card-box clickable-row" data-href="/admin/users">
+                    <img src="/images/users.png" alt="">
+                    <h6>User Profiles</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="/users/payment-history">
+                <div class="card-box clickable-row" data-href="/admin/admins">
                     <img src="/images/view-records.png" alt="">
-                    <h6>View records</h6>
+                    <h6>Admin Profiles</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="/users/trucks">
+                <div class="card-box clickable-row" data-href="/admin/analytics">
+                    <img src="/images/analytics.png" alt="">
+                    <h6>Analytics</h6>
+                </div>
+                <div class="card-box clickable-row" data-href="/admin/trips">
                     <img src="/images/explore-trucks.svg" alt="">
-                    <h6>Explore trucks</h6>
+                    <h6>Trips</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="/users/profile">
+                <div class="card-box clickable-row" data-href="/admin/profile">
                     <img src="/images/manage-account.png" alt="">
                     <h6>Manage Account</h6>
                 </div>

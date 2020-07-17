@@ -32,7 +32,7 @@
                 <div class="mt-40">
                     <h4 class="welcome-text">Hire Trucks with ease, <br> Move Your Products Quick!</h4>
                     <p><strong>With Truckways, hiring trucks have never been easier!</strong></p>
-                    <a href="#" class="btn btn-rounded btn-primary btn-md waves-effect waves-dark banner-cta">Get Started</a>
+                    <a href="#" onclick="focusElement()" class="btn btn-rounded btn-primary btn-md waves-effect waves-dark banner-cta">Get Started</a>
                 </div>
             </div>
             <div class="col-md-4 col-xl-4 mt-5 mb-4">
@@ -44,7 +44,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><img src="/images/user.svg" class="img-fluid form-icons" alt="User Icon"></span>
                             </div>
-                            <input type="text" name="name" class="form-control banner-input" placeholder="Full Name" aria-label="Full Name" aria-describedby="basic-addon1">
+                            <input type="text" name="name" id="user-name" class="form-control banner-input" placeholder="Full Name" aria-label="Full Name" aria-describedby="basic-addon1">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">

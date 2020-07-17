@@ -24,4 +24,9 @@ class Bids extends Model
     {
         return $this->belongsTo(Trucks::class);
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admins::class);
+    }
 }

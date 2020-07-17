@@ -51,8 +51,12 @@ class JourneyController extends Controller
         $load = $this->loads->find($request->load);
         if($request->event == 'completed'):
             $load->status = 'closed';
-        elseif($request->event):
+        elseif($request->event == 'items picked up'):
+            $load->status = 'picked up';
+        elseif($request->event == 'updated location'):
             $load->status = 'in-progress';
+        elseif($request->event == 'heading to pickup'):
+            $load->status = 'started-journey';
         endif;
         $this->journey->save();
         $load->save();

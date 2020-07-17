@@ -58,7 +58,7 @@
                                         <input type="hidden" name="updatedBy" value="{{auth()->guard('truck_drivers')->user()->id}}">
                                         <button class="btn btn-sm btn-primary" type="submit">Start Journey</button>
                                     </form>
-                                    @elseif($bid->load_type > 0 && $bid->status == 'in-progress')
+                                    @elseif($bid->load_type > 0 && $bid->status == 'started-journey')
                                     <form action="{{route('update-journey')}}" method="post">
                                         @csrf
                                         <input type="hidden" name="load" value="{{$bid->load}}">
@@ -67,17 +67,25 @@
                                         <input type="hidden" name="updatedBy" value="{{auth()->guard('truck_drivers')->user()->id}}">
                                         <button class="btn btn-sm btn-primary" type="submit">Pick Up Items</button>
                                     </form>
-                                    @elseif($bid->load_type > 0 && $bid->status == 'in-progress')
-                                    <form action="{{route('update-journey')}}" method="post">
+                                    @elseif($bid->load_type > 0 && ($bid->status == 'picked up' || $bid->status == 'in-progress'))
+                                    <form action="{{route('update-journey')}}" method="post" id="update-location">
+                                        @csrf
+                                        <input type="hidden" name="load" value="{{$bid->load}}">
+                                        <input type="hidden" name="event" value="updated location">
+                                        <input type="hidden" name="updatedBy" value="{{auth()->guard('truck_drivers')->user()->id}}">
+                                        <input type="text" class="form-control" name="location" placeholder="Your current location">
+                                        <button class="btn btn-sm btn-primary" form="update-location" type="submit">Update Location</button>
+                                    </form>
+                                    <form action="{{route('update-journey')}}" method="POST" id="close-trip">
                                         @csrf
                                         <input type="hidden" name="load" value="{{$bid->load}}">
                                         <input type="hidden" name="event" value="completed">
-                                        <input type="hidden" name="location" value="null">
                                         <input type="hidden" name="updatedBy" value="{{auth()->guard('truck_drivers')->user()->id}}">
-                                        <button class="btn btn-sm btn-primary" type="submit">Complete Delivery</button>
+                                        <input type="hidden" name="location" value="null">
+                                        <button class="btn btn-sm btn-primary" form="close-trip" type="submit">End Trip</button>
                                     </form>
                                     @else
-                                    <a class="btn btn-sm btn-primary" href="/drivers/load/{{$bid->reference}}">View Load</a>
+                                    <a class="btn btn-sm btn-primary" href="/drivers/load/{{$bid->id}}">View Load</a>
                                     @endif
                                 </div>
                             </div>
