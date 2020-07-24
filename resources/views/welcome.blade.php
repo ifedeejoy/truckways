@@ -15,27 +15,6 @@
 		</div>
 	</div>
 </section>
-<div class="wwd-section animated fadeInUp delay-1s">
-	<div class="wwd-container">
-		<div class="wwd-box1">
-			<div class="wwd-box2">
-                <h2 class="wwd-head">Why us?</h2>
-                <p>We provide an effective and reliable platform for logistics networking between load/goods owners and drivers for:</p>
-				<div class="wwd-content mt-3">
-					<h4 class="mb-3">Interstate Goods Delivery</h4>
-					<h4 class="mb-3">Competitive Pricing</h4>
-					<h4 class="mb-3">Safe And Secure Moves</h4>
-					<h4 class="mb-3">Timely Delivery</h4>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="wwd-container2">
-		<div class="truckClip">
-			<img src="/images/truckMask.svg" class="truckMask img-fluid"></div>
-		</div>
-	</div>
-</div>
 <section class="latest-loads animated fadeInUp delay-1s mt-5">
 	<div class="container">
 		<div class="text-center animated fadeInDown delay-1s mt-5 ll-container">
@@ -81,6 +60,28 @@
 		</div>
 	</div>
 </section>
+<div class="wwd-section animated fadeInUp delay-1s">
+	<div class="wwd-container">
+		<div class="wwd-box1">
+			<div class="wwd-box2">
+                <h2 class="wwd-head">Why us?</h2>
+                <p>We provide an effective and reliable platform for logistics networking between load/goods owners and drivers for:</p>
+				<div class="wwd-content mt-3">
+					<h4 class="mb-3">Interstate Goods Delivery</h4>
+					<h4 class="mb-3">Competitive Pricing</h4>
+					<h4 class="mb-3">Safe And Secure Moves</h4>
+					<h4 class="mb-3">Timely Delivery</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="wwd-container2">
+		<div class="truckClip">
+			<img src="/images/truckMask.svg" class="truckMask img-fluid"></div>
+		</div>
+	</div>
+</div>
+
 <section class="animated fadeInUp delay-1s p-5 intro-section">
 	<div class="container">
 		<div class="row">

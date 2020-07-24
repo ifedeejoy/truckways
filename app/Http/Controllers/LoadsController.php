@@ -121,12 +121,15 @@ class LoadsController extends Controller
         $load = Loads::find($id);
         if($request->is('users/load/*')):
             return view("users.load")->with("load", $load)->with('bids', $bids);
+        elseif($request->is('admin/load/*')):
+            $drivers = $this->drivers->whereNotNull('isVerified')->get();
+            return view("admin.load")->with(["load" => $load, 'bids' => $bids, 'drivers' => $drivers]);
         elseif($request->is('drivers/load/*')):
             return view("drivers.load")->with("load", $load);
         endif;
     }
 
-    public function search(Request $request)
+    public function search(Request $request) 
     {
         $ref = $request->load;
         $load = $this->loads->where('reference', $ref)->first();
@@ -142,6 +145,9 @@ class LoadsController extends Controller
             else:
                 return view("users.active-load")->with("load", $load)->with('bids', $bids);
             endif;
+        elseif($request->is('admin/*')):
+            $drivers = $this->drivers->whereNotNull('isVerified')->get();
+            return view("admin.load")->with(["load" => $load, 'bids' => $bids, 'drivers' => $drivers]);
         elseif($request->is('drivers/*')):
             return view("drivers.load")->with("load", $load);
         endif;
@@ -155,9 +161,14 @@ class LoadsController extends Controller
                     ->join('bids', 'loads.id', 'bids.load')
                     ->where('loads.id', $id)
                     ->where('bids.status', 'accepted')
-                    ->select('loads.*', 'drivers.*', 'bids.created_at as bid_at', 'bids.updated_at as accepted_at')
+                    ->select('loads.*', 'loads.id as load_id', 'drivers.*', 'drivers.id as driver_id', 'bids.created_at as bid_at', 'bids.updated_at as accepted_at')
                     ->first();
-        return view("users.active-load")->with(["load" => $load, "journeys" => $journey]);
+        if($request->is('users/*')):
+            $view = "users.active-load";
+        elseif($request->is('admin/*')):
+            $view = "admin.active-load";
+        endif;
+        return view($view)->with(["load" => $load, "journeys" => $journey]);
     }
     /**
      * Show the form for editing the specified resource.

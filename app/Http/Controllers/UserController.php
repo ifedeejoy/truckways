@@ -116,18 +116,26 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
-        $id = auth()->user()->id;
+        if($request->is('admin/*')):
+            $id = $request->id;
+            $type = 'admin.user';
+        else:
+            $id = auth()->user()->id;
+            $type = 'users.profile';
+        endif;
+        
         $user = $this->user->find($id);
         $loads = $user->loads()->count();
         $active = $user->loads()->where('status', 'active')->count();
         $open = $user->loads()->where('status', 'open')->count();
         $closed = $user->loads()->where('status', 'closed')->count();
-        return view('users.profile')->with(['user' => $user, 'loads' => $loads, 'open' => $open, 'active' => $active, 'closed' => $closed]);
+        $requests = $user->loads()->get();
+        return view("$type")->with(['user' => $user, 'loads' => $loads, 'open' => $open, 'active' => $active, 'closed' => $closed, 'requests' => $requests]);
     }
 
     /**
@@ -174,6 +182,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = $this->user->find($id);
+        $user->delete();
+        return redirect('admin/users')->with('success', 'User profile deleted');
     }
 }

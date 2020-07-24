@@ -60,7 +60,13 @@ class JourneyController extends Controller
         endif;
         $this->journey->save();
         $load->save();
-        return redirect('/drivers/my-bids')->with('success', 'Journey Updated Successfully');
+        if($request->is('admin/*')):
+            $uri = $request->load;
+            $route = '/admin/active/'.$uri;
+        else:
+            $route = '/drivers/my-bids';
+        endif;
+        return redirect($route)->with('success', 'Journey Updated Successfully');
     }
 
     /**

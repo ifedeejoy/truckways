@@ -16,7 +16,7 @@ class DriversController extends Controller
 
     public function __construct(Drivers $drivers)
     {
-        $this->middleware('auth:truck_drivers');
+        $this->middleware('auth:truck_drivers')->except('destroy');
         $this->drivers = $drivers;
     }
 
@@ -122,6 +122,8 @@ class DriversController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $driver = $this->drivers->find($id);
+        $driver->delete();
+        return redirect('admin/users')->with('success', 'Driver profile deleted');
     }
 }

@@ -80,6 +80,12 @@ class TrucksController extends Controller
         return view('drivers.truck')->with('truck', $truck);
     }
 
+    public function showTrucks()
+    {
+        $trucks = $this->trucks->driver()->get();
+        return view('admin.trucks')->with('trucks', $trucks);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

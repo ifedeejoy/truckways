@@ -25,7 +25,7 @@
                     @endforeach
                     <div class="d-flex justify-content-between text-center mt-3">
                         <h5 class="load-title bold mt-2">{{number_format($load->budget)}}</h5>
-                        <a class="btn btn-sm btn-primary btn-rounded" href="/drivers/load/{{$load->reference}}">Bid</a>
+                        <a class="btn btn-sm btn-primary btn-rounded" href="/drivers/load/{{$load->id}}">Bid</a>
                     </div>
                 </div>
                 @endforeach

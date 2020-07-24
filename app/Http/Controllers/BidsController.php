@@ -51,7 +51,11 @@ class BidsController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $driver = auth()->guard('truck_drivers')->user()->id;
+        if($request->is('drivers/*')):
+            $driver = auth()->guard('truck_drivers')->user()->id;
+        elseif($request->is('admin/*')):
+            $driver = $request->driver;
+        endif;
         $getload = $this->loads->find($id);
         $bid = new Bids([
             "driver" => $driver,

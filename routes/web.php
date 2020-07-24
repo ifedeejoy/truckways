@@ -17,7 +17,9 @@ Route::view('/', 'welcome');
 Route::view('find-truck', 'find-truck');
 Route::view('market-place', 'market-place');
 Route::view('contact-us', 'contact');
+
 Route::get('continue-registration', 'UserController@showReg')->name('continue-reg');
+
 Route::post('post-load', 'UserController@index')->name('post-load');
 Route::post('finish-post', 'UserController@create')->name('finish-post');
 
@@ -33,9 +35,11 @@ Route::get('users/load/{id}', 'LoadsController@show')->middleware('auth');
 Route::get('users/driver/{id}', 'UserController@showDriver')->middleware('auth');
 Route::get('users/profile', 'UserController@show')->middleware('auth');
 Route::get('users/active-load/{id}', 'LoadsController@showActive')->middleware('auth');
+
 Route::post('users/create-load', 'LoadsController@store')->name('create-load')->middleware('auth');
 Route::post('users/accept-bid/{id}', 'BidsController@update')->name('accept-bid')->middleware('auth');
 Route::post('users/search', 'LoadsController@search')->name('search-load')->middleware('auth');
+
 Route::view('users/trucks', 'users.trucks')->middleware('auth');
 Route::view('users/payment-history', 'users.payment-history')->middleware('auth');
 
@@ -50,7 +54,6 @@ Route::get('drivers/truck/{id}', 'TrucksController@show')->middleware('auth:truc
 Route::get('drivers/profile', 'DriversController@show')->name('driver-profile')->middleware('auth:truck_drivers');
 Route::get('drivers/edit-profile', 'DriversController@edit')->middleware('auth:truck_drivers');
 Route::view('drivers/loads', 'drivers.loads')->middleware('auth:truck_drivers');
-
 
 Route::post('driver-login', '\App\Http\Controllers\Auth\LoginController@driverLogin')->name('login-driver');
 Route::post('driver-register', '\App\Http\Controllers\Auth\RegisterController@driverRegister')->name('register-driver');
@@ -67,11 +70,28 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 Route::get('admin/analytics', 'AdminController@index')->middleware('isAdmin');
 Route::get('admin/applications', 'AdminController@driverApplications')->middleware('isAdmin');
 Route::get('admin/driver/{id}', 'AdminController@showDriver')->middleware('isAdmin');
+Route::get('admin/admins', 'AdminController@showAdmins')->middleware('isAdmin');
+Route::get('admin/users', 'AdminController@showUsers')->middleware('isAdmin');
+Route::get('admin/user/{id}', 'UserController@show')->middleware('isAdmin');
+Route::get('admin/trucks', 'TruckController@showTrucks')->middleware('isAdmin');
+Route::get('admin/trips', 'AdminController@showTrips')->middleware('isAdmin');
+Route::get('admin/load/{id}', 'LoadsController@show')->middleware('isAdmin');
+Route::get('admin/active/{id}', 'LoadsController@showActive')->middleware('isAdmin');
+
 Route::post('admin/verify-driver/{id}', 'AdminController@update')->name('verify-driver')->middleware('isAdmin');
+Route::post('admin/create-admin', 'AdminController@store')->name('create-admin')->middleware('isAdmin');
+Route::post('admin/delete-admin/{id}', 'AdminController@destroy')->name('delete-admin')->middleware('isAdmin');
+Route::post('admin/delete-user/{id}', 'UserController@destroy')->name('delete-user')->middleware('isAdmin');
+Route::post('admin/delete-driver/{id}', 'DriversController@destroy')->name('delete-driver')->middleware('isAdmin');
+Route::post('admin/send-bid/{id}', 'BidsController@store')->name('admin-bid')->middleware('isAdmin');
+Route::post('admin/update-journey', 'JourneyController@store')->name('update-journey')->middleware('isAdmin');
+
+Route::get('/command',function(){
+    Artisan::call('storage:link');
+});
 
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('config:clear');
     $exitCode = Artisan::call('cache:clear');
     $exitCode = Artisan::call('config:cache');
-    return 'DONE'; //Return anything
 });

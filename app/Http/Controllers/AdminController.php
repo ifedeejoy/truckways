@@ -10,6 +10,7 @@ use App\Models\Journey;
 use App\Models\Trucks;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -112,9 +113,20 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->users->name = $request->name;
+        $this->users->email = $request->email;
+        $this->users->phone = $request->phone;
+        $this->users->password = Hash::make($request->password);
+        $this->users->isAdmin = 1;
+        $this->users->save();
+        return redirect('admin/admins')->with('success', 'Admin profile created');
     }
 
+    public function showAdmins()
+    {
+        $admins = $this->users->where('isAdmin', '1')->get();
+        return view('admin.admins')->with('admins', $admins);
+    }
     /**
      * Display the specified resource.
      *
@@ -124,6 +136,21 @@ class AdminController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function showUsers()
+    {
+        $users = $this->users->whereNull('isAdmin')->get();
+        $drivers = $this->drivers->get();
+        return view('admin.users')->with(['users' => $users, 'drivers' => $drivers]);
+    }
+
+    public function showTrips()
+    {
+        $open = $this->loads->where('status', 'open')->get();
+        $closed = $this->loads->where('status', 'closed')->get();
+        $active = $this->loads->where('status', '!=', 'open')->where('status', '!=', 'closed')->get();
+        return view('admin.trips')->with(['openTrips' => $open, 'closedTrips' => $closed, 'activeTrips' => $active]);
     }
 
     /**
@@ -163,6 +190,8 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = $this->users->find($id);
+        $admin->delete();
+        return redirect('admin/admins')->with('success', 'Admin profile deleted');
     }
 }

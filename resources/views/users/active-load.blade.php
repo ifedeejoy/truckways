@@ -1,12 +1,18 @@
-@extends('layouts.users.app')
+@extends('layouts.admin.app')
 @section('title', 'Dashboard')
 @section('content')
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card">
             <div class="home-options bg-primary">
                 <h4 class="text-white">Load Details</h6>
+                <a class="text-white" data-target="#update-journey" data-toggle="modal"><i class="fas fa-plus"></i> Update Journey</a>
             </div>
             <div class="col-sm-12 p-4">
+                @if(session('success'))
+                <div class="alert alert-success">
+                {{ session('success') }}
+                </div> 
+                @endif
                 <h6 class="black-text bold">TWY{{$load->reference}}</h6>
                 <div class="row d-flex justify-content-around">
                     <div class="mb-4 gray-card col-sm-5">
@@ -124,36 +130,52 @@
                                 <h5 class="mt-2 mr-3"><i class="fas fa-check-circle"></i></h5>
                             </div>
                         </div>
-                        @elseif($loop->iteration == 3 && $loop->last)
-                        <div class="progress" style="height: 30px; border-radius: 18px;">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary text-right" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                                <h5 class="mt-2 mr-3"><i class="fas fa-check-circle"></i></h5>
+                        @elseif($loop->last)
+                            @if($load->status == 'closed')
+                            <div class="progress" style="height: 30px; border-radius: 18px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary text-right" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                    <h5 class="mt-2 mr-3"><i class="fas fa-check-circle"></i></h5>
+                                </div>
                             </div>
-                        </div>
+                            @else
+                            <div class="progress" style="height: 30px; border-radius: 18px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary text-right" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="90" style="width:90%">
+                                    <h5 class="mt-2 mr-3"><i class="fas fa-check-circle"></i></h5>
+                                </div>
+                            </div>
+                            @endif
                         @endif
                     @endforeach
                     <div class="row">
-                        <div class="p-3 mb-2 text-center ml-2 mr-5">
+                        <div class="p-3 mb-2 text-center ml-2 mr-3">
                             <h6 class="black-text smaller-text bold">Requested</h6>
                             <h6 class="gray-text smaller-text">{{date("Y-m-d", strtotime($load->created_at))}}</h6>
                             <h6 class="gray-text smaller-text">{{date("H:i", strtotime($load->created_at))}}</h6>
                         </div>
-                        <div class="p-3 mb-2 text-center mr-5">
+                        <div class="p-3 mb-2 text-center mr-3">
                             <h6 class="black-text smaller-text bold">Bidded</h6>
                             <h6 class="gray-text smaller-text">{{date("Y-m-d", strtotime($load->bid_at))}}</h6>
                             <h6 class="gray-text smaller-text">{{date("H:i", strtotime($load->bid_at))}}</h6>
                         </div>
-                        <div class="p-3 mb-2 text-center mr-5">
+                        <div class="p-3 mb-2 text-center mr-3">
                             <h6 class="black-text smaller-text bold">Bid Accepted</h6>
                             <h6 class="gray-text smaller-text">{{date("Y-m-d", strtotime($load->accepted_at))}}</h6>
                             <h6 class="gray-text smaller-text">{{date("H:i", strtotime($load->accepted_at))}}</h6>
                         </div>
                         @foreach ($journeys as $journey)
-                        <div class="p-3 mb-2 text-center mr-5">
+                        @if ($loop->iteration == 1 || $loop->iteration == 2 || $loop->iteration == 3)
+                        <div class="p-3 mb-2 text-center mr-3">
                             <h6 class="black-text smaller-text bold text-capitalize">{{$journey->event}}</h6>
                             <h6 class="gray-text smaller-text">{{date("Y-m-d", strtotime($journey->updated_at))}}</h6>
                             <h6 class="gray-text smaller-text">{{date("H:i", strtotime($journey->updated_at))}}</h6>
                         </div>
+                        @elseif ($loop->last)
+                        <div class="p-3 mb-2 text-center mr-3">
+                            <h6 class="black-text smaller-text bold text-capitalize">{{$journey->event}}</h6>
+                            <h6 class="gray-text smaller-text">{{date("Y-m-d", strtotime($journey->updated_at))}}</h6>
+                            <h6 class="gray-text smaller-text">{{date("H:i", strtotime($journey->updated_at))}}</h6>
+                        </div>
+                        @endif
                         @endforeach 
                     </div>
                 @endif
@@ -196,6 +218,62 @@
                 </div>
             </div>
             @endif
+        </div>
+    </div>
+    <div class="modal fade" id="update-journey" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Update Journey</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="col-sm-12">
+                        <div class="text-center mt-3">
+                            @if ($load->load_type > 0 && $load->status == 'active')
+                            <form action="{{route('update-journey')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="load" value="{{$load->load_id}}">
+                                <input type="hidden" name="event" value="heading to pickup">
+                                <input type="hidden" name="location" value="null">
+                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}}">
+                                <button class="btn btn-sm btn-primary" type="submit">Start Journey</button>
+                            </form>
+                            @elseif($load->load_type > 0 && $load->status == 'started-journey')
+                            <form action="{{route('update-journey')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="load" value="{{$load->load_id}}">
+                                <input type="hidden" name="event" value="items picked up">
+                                <input type="hidden" name="location" value="null">
+                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}}">
+                                <button class="btn btn-sm btn-primary" type="submit">Pick Up Items</button>
+                            </form>
+                            @elseif($load->load_type > 0 && ($load->status == 'picked up' || $load->status == 'in-progress'))
+                            <form action="{{route('update-journey')}}" method="post" id="update-location">
+                                @csrf
+                                <input type="hidden" name="load" value="{{$load->load_id}}">
+                                <input type="hidden" name="event" value="updated location">
+                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}}">
+                                <input type="text" class="form-control" name="location" placeholder="Your current location">
+                                <button class="btn btn-sm btn-primary" form="update-location" type="submit">Update Location</button>
+                            </form>
+                            <form action="{{route('update-journey')}}" method="POST" id="close-trip">
+                                @csrf
+                                <input type="hidden" name="load" value="{{$load->load_id}}">
+                                <input type="hidden" name="event" value="completed">
+                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}}">
+                                <input type="hidden" name="location" value="null">
+                                <button class="btn btn-sm btn-primary" form="close-trip" type="submit">End Trip</button>
+                            </form>
+                            @else
+                            <a class="btn btn-sm btn-primary" href="/admin/load/{{$load->load_id}}">View Load</a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
