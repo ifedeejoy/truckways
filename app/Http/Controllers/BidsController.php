@@ -51,9 +51,9 @@ class BidsController extends Controller
      */
     public function store(Request $request, $id)
     {
-        if($request->is('drivers/*')):
+        if($request->is('drivers/send-bid/*')):
             $driver = auth()->guard('truck_drivers')->user()->id;
-        elseif($request->is('admin/*')):
+        elseif($request->is('admin/send-bid/*')):
             $driver = $request->driver;
         endif;
         $getload = $this->loads->find($id);
@@ -117,6 +117,13 @@ class BidsController extends Controller
         $load->driver = $bid->driver;
         $load->price = $bid->amount;
 
+        if($request->is('agents/*')):
+            $bid->updatedBy = $request->updatedBy;
+            $route = 'users/active-load/';
+        else:
+            $route = 'agents/active/';
+        endif;
+
         $amount = number_format($bid->amount);
         $phone = formatPhone($driver->phone);
         $username = 'sandbox';
@@ -134,7 +141,7 @@ class BidsController extends Controller
         endif;
         $bid->save();
         $load->save();
-        return redirect('users/active-load/'.$load->id)
+        return redirect($route.$load->id)
                 ->with('success', 'Bid accepted')
                 ->with('load', $load)
                 ->with('driver',$driver);

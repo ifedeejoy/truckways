@@ -114,6 +114,18 @@
                                         <li class="smaller-text">You automatic notification of bids for your load</li>
                                         <li class="smaller-text">You can track the progress of your load</li>
                                     </ul>
+                                    <ul>
+                                        <li class="smaller-text">
+                                            Insurance Cost
+                                            <ul>
+                                                <li class="smaller-text">Below 100k - 1%</li>
+                                                <li class="smaller-text">Below 500k - 2%</li>
+                                                <li class="smaller-text">Below 1M - 3.5%</li>
+                                                <li class="smaller-text">Below 5M - 5%</li>
+                                                <li class="smaller-text">5M & above - 10%</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="text-right">

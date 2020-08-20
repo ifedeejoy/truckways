@@ -124,6 +124,9 @@ class UserController extends Controller
         if($request->is('admin/*')):
             $id = $request->id;
             $type = 'admin.user';
+        elseif($request->is('agents/*')):
+            $id = $request->id;
+            $type = 'agents.user';
         else:
             $id = auth()->user()->id;
             $type = 'users.profile';

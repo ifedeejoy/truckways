@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Drivers;
 use Illuminate\Http\Request;
 use App\Models\Verification;
+use Illuminate\Support\Facades\DB;
 
 class DriversController extends Controller
 {
@@ -65,6 +66,20 @@ class DriversController extends Controller
         $driver = $this->drivers->find($id);
         $trucks = $driver->trucks()->get();
         return view('drivers.profile')->with('driver', $driver)->with('trucks', $trucks);
+    }
+
+    public function earnings()
+    {
+        $driver = auth()->guard('truck_drivers')->user()->id;
+        $loads = DB::table('bids')
+                    ->join('loads', 'bids.load', 'loads.id')
+                    ->where('bids.driver', $driver)
+                    ->where('bids.status', 'accepted')
+                    ->select('bids.*', 'bids.status as bid_status', 'loads.*')
+                    ->get();
+        $bids = $this->drivers->find($driver);
+        $won = $bids->
+        return view('drivers.earnings')->with('loads', $loads);
     }
 
     /**

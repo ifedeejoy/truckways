@@ -1,11 +1,13 @@
-@extends('layouts.admin.app')
+@extends('layouts.agents.app')
 @section('title', 'Load')
 @section('content')
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card">
             <div class="home-options bg-primary">
                 <h4 class="text-white">Load Details</h4>
-                <a class="text-white" data-target="#driver-bid" data-toggle="modal"><i class="fas fa-plus"></i> New Bid</a>
+                @if (auth()->user()->name != $load->createdBy)
+                    <a class="text-white" data-target="#driver-bid" data-toggle="modal"><i class="fas fa-plus"></i> New Bid</a>
+                @endif
             </div>
             <div class="col-sm-12 p-4">
                 @if(session('success'))
@@ -68,32 +70,39 @@
                     </div>
                 </div>
             </div>
-            @if ($load->status == 'open')
-                @if (count($bids) > 0)
-                <div class="home-options bg-primary">
-                    <h4 class="text-white">Bids</h6>
-                </div>
-                <div class="load-container">
-                    @foreach ($bids as $bid)
-                        <div class="load-cards">
-                            <div class="d-flex justify-content-between">
-                                <h6 class="smaller-text text-center">{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($bid->created_at))) !!}</h6>
+            @if (auth()->user()->name == $load->createdBy)
+                @if ($load->status == 'open')
+                    @if (count($bids) > 0)
+                    <div class="home-options bg-primary">
+                        <h4 class="text-white">Bids</h6>
+                    </div>
+                    <div class="load-container">
+                        @foreach ($bids as $bid)
+                            <div class="load-cards">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="smaller-text text-center">{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($bid->created_at))) !!}</h6>
+                                </div>
+                                <div class="d-flex justify-content-between text-center">
+                                    <h6 class="smaller-text primary-text">{{$load->pickup}}</h6>
+                                    <h6 class="smaller-text primary-text">{{$load->delivery}}</h6>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <h5 class="load-title bold">{{$bid->name}}</h5>
+                                    <h5 class="load-title bold">{{$bid->phone}}</h5>
+                                    <h5 class="load-title bold mt-2">{{number_format($bid->amount)}}</h5>
+                                </div>
+                                <div class="row">
+                                    <form action="{{route('accept-bid', $bid->bid_id)}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="createdBy" value="{{auth()->user()->name}}">
+                                        <button class="btn btn-success btn-sm">Accept Bid</button>
+                                    </form>
+                                    <a href="/agents/driver/{{$bid->driver}}" class="btn btn-primary btn-sm">View Driver</a>
+                                </div>
                             </div>
-                            <div class="d-flex justify-content-between text-center">
-                                <h6 class="smaller-text primary-text">{{$load->pickup}}</h6>
-                                <h6 class="smaller-text primary-text">{{$load->delivery}}</h6>
-                            </div>
-                            <div class="text-center mt-3">
-                                <h5 class="load-title bold">{{$bid->name}}</h5>
-                                <h5 class="load-title bold">{{$bid->phone}}</h5>
-                                <h5 class="load-title bold mt-2">{{number_format($bid->amount)}}</h5>
-                            </div>
-                            <div class="row">
-                                <a href="/admin/driver/{{$bid->driver}}" class="btn btn-primary btn-sm">View Driver</a>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
+                    @endif
                 @endif
             @endif
         </div>
@@ -102,14 +111,15 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Check Load Status</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Bid on behalf of driver</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <form action="{{route('admin-bid', $load->id)}}" method="post">
+                    <form action="{{route('agent-bid', $load->id)}}" method="post">
                         @csrf
+                        <input type="hidden" name="createdBy" value="{{auth()->user()->name}}">
                         <div class="col-sm-12">
                             <select class="selectpicker" name="driver" data-live-search="true">
                                 <option selected disabled>Select Driver</option>

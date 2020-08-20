@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.agents.app')
 @section('title', 'Driver Profile')
 @section('content')
     
@@ -24,12 +24,12 @@
                                 <h6 class="extra-muted small-text">{{$driver->email}}</h6>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end">
+                        {{-- <div class="d-flex justify-content-end">
                             <form action="{{route('delete-driver', $driver->id)}}" method="post">
                                 @csrf
                                 <button type="submit" class="black-text bg-transparent border-0"><i class="far fa-trash-alt fa-1x"></i></button>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="mt-5 d-flex justify-content-between">
                         <h6 class="small-text">{{$driver->address}}</h6>

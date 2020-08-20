@@ -55,7 +55,7 @@ class AdminController extends Controller
         $accepted = $this->bids->where('status', 'accepted')->count();
         $earnings = $this->bids->where('status', 'accepted')->sum('amount');
         $commision = 0.05 * $earnings;
-        return view('admin.analytics')->with([
+        return view('admin.analytics')->with([ 
             'loads' => $loads, 
             'completed' => $completed, 
             'delivered' => $delivered, 

@@ -1,17 +1,18 @@
-@extends('layouts.drivers.app')
-@section('title', 'Driver Signup')
+@extends('layouts.agents.app')
+@section('title', 'Agent Signup')
 @section('content')
     
 <div class="login-banner reg-banner">
     <div class="login-left mt-2">
-        <h4 class="welcome-text login-welcome-text reg-text">Pick up loads and get more loads on
-            <br> your return trips now!</h4>
+        <h5 class="welcome-text login-welcome-text reg-text">Know Shippers 
+            <br>Or Drivers
+            <br> Become An Agent Today!</h5>
         <img src="https://res.cloudinary.com/ifedeejoy/image/upload/v1593688512/illus_upwhlp.png" class="login-banner-img" alt="Delivery Van Being Loaded">
     </div>
     <div class="login-right mt-0">
         <div class="login-form bg-white">
             <p class="text-center"><b>Signup !</b></p>
-            <form action="{{ route('register-driver') }}" method="POST" class="mt-5">
+            <form action="{{ route('agent-register') }}" method="POST" class="mt-5">
                 @csrf
                 <div class="col mb-3">
                     <label for="name">{{ __('Name') }}</label>

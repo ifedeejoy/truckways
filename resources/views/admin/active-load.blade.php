@@ -238,7 +238,7 @@
                                 <input type="hidden" name="load" value="{{$load->load_id}}">
                                 <input type="hidden" name="event" value="heading to pickup">
                                 <input type="hidden" name="location" value="null">
-                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}}">
+                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}} (Admin)">
                                 <button class="btn btn-sm btn-primary" type="submit">Start Journey</button>
                             </form>
                             @elseif($load->load_type > 0 && $load->status == 'started-journey')
@@ -247,7 +247,7 @@
                                 <input type="hidden" name="load" value="{{$load->load_id}}">
                                 <input type="hidden" name="event" value="items picked up">
                                 <input type="hidden" name="location" value="null">
-                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}}">
+                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}} (Admin)">
                                 <button class="btn btn-sm btn-primary" type="submit">Pick Up Items</button>
                             </form>
                             @elseif($load->load_type > 0 && ($load->status == 'picked up' || $load->status == 'in-progress'))
@@ -255,7 +255,7 @@
                                 @csrf
                                 <input type="hidden" name="load" value="{{$load->load_id}}">
                                 <input type="hidden" name="event" value="updated location">
-                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}}">
+                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}} (Admin)">
                                 <input type="text" class="form-control" name="location" placeholder="Your current location">
                                 <button class="btn btn-sm btn-primary" form="update-location" type="submit">Update Location</button>
                             </form>
@@ -263,7 +263,7 @@
                                 @csrf
                                 <input type="hidden" name="load" value="{{$load->load_id}}">
                                 <input type="hidden" name="event" value="completed">
-                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}}">
+                                <input type="hidden" name="updatedBy" value="{{auth()->guard()->user()->name}} (Admin)">
                                 <input type="hidden" name="location" value="null">
                                 <button class="btn btn-sm btn-primary" form="close-trip" type="submit">End Trip</button>
                             </form>

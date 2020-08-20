@@ -28,7 +28,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            ['drivers.loads', 'welcome', 'market-place'], 
+            ['drivers.loads', 'agents.loads', 'welcome', 'market-place'], 
             'App\Http\View\Composers\OpenLoadsComposer'
         );
         View::composer(

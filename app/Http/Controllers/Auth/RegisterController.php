@@ -94,6 +94,11 @@ class RegisterController extends Controller
         return view("drivers.register");
     }
 
+    public function agentReg()
+    {
+        return view("agents.register");
+    }
+
     public function driverRegister(Request $request)
     {
         $this->driverValidator($request->all())->validate();
@@ -106,5 +111,20 @@ class RegisterController extends Controller
         ]);
         Authenticate::guard('truck_drivers')->login($driver);
         return redirect()->intended('drivers/home');
+    }
+
+    public function agentRegister(Request $request)
+    {
+        $this->driverValidator($request->all())->validate(); 
+        $users = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
+            'isAdmin' => 2,
+        ]);
+        Authenticate::guard()->login($users);
+        return redirect()->intended('agents/home');   
     }
 }

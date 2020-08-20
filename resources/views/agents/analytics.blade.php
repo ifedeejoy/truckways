@@ -1,5 +1,5 @@
-@extends('layouts.admin.app')
-@section('title', 'Dashboard')
+@extends('layouts.agents.app')
+@section('title', 'Analytics')
 @section('content')
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card bg-transparent d-flex flex-row flex-wrap">

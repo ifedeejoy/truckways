@@ -86,6 +86,25 @@ Route::post('admin/delete-driver/{id}', 'DriversController@destroy')->name('dele
 Route::post('admin/send-bid/{id}', 'BidsController@store')->name('admin-bid')->middleware('isAdmin');
 Route::post('admin/update-journey', 'JourneyController@store')->name('update-journey')->middleware('isAdmin');
 
+Route::get('agents/register', '\App\Http\Controllers\Auth\RegisterController@agentReg');
+Route::get('agents/home', 'HomeController@agentsHome')->name('agents.home')->middleware('isAgent');
+Route::get('agents/analytics', 'AgentController@index')->middleware('isAgent');
+Route::get('agents/users', 'AgentController@showUsers')->middleware('isAgent');
+Route::get('agents/user/{id}', 'UserController@show')->middleware('isAgent');
+Route::get('agents/drivers', 'AgentController@showDrivers')->middleware('isAgent');
+Route::get('agents/bids', 'AgentController@showBids')->middleware('isAgent');
+Route::get('agents/trips', 'AgentController@showTrips')->middleware('isAgent');
+Route::get('agents/load/{id}', 'LoadsController@show')->middleware('isAgent');
+Route::get('agents/active/{id}', 'LoadsController@showActive')->middleware('isAgent');
+Route::get('agents/driver/{id}', 'AgentController@showDriver')->middleware('isAgent');
+
+Route::view('agents/loads', 'agents.loads')->middleware('isAgent');
+
+Route::post('agent-register', '\App\Http\Controllers\Auth\RegisterController@agentRegister')->name('agent-register');
+Route::post('agents/create-user', 'AgentController@createUsers')->name('create-user')->middleware('isAgent');
+Route::post('agents/create-driver', 'AgentController@createDrivers')->name('create-driver')->middleware('isAgent');
+Route::post('agents/send-bid/{id}', 'AgentController@sendBid')->name('agent-bid')->middleware('isAgent');
+
 Route::get('/command',function(){
     Artisan::call('storage:link');
 });

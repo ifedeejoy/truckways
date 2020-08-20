@@ -11,15 +11,15 @@
     </head>
     <body>
         <main>
-            @if(request()->is('drivers/register') || request()->is('drivers/login'))
+            @if(request()->is('agents/register') || request()->is('agents/login'))
             <div class="main-container">
                 @yield('content')
             </div>
             @else
-                @include('layouts.drivers.nav')
+                @include('layouts.agents.nav')
                 <div class="main-container">
                     
-                    @include('layouts.drivers.sidenav')
+                    @include('layouts.agents.sidenav')
                     <div class="container">
                         <div class="row justify-content-center">
                             @yield('content')
@@ -29,7 +29,7 @@
             @endif
         </main>
         
-        @include('layouts.drivers.footer')
+        @include('layouts.agents.footer')
     </body>
     @section('scripts')
         <script src="/js/app.js" defer></script>

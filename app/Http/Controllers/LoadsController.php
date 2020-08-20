@@ -124,6 +124,10 @@ class LoadsController extends Controller
         elseif($request->is('admin/load/*')):
             $drivers = $this->drivers->whereNotNull('isVerified')->get();
             return view("admin.load")->with(["load" => $load, 'bids' => $bids, 'drivers' => $drivers]);
+        elseif($request->is('agents/load/*')):
+            $agent = auth()->user()->name;
+            $drivers = $this->drivers->where('createdBy', $agent)->get();
+            return view("agents.load")->with(["load" => $load, 'bids' => $bids, 'drivers' => $drivers]);
         elseif($request->is('drivers/load/*')):
             return view("drivers.load")->with("load", $load);
         endif;
@@ -167,6 +171,8 @@ class LoadsController extends Controller
             $view = "users.active-load";
         elseif($request->is('admin/*')):
             $view = "admin.active-load";
+        elseif($request->is('agents/*')):
+            $view = "agents.active-load";
         endif;
         return view($view)->with(["load" => $load, "journeys" => $journey]);
     }
