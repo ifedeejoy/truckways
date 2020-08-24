@@ -29,10 +29,21 @@
                         {{ __('login') }}
                     </button>
                 </div>
-                @if(session('error'))
-                    <div class="alert alert-warning">
-                        {{ session('error') }}
-                    </div> 
+                
+                @if(is_string($errors))
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{{ $errors }}</li>
+                        </ul>
+                    </div>
+                @elseif ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
                 <div class="login-liner mt-2"></div>
                 <div class="text-center mb-4 mt-4">

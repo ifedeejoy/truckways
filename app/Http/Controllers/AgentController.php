@@ -151,9 +151,14 @@ class AgentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $id = auth()->user()->id;
+        $agent = auth()->user()->name; 
+        $agent = $this->users->find($id);
+        $users = $this->users->where('createdBy', $agent)->count();
+        $drivers = $this->users->where('createdBy', $agent)->count();
+        return view('agents.profile')->with(['agent' => $agent, "users" => $users, "drivers" => $drivers]);
     }
 
     public function showUsers()

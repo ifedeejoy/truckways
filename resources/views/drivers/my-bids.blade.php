@@ -6,10 +6,10 @@
             <div class="home-options justify-content-center border-0">
                 <ul class="nav nav-tabs">
                     <li class="p-4 pt-0 active">
-                        <a class="bold small-text black-text" data-toggle="tab" href="#bids-won">Bids Won</a>
+                        <a class="bold small-text black-text" data-toggle="tab" href="#pending-bids">Pending Bids</a>
                     </li>
                     <li class="p-4 pt-0">
-                        <a class="bold small-text black-text" data-toggle="tab" href="#pending-bids">Pending Bids</a>
+                        <a class="bold small-text black-text" data-toggle="tab" href="#bids-won">Bids Won</a>
                     </li>
                     <li class="p-4 pt-0">
                         <a class="bold small-text black-text" data-toggle="tab" href="#declined-bids">Declined Bids</a>
@@ -25,7 +25,37 @@
             </div> 
             @endif
             <div class="tab-content">
-                <div id="bids-won" class="tab-pane fadeIn active">
+                <div id="pending-bids" class="tab-pane fadeIn active">
+                    <div class="load-container">
+                        @foreach ($bids as $bid)
+                            @if ($bid->bid_status == 'pending')
+                            <div class="load-cards">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="load-title bold">{{$bid->title}}</h5>
+                                    <h6 class="smaller-text text-center">{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($bid->created_at))) !!}</h6>
+                                </div>
+                                <div class="d-flex justify-content-between text-center">
+                                    <h6 class="smaller-text primary-text">{{$bid->pickup}}</h6>
+                                    <h6 class="smaller-text primary-text">{{$bid->delivery}}</h6>
+                                </div>
+                                @foreach (json_decode($bid->images) as $image)
+                                    @if($loop->first)
+                                    <div class="text-center">
+                                        <img src="{{asset($image)}}" class="w-75 h-75 img-fluid" alt="">
+                                    </div>
+                                        @break
+                                    @endif
+                                @endforeach
+                                <div class="text-center mt-3">
+                                    <h5 class="load-title bold mt-2">{{number_format($bid->amount)}}</h5>
+                                    <a class="btn btn-sm btn-primary" href="/drivers/load/{{$bid->id}}">View Load</a>
+                                </div>
+                            </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+                <div id="bids-won" class="tab-pane fade">
                     <div class="load-container">
                         @foreach ($bids as $bid)
                             @if ($bid->bid_status == 'accepted')
@@ -85,38 +115,8 @@
                                         <button class="btn btn-sm btn-primary" form="close-trip" type="submit">End Trip</button>
                                     </form>
                                     @else
-                                    <a class="btn btn-sm btn-primary" href="/drivers/load/{{$bid->id}}">View Load</a>
+                                    <a class="btn btn-sm btn-primary" href="/drivers/load/{{$bid->load}}">View Load</a>
                                     @endif
-                                </div>
-                            </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-                <div id="pending-bids" class="tab-pane fade">
-                    <div class="load-container">
-                        @foreach ($bids as $bid)
-                            @if ($bid->bid_status == 'pending')
-                            <div class="load-cards">
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="load-title bold">{{$bid->title}}</h5>
-                                    <h6 class="smaller-text text-center">{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($bid->created_at))) !!}</h6>
-                                </div>
-                                <div class="d-flex justify-content-between text-center">
-                                    <h6 class="smaller-text primary-text">{{$bid->pickup}}</h6>
-                                    <h6 class="smaller-text primary-text">{{$bid->delivery}}</h6>
-                                </div>
-                                @foreach (json_decode($bid->images) as $image)
-                                    @if($loop->first)
-                                    <div class="text-center">
-                                        <img src="{{asset($image)}}" class="w-75 h-75 img-fluid" alt="">
-                                    </div>
-                                        @break
-                                    @endif
-                                @endforeach
-                                <div class="text-center mt-3">
-                                    <h5 class="load-title bold mt-2">{{number_format($bid->amount)}}</h5>
-                                    <a class="btn btn-sm btn-primary" href="/drivers/load/{{$bid->reference}}">View Load</a>
                                 </div>
                             </div>
                             @endif

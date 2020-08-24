@@ -53,6 +53,9 @@ Route::get('drivers/add-truck', 'TrucksController@create')->middleware('auth:tru
 Route::get('drivers/truck/{id}', 'TrucksController@show')->middleware('auth:truck_drivers');
 Route::get('drivers/profile', 'DriversController@show')->name('driver-profile')->middleware('auth:truck_drivers');
 Route::get('drivers/edit-profile', 'DriversController@edit')->middleware('auth:truck_drivers');
+Route::get('drivers/earnings', 'DriversController@earnings')->middleware('auth:truck_drivers');
+Route::get('drivers/journey-history', 'DriversController@history')->middleware('auth:truck_drivers');
+
 Route::view('drivers/loads', 'drivers.loads')->middleware('auth:truck_drivers');
 
 Route::post('driver-login', '\App\Http\Controllers\Auth\LoginController@driverLogin')->name('login-driver');
@@ -97,6 +100,7 @@ Route::get('agents/trips', 'AgentController@showTrips')->middleware('isAgent');
 Route::get('agents/load/{id}', 'LoadsController@show')->middleware('isAgent');
 Route::get('agents/active/{id}', 'LoadsController@showActive')->middleware('isAgent');
 Route::get('agents/driver/{id}', 'AgentController@showDriver')->middleware('isAgent');
+Route::get('agents/profile', 'AgentController@show')->middleware('auth');
 
 Route::view('agents/loads', 'agents.loads')->middleware('isAgent');
 

@@ -12,7 +12,7 @@ class Bids extends Model
 
     public function loads()
     {
-        return $this->belongsTo(Loads::class, 'id');
+        return $this->belongsTo(Loads::class, 'load');
     }
 
     public function driver()

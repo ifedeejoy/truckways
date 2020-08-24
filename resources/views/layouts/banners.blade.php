@@ -108,23 +108,13 @@
 
                 <div class="md-form login-input mb-3">
                     <img src="/images/username.svg" class="prefix" alt="Username Icon">
-                    <input type="email" class="form-control primary-text @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input type="email" class="form-control primary-te" name="email" id="email" required autocomplete="email" autofocus>
                     <label for="email">{{ __('E-Mail Address') }}</label>
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
                 <div class="md-form login-input mb-5">
                     <img src="/images/password.svg" class="prefix" alt="Password Icon">
-                    <input id="password" type="password" class="form-control primary-text @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    <input id="password" type="password" class="form-control primary-text" name="password" required autocomplete="current-password">
                     <label for="password">Password</label>
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
                 <div class="form-group row">
                     <div class="col text-center">
@@ -141,7 +131,21 @@
                         {{ __('Login') }}
                     </button>
                 </div>
-
+                @if(is_string($errors))
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{{ $errors }}</li>
+                        </ul>
+                    </div>
+                @elseif ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="login-liner"></div>
                 <h6 class="login-option">or</h6>
                 <div class="text-center mb-4">
