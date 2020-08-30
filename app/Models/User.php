@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
-
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -40,5 +41,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function loads()
     {
         return $this->hasMany(Loads::class, 'user');
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admins::class);
     }
 }

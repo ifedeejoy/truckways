@@ -12,19 +12,19 @@
 		</ul>
 		<ul class="navbar-nav mx-auto nav-flex-icons">
 			<li class="nav-item hidden-nav">
-				<a href="#" class="nav-link">Dashboard</a>
+				<a href="/users/home" class="nav-link">Dashboard</a>
 			</li>
 			<li class="nav-item hidden-nav">
-				<a href="#" class="nav-link">Loads</a>
+				<a href="/users/loads" class="nav-link">Open Loads</a>
 			</li>
 			<li class="nav-item hidden-nav">
-				<a href="#" class="nav-link">Trucks</a>
+				<a href="/users/active-loads" class="nav-link">Active Loads</a>
 			</li>
 			<li class="nav-item hidden-nav">
-				<a href="#" class="nav-link">Bids</a>
+				<a href="/users/trucks" class="nav-link">Trucks</a>
 			</li>
 			<li class="nav-item hidden-nav">
-				<a href="#" class="nav-link">Payment History</a>
+				<a href="/users/payment-history" class="nav-link">Payment History</a>
 			</li>
 			<li class="nav-item avatar ml-2">
 				<a class="nav-link p-0" href="#">

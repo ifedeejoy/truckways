@@ -15,6 +15,10 @@ window.getfileInfo = function(event) {
     }
 }
 
+window.focusElement = function() {
+    document.getElementById("user-name").focus();
+}
+
 jQuery(document).ready(function($) {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");

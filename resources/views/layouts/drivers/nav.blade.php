@@ -1,7 +1,7 @@
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-light lighten-5">
 	<a class="navbar-brand col-sm-3 text-center" href="#">
-		<strong class="title">{{ config('app.name') }}</strong class="title">
+		<strong class="title"><img src="/images/logo-black.png" alt="Truckways" class="logo-img"></strong class="title">
 	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
 	  aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,19 +12,19 @@
 		</ul>
 		<ul class="navbar-nav mx-auto nav-flex-icons">
 			<li class="nav-item hidden-nav">
-				<a href="#" class="nav-link">Dashboard</a>
+				<a href="/drivers/home" class="nav-link">Dashboard</a>
 			</li>
 			<li class="nav-item hidden-nav">
-				<a href="#" class="nav-link">Loads</a>
+				<a href="/drivers/loads" class="nav-link">Loads</a>
 			</li>
 			<li class="nav-item hidden-nav">
-				<a href="#" class="nav-link">Trucks</a>
+				<a href="/drivers/trucks" class="nav-link">Trucks</a>
 			</li>
 			<li class="nav-item hidden-nav">
-				<a href="#" class="nav-link">Bids</a>
+				<a href="/drivers/my-bids" class="nav-link">Bids</a>
 			</li>
 			<li class="nav-item hidden-nav">
-				<a href="#" class="nav-link">Payment History</a>
+				<a href="/drivers/earnings" class="nav-link">Earnings</a> 
 			</li>
 			<li class="nav-item avatar ml-2">
 				<a class="nav-link p-0" href="/drivers/profile">

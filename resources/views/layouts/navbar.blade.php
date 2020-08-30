@@ -3,7 +3,7 @@
 
     	<!-- Brand -->
 		<a class="navbar-brand" href="/">
-			<strong class="title">{{ config('app.name') }}</strong class="title">
+			<strong class="title"><img src="/images/logo.png" alt="Truckways" class="logo-img"></strong class="title">
 		</a>
 
 		<!-- Collapse -->
@@ -26,6 +26,9 @@
 				</li>
 				<li class="nav-item ml-3">
 					<a href="/drivers/login" class="nav-link {{ setActive(['drivers']) }} waves-effect waves-light">Drivers</a>
+                </li>
+                <li class="nav-item ml-3">
+					<a href="/agents/register" class="nav-link {{ setActive(['agents']) }} waves-effect waves-light">Agents</a>
 				</li>
 				<li class="nav-item ml-3">
 					<a href="/contact-us" class="nav-link {{ setActive(['contact-us']) }} waves-effect waves-light">Contact Us</a>

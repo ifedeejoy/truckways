@@ -17,6 +17,7 @@
                             <th scope="col">Destination</th>
                             <th scope="col">Budget</th>
                             <th scope="col">Truck Type</th>
+                            <th scope="col">Bids</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -27,6 +28,7 @@
                             <th scope="col">Destination</th>
                             <th scope="col">Budget</th>
                             <th scope="col">Truck Type</th>
+                            <th scope="col">Bids</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -38,6 +40,7 @@
                             <td>{{$load->delivery}}</td>
                             <td>{{number_format($load->budget)}}</td>
                             <td>{{$load->truck_type}}</td>
+                            <td>{{$load->bids}}</td>
                         </tr>
                         @endforeach
                     </tbody>

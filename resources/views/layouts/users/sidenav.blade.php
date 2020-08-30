@@ -14,4 +14,4 @@
     <div class="sidenav-menu mb-5 {{ setActive(['users/payment-history']) }}">
         <a href="/users/payment-history"><i class="fas fa-money-check mr-2"></i> Payment History</a>
     </div>
-</div>
+</div> 

@@ -1,7 +1,6 @@
 @extends('layouts.users.app')
 @section('title', 'Dashboard')
 @section('content')
-@inject('user', 'App\Http\Controllers\LoadsController')
     
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="mt-5 p-2"></div>

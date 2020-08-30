@@ -9,6 +9,8 @@ use App\Models\Bids;
 use AfricasTalking\SDK\AfricasTalking;
 use Illuminate\Support\Facades\DB;
 use App\Models\Journey;
+use Illuminate\Database\Eloquent\Collection;
+
 class LoadsController extends Controller
 {
     /**
@@ -37,18 +39,30 @@ class LoadsController extends Controller
     {
         $id = auth()->user()->id;
         $user = User::findOrFail($id);
-        $loads = $user->loads->where("status", "open");
+        $open = $user->loads->where("status", "open");
+        $loads = new Collection();
+        foreach($open as $load):
+            $bids = $this->bids->where('load', $load->id)->count();
+            $loads->push((object)[
+                "id" => $load->id,
+                "created_at" => $load->created_at,
+                "reference" => $load->reference,
+                "pickup" => $load->pickup,
+                "delivery" => $load->delivery,
+                "budget" => $load->budget,
+                "truck_type" => $load->truck_type,
+                "bids" => $bids
+        ]);
+        endforeach;
+        $loads = (object) $loads;
         return view("users.loads")->with("loads", $loads);
     }
 
     public function activeLoads()
     {
         $id = auth()->user()->id;
-        $loads = DB::table('loads')
-                    ->where('user', $id)
-                    ->where('status', 'active')
-                    ->orWhere('status', 'in-progress')
-                    ->get();
+        $user = User::findOrFail($id);
+        $loads = $user->loads()->where("status", "active")->orWhere('status', 'in-progress')->where("user", $id)->get();
         return view("users.active-loads")->with("loads",$loads);
     }
     /**
@@ -70,7 +84,7 @@ class LoadsController extends Controller
     public function store(Request $request)
     {
         $username = 'sandbox';
-        $apiKey = 'bbd90ac6a2625d7c7cff8ef9cd4c4078d1d49791900f94663445e7dc0902eaa5';
+        $apiKey = 'secret_key';
         $AT = new AfricasTalking($username, $apiKey);
         $drivers = $this->drivers->whereNotNull('phone')->pluck('phone');
         $id = auth()->user()->id;
@@ -121,12 +135,19 @@ class LoadsController extends Controller
         $load = Loads::find($id);
         if($request->is('users/load/*')):
             return view("users.load")->with("load", $load)->with('bids', $bids);
+        elseif($request->is('admin/load/*')):
+            $drivers = $this->drivers->whereNotNull('isVerified')->get();
+            return view("admin.load")->with(["load" => $load, 'bids' => $bids, 'drivers' => $drivers]);
+        elseif($request->is('agents/load/*')):
+            $agent = auth()->user()->name;
+            $drivers = $this->drivers->where('createdBy', $agent)->get();
+            return view("agents.load")->with(["load" => $load, 'bids' => $bids, 'drivers' => $drivers]);
         elseif($request->is('drivers/load/*')):
             return view("drivers.load")->with("load", $load);
         endif;
     }
 
-    public function search(Request $request)
+    public function search(Request $request) 
     {
         $ref = $request->load;
         $load = $this->loads->where('reference', $ref)->first();
@@ -142,6 +163,9 @@ class LoadsController extends Controller
             else:
                 return view("users.active-load")->with("load", $load)->with('bids', $bids);
             endif;
+        elseif($request->is('admin/*')):
+            $drivers = $this->drivers->whereNotNull('isVerified')->get();
+            return view("admin.load")->with(["load" => $load, 'bids' => $bids, 'drivers' => $drivers]);
         elseif($request->is('drivers/*')):
             return view("drivers.load")->with("load", $load);
         endif;
@@ -155,9 +179,16 @@ class LoadsController extends Controller
                     ->join('bids', 'loads.id', 'bids.load')
                     ->where('loads.id', $id)
                     ->where('bids.status', 'accepted')
-                    ->select('loads.*', 'drivers.*', 'bids.created_at as bid_at', 'bids.updated_at as accepted_at')
+                    ->select('loads.*', 'loads.id as load_id', 'drivers.*', 'drivers.id as driver_id', 'bids.created_at as bid_at', 'bids.updated_at as accepted_at')
                     ->first();
-        return view("users.active-load")->with(["load" => $load, "journeys" => $journey]);
+        if($request->is('users/*')):
+            $view = "users.active-load";
+        elseif($request->is('admin/*')):
+            $view = "admin.active-load";
+        elseif($request->is('agents/*')):
+            $view = "agents.active-load";
+        endif;
+        return view($view)->with(["load" => $load, "journeys" => $journey]);
     }
     /**
      * Show the form for editing the specified resource.

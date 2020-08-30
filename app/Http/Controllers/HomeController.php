@@ -37,4 +37,10 @@ class HomeController extends Controller
         $this->middleware('auth:truck_drivers');
         return view('drivers.home');
     }
+
+    public function agentsHome()
+    {
+        $this->middleware('auth');
+        return view('agents.home');
+    }
 }

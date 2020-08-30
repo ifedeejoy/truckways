@@ -12,7 +12,7 @@ class Bids extends Model
 
     public function loads()
     {
-        return $this->belongsTo(Loads::class, 'id');
+        return $this->belongsTo(Loads::class, 'load');
     }
 
     public function driver()
@@ -23,5 +23,10 @@ class Bids extends Model
     public function trucks()
     {
         return $this->belongsTo(Trucks::class);
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admins::class);
     }
 }

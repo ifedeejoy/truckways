@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                @endif
+            @endif
         </main>
         
         @include('layouts.drivers.footer')

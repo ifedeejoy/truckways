@@ -6,7 +6,7 @@
     <div class="login-left mt-2">
         <h4 class="welcome-text login-welcome-text reg-text">Pick up loads and get more loads on
             <br> your return trips now!</h4>
-        <img src="/images/illus.png" class="login-banner-img" alt="Delivery Van Being Loaded">
+        <img src="https://res.cloudinary.com/ifedeejoy/image/upload/v1593688512/illus_upwhlp.png" class="login-banner-img" alt="Delivery Van Being Loaded">
     </div>
     <div class="login-right mt-0">
         <div class="login-form bg-white">
@@ -29,10 +29,21 @@
                         {{ __('login') }}
                     </button>
                 </div>
-                @if(session('error'))
-                    <div class="alert alert-warning">
-                        {{ session('error') }}
-                    </div> 
+                
+                @if(is_string($errors))
+                    <div class="alert alert-danger">
+                        <ul>
+                            <li>{{ $errors }}</li>
+                        </ul>
+                    </div>
+                @elseif ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
                 <div class="login-liner mt-2"></div>
                 <div class="text-center mb-4 mt-4">

@@ -116,18 +116,29 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
-        $id = auth()->user()->id;
+        if($request->is('admin/*')):
+            $id = $request->id;
+            $type = 'admin.user';
+        elseif($request->is('agents/*')):
+            $id = $request->id;
+            $type = 'agents.user';
+        else:
+            $id = auth()->user()->id;
+            $type = 'users.profile';
+        endif;
+        
         $user = $this->user->find($id);
         $loads = $user->loads()->count();
         $active = $user->loads()->where('status', 'active')->count();
         $open = $user->loads()->where('status', 'open')->count();
         $closed = $user->loads()->where('status', 'closed')->count();
-        return view('users.profile')->with(['user' => $user, 'loads' => $loads, 'open' => $open, 'active' => $active, 'closed' => $closed]);
+        $requests = $user->loads()->get();
+        return view("$type")->with(['user' => $user, 'loads' => $loads, 'open' => $open, 'active' => $active, 'closed' => $closed, 'requests' => $requests]);
     }
 
     /**
@@ -136,12 +147,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showDriver($id)
+    public function showDriver($id, Request $request)
     {
         $driver = $this->drivers->find($id);
         $trucks = $driver->trucks()->get();
         $bids = $driver->bids()->where('status', 'accepted')->count();
-        return view('users.driver')->with('driver', $driver)->with('trucks', $trucks)->with('bids', $bids);
+        return view('users.driver')->with(['driver' => $driver, 'trucks' => $trucks, 'bids' => $bids]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -174,6 +185,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = $this->user->find($id);
+        $user->delete();
+        return redirect('admin/users')->with('success', 'User profile deleted');
     }
 }

@@ -57,7 +57,7 @@ class LoginController extends Controller
         if (Auth::guard('truck_drivers')->attempt(['email' => $request->email, 'password' => $request->password])):
             return redirect()->intended('drivers/home');
         endif;
-        return back()->with("errors", "Fucking Hell");
+        return back()->with(["errors" => "Incorrect email or password"]);
     }
 
     public function login(Request $request)
@@ -69,25 +69,25 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
    
-        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
-        {
-            if (auth()->user()->isAdmin == 1) {
+        if(Auth::attempt(array('email' => $input['email'], 'password' => $input['password']))):
+            if (Auth::user()->isAdmin == 1):
                 return redirect()->route('admin.home');
-            }else{
+            elseif(Auth::user()->isAdmin == 2):
+                return redirect()->route('agents.home');
+            else:
                 return redirect()->route('users.home');
-            }
-        }else{
-            return redirect()->route('login')
-                ->with('error','Email-Address Or Password Are Wrong.');
-        }
+            endif;
+        else:
+            return redirect()->route('login')->with(['errors' => 'Incorrect email or password']);
+        endif;
     }
 
     public function logout(\Illuminate\Http\Request $request)
     {
-        if(auth()->guard('truck_drivers')->check()):
-            auth()->guard('truck_drivers')->logout();
+        if(Auth::guard('truck_drivers')->check()):
+            Auth::guard('truck_drivers')->logout();
         else:
-            auth()->logout();
+            Auth::logout();
         endif;
         return redirect('/');
     }

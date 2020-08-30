@@ -1,7 +1,6 @@
 @extends('layouts.drivers.app')
 @section('title', 'Dashboard')
 @section('content')
-@inject('user', 'App\Http\Controllers\LoadsController')
     
     <div class="col-sm-12 p-3 pr-5 pl-5">
         <div class="custom-card">
@@ -19,13 +18,13 @@
                     <img src="/images/load-status.png" alt="">
                     <h6>My Bids</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="/drivers/active-journeys">
+                <div class="card-box clickable-row" data-href="/drivers/journey-history">
                     <img src="/images/view-records.png" alt="">
-                    <h6>Active Journeys</h6>
+                    <h6>Journey History</h6>
                 </div>
-                <div class="card-box clickable-row" data-href="/drivers/destinations">
+                <div class="card-box clickable-row" data-href="/drivers/earnings">
                     <img src="/images/bids.png" alt="">
-                    <h6>Preferred Destinations</h6>
+                    <h6>Earnings</h6>
                 </div>
                 <div class="card-box clickable-row" data-href="/drivers/trucks">
                     <img src="/images/explore-trucks.svg" alt="">

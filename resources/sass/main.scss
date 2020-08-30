@@ -375,6 +375,109 @@ footer {
     }
 }
 
+// Admin
+.stat-card {
+    flex: 1 0 25%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 17px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.5rem;
+    padding: 1rem;
+    .img-container {
+        img {
+            width: 30px;
+            height: 30px;
+        }
+        box-shadow: 0px 3px 6px #00000029;
+        padding: .5rem;
+        border-radius: 50%;
+        padding: 1rem;
+    }
+    .stat-text {
+        justify-content: center !important;
+        align-self: center;
+        text-align: center;
+    }
+    .stat-notes {
+        align-self: self-end;
+        margin-top: 2rem;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+    }
+}
+
+.orange-stat {
+    box-shadow: 0px 3px 10px #FF901129;
+    .img-container {
+        background: #FF9011 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+    }
+}
+
+.dark-stat {
+    box-shadow: 0px 3px 10px #1B202E24;
+    .img-container {
+        background: #1B202E 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+    }
+}
+
+.green-stat {
+    box-shadow: 0px 3px 10px #00742324;
+    .img-container {
+        background: #007423 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+    }
+}
+
+.red-stat {
+    box-shadow: 0px 3px 10px #D9000029;
+    .img-container {
+        background: #D90000 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+    }
+}
+
+.driver-prof {
+    height: 100px;
+}
+
+.tab {
+    .active {
+        border-bottom: 2px solid $primary-color;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: .65rem;
+    }
+}
+
+.users-tab {
+    border: none;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: $primary-color !important;
+}
+
+.dropdown-toggle {
+    width: 100% !important;
+    justify-self: center !important;
+}
+
+.btn-light.dropdown-toggle {
+    background-color: transparent !important;
+    border: 1px $primary-color solid!important;
+}
+
+.show>.btn-light.dropdown-toggle {
+    background-color: transparent !important;
+    border: 1px $primary-color solid !important;
+}
+
 @media only screen and (max-width: 768px) {
     .navbar-light {
         background: #C5CDD7 0% 0% no-repeat padding-box !important;

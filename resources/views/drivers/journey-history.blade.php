@@ -1,10 +1,9 @@
-@extends('layouts.users.app')
-@section('title', 'Dashboard')
+@extends('layouts.drivers.app')
+@section('title', 'Journey History')
 @section('content')
-@inject('user', 'App\Http\Controllers\LoadsController')
     
     <div class="col-sm-12 p-3 pr-5 pl-5">
-        <div class="mt-5 p-2"></div>
+        <div class="p-2"></div>
         @foreach ($loads as $load)
         <div class="payment-card col-sm-9 mx-auto mt-5">
             <div class="d-flex justify-content-between">
