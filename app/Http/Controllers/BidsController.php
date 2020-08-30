@@ -7,6 +7,8 @@ use App\Models\Bids;
 use Illuminate\Support\Facades\DB;
 use App\Models\Drivers;
 use AfricasTalking\SDK\AfricasTalking;
+use Yabacon\Paystack;
+use Illuminate\Support\Facades\Auth;
 
 class BidsController extends Controller
 {
@@ -27,7 +29,7 @@ class BidsController extends Controller
 
     public function index()
     {
-        $driver = auth()->guard('truck_drivers')->user()->id;
+        $driver = Auth::guard('truck_drivers')->user()->id;
         $bids = $this->bids->where('driver', $driver)->get();
         $loads = $bids->loads()->get();
         return view('driver.my-bids')->with($loads);
@@ -52,7 +54,7 @@ class BidsController extends Controller
     public function store(Request $request, $id)
     {
         if($request->is('drivers/send-bid/*')):
-            $driver = auth()->guard('truck_drivers')->user()->id;
+            $driver = Auth::guard('truck_drivers')->user()->id;
         elseif($request->is('admin/send-bid/*')):
             $driver = $request->driver;
         endif;
@@ -78,7 +80,7 @@ class BidsController extends Controller
 
     public function driverBids()
     {
-        $driver = auth()->guard('truck_drivers')->user()->id;
+        $driver = Auth::guard('truck_drivers')->user()->id;
         $bids = DB::table('bids')
                     ->join('loads', 'bids.load', 'loads.id')
                     ->where('bids.driver', $driver)
@@ -111,6 +113,28 @@ class BidsController extends Controller
         $load = $this->loads->find($bid->load);
         $driver = $this->drivers->find($bid->driver);
 
+        if($load->load_type > 0):
+            $paystack = new Paystack("secret_key");
+            try {
+                $tranx = $paystack->transaction->initialize([
+                    'amount'=> $bid->amount * 100,       // in kobo
+                    'email'=> Auth::user()->email,         // unique to customers
+                    'reference'=>mt_rand(), // unique to transactions
+                  ]);
+            } catch (\Yabacon\Paystack\Exception\ApiException $e) {
+                dd($e->getResponseObject());
+                dd($e->getMessage());
+            }
+            $route = $tranx->data->authorization_url;
+        else:
+            if($request->is('agents/*')):
+                $bid->updatedBy = $request->updatedBy;
+                $route = 'agents/active-loads';
+            else:
+                $route = 'users/active-loads';
+            endif;
+        endif;
+
         $bid->status = 'accepted';
         $updateBids = $this->bids->where('id', '<>', $bid->id)->where('load', $bid->load)->update(['status' => 'declined']);
 
@@ -119,15 +143,12 @@ class BidsController extends Controller
 
         if($request->is('agents/*')):
             $bid->updatedBy = $request->updatedBy;
-            $route = 'users/active-load/';
-        else:
-            $route = 'agents/active/';
         endif;
 
         $amount = number_format($bid->amount);
         $phone = formatPhone($driver->phone);
         $username = 'sandbox';
-        $apiKey = 'bbd90ac6a2625d7c7cff8ef9cd4c4078d1d49791900f94663445e7dc0902eaa5';
+        $apiKey = 'secret_key';
         $AT = new AfricasTalking($username, $apiKey);
         $sms = $AT->sms();
         $sendsms = $sms->send([
@@ -141,7 +162,7 @@ class BidsController extends Controller
         endif;
         $bid->save();
         $load->save();
-        return redirect($route.$load->id)
+        return redirect($route)
                 ->with('success', 'Bid accepted')
                 ->with('load', $load)
                 ->with('driver',$driver);

@@ -9,6 +9,8 @@ use App\Models\Bids;
 use AfricasTalking\SDK\AfricasTalking;
 use Illuminate\Support\Facades\DB;
 use App\Models\Journey;
+use Illuminate\Database\Eloquent\Collection;
+
 class LoadsController extends Controller
 {
     /**
@@ -37,18 +39,30 @@ class LoadsController extends Controller
     {
         $id = auth()->user()->id;
         $user = User::findOrFail($id);
-        $loads = $user->loads->where("status", "open");
+        $open = $user->loads->where("status", "open");
+        $loads = new Collection();
+        foreach($open as $load):
+            $bids = $this->bids->where('load', $load->id)->count();
+            $loads->push((object)[
+                "id" => $load->id,
+                "created_at" => $load->created_at,
+                "reference" => $load->reference,
+                "pickup" => $load->pickup,
+                "delivery" => $load->delivery,
+                "budget" => $load->budget,
+                "truck_type" => $load->truck_type,
+                "bids" => $bids
+        ]);
+        endforeach;
+        $loads = (object) $loads;
         return view("users.loads")->with("loads", $loads);
     }
 
     public function activeLoads()
     {
         $id = auth()->user()->id;
-        $loads = DB::table('loads')
-                    ->where('user', $id)
-                    ->where('status', 'active')
-                    ->orWhere('status', 'in-progress')
-                    ->get();
+        $user = User::findOrFail($id);
+        $loads = $user->loads()->where("status", "active")->orWhere('status', 'in-progress')->where("user", $id)->get();
         return view("users.active-loads")->with("loads",$loads);
     }
     /**
@@ -70,7 +84,7 @@ class LoadsController extends Controller
     public function store(Request $request)
     {
         $username = 'sandbox';
-        $apiKey = 'bbd90ac6a2625d7c7cff8ef9cd4c4078d1d49791900f94663445e7dc0902eaa5';
+        $apiKey = 'secret_key';
         $AT = new AfricasTalking($username, $apiKey);
         $drivers = $this->drivers->whereNotNull('phone')->pluck('phone');
         $id = auth()->user()->id;

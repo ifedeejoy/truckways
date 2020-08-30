@@ -67,7 +67,7 @@ Route::post('drivers/edit-truck/{id}', 'TrucksController@update')->name('edit-tr
 Route::post('drivers/edit-profile/{id}', 'DriversController@update')->name('driver-edit')->middleware('auth:truck_drivers');
 Route::post('drivers/edit-profile/{id}', 'DriversController@update')->name('driver-edit')->middleware('auth:truck_drivers');
 Route::post('drivers/request-verification/{id}', 'DriversController@requestVerification')->name('driver-verification')->middleware('auth:truck_drivers');
-Route::post('drivers/update-journey', 'JourneyController@store')->name('update-journey')->middleware('auth:truck_drivers');
+Route::post('drivers/update-journey/{id}', 'JourneyController@store')->name('driver-journey')->middleware('auth:truck_drivers');
 
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('isAdmin');
 Route::get('admin/analytics', 'AdminController@index')->middleware('isAdmin');
@@ -108,6 +108,8 @@ Route::post('agent-register', '\App\Http\Controllers\Auth\RegisterController@age
 Route::post('agents/create-user', 'AgentController@createUsers')->name('create-user')->middleware('isAgent');
 Route::post('agents/create-driver', 'AgentController@createDrivers')->name('create-driver')->middleware('isAgent');
 Route::post('agents/send-bid/{id}', 'AgentController@sendBid')->name('agent-bid')->middleware('isAgent');
+
+Route::get('/pay/call-back', 'PaymentController@verifyTransaction')->name('payment-callback');
 
 Route::get('/command',function(){
     Artisan::call('storage:link');

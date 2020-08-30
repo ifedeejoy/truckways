@@ -80,7 +80,7 @@
                                     <h5 class="load-title bold mt-2">{{number_format($bid->budget)}}</h5>
                                     <p>{{Str::limit($bid->description,100)}}</p>
                                     @if ($bid->load_type > 0 && $bid->status == 'active')
-                                    <form action="{{route('update-journey')}}" method="post">
+                                    <form action="{{route('driver-journey', $bid->id)}}" method="post">
                                         @csrf
                                         <input type="hidden" name="load" value="{{$bid->load}}">
                                         <input type="hidden" name="event" value="heading to pickup">
@@ -89,7 +89,7 @@
                                         <button class="btn btn-sm btn-primary" type="submit">Start Journey</button>
                                     </form>
                                     @elseif($bid->load_type > 0 && $bid->status == 'started-journey')
-                                    <form action="{{route('update-journey')}}" method="post">
+                                    <form action="{{route('driver-journey', $bid->id)}}" method="post">
                                         @csrf
                                         <input type="hidden" name="load" value="{{$bid->load}}">
                                         <input type="hidden" name="event" value="items picked up">
@@ -98,7 +98,7 @@
                                         <button class="btn btn-sm btn-primary" type="submit">Pick Up Items</button>
                                     </form>
                                     @elseif($bid->load_type > 0 && ($bid->status == 'picked up' || $bid->status == 'in-progress'))
-                                    <form action="{{route('update-journey')}}" method="post" id="update-location">
+                                    <form action="{{route('driver-journey', $bid->id)}}" method="post" id="update-location">
                                         @csrf
                                         <input type="hidden" name="load" value="{{$bid->load}}">
                                         <input type="hidden" name="event" value="updated location">
@@ -106,7 +106,7 @@
                                         <input type="text" class="form-control" name="location" placeholder="Your current location">
                                         <button class="btn btn-sm btn-primary" form="update-location" type="submit">Update Location</button>
                                     </form>
-                                    <form action="{{route('update-journey')}}" method="POST" id="close-trip">
+                                    <form action="{{route('driver-journey', $bid->id)}}" method="POST" id="close-trip">
                                         @csrf
                                         <input type="hidden" name="load" value="{{$bid->load}}">
                                         <input type="hidden" name="event" value="completed">
