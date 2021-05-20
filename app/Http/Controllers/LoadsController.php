@@ -93,11 +93,12 @@ class LoadsController extends Controller
         $this->loads->reference = $ref;
         $this->loads->title = $request->title;
         $this->loads->description = $request->description;
+        $this->loads->value = str_replace(",", "", $request->value);
         $this->loads->pickup = $request->pickup;
         $this->loads->delivery = $request->delivery;
         $this->loads->truck_type = $request->truck_type;
         $this->loads->load_type = $request->load_type;
-        $this->loads->budget = $request->budget;
+        $this->loads->budget = str_replace(",", "", $request->budget);
         if($request->hasFile('loadImages')):
             foreach($request->file('loadImages') as $image):
                 $path = $image->store('loads');
@@ -111,6 +112,7 @@ class LoadsController extends Controller
         $phones = formatPhone((array)$drivers);
         $sms = $AT->sms();
         $sendsms = $sms->send([
+            'from' => "Truckways",
             'to' => $phones,
             'message' => "A new load request has been made to move items from $request->pickup to $request->delivery using a $request->truck_type, visit this link https://truckwaysng.com/drivers/load/$ref or call 08138815183, 09012881281",
         ]);

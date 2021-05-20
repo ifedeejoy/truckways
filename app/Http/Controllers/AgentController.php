@@ -208,11 +208,13 @@ class AgentController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $id = auth()->user()->id;
+        $agent = $this->users->find($id);
+        return view('agents.edit-profile')->with('agent', $agent);
     }
 
     /**
@@ -224,7 +226,19 @@ class AgentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $agent = $this->users->find($id);
+        if(!empty($request->account_number)):
+            $agent->account_number = $request->account_number;
+        endif;
+        if(!empty($request->bank)):
+            $agent->bank = $request->bank;
+        endif;
+        if($request->hasFile('profilePicture')): 
+            $profilePath = $request->file('profilePicture')->store('agents');
+            $agent->image = $profilePath;
+        endif;
+        $agent->save();
+        return redirect("agents/profile")->with('success', 'Profile Updated Successfully');
     }
 
     /**

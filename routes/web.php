@@ -1,8 +1,11 @@
 <?php
 
+use App\Mail\DriverWelcome;
+use App\Mail\WelcomeDriver;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +20,8 @@ Route::view('/', 'welcome');
 Route::view('find-truck', 'find-truck');
 Route::view('market-place', 'market-place');
 Route::view('contact-us', 'contact');
+Route::view('welcome-driver', 'emails.drivers.welcome');
+Route::view('bids', 'emails.notifications.bids');
 
 Route::get('continue-registration', 'UserController@showReg')->name('continue-reg');
 
@@ -65,7 +70,6 @@ Route::post('drivers/add-vehicle', 'TrucksController@store')->name('adds-vehicle
 Route::post('drivers/delete-truck/{id}', 'TrucksController@destroy')->name('delete-truck')->middleware('auth:truck_drivers');
 Route::post('drivers/edit-truck/{id}', 'TrucksController@update')->name('edit-truck')->middleware('auth:truck_drivers');
 Route::post('drivers/edit-profile/{id}', 'DriversController@update')->name('driver-edit')->middleware('auth:truck_drivers');
-Route::post('drivers/edit-profile/{id}', 'DriversController@update')->name('driver-edit')->middleware('auth:truck_drivers');
 Route::post('drivers/request-verification/{id}', 'DriversController@requestVerification')->name('driver-verification')->middleware('auth:truck_drivers');
 Route::post('drivers/update-journey/{id}', 'JourneyController@store')->name('driver-journey')->middleware('auth:truck_drivers');
 
@@ -73,6 +77,7 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 Route::get('admin/analytics', 'AdminController@index')->middleware('isAdmin');
 Route::get('admin/applications', 'AdminController@driverApplications')->middleware('isAdmin');
 Route::get('admin/driver/{id}', 'AdminController@showDriver')->middleware('isAdmin');
+Route::get('admin/agent/{id}', 'AdminController@showAgent')->middleware('isAdmin');
 Route::get('admin/admins', 'AdminController@showAdmins')->middleware('isAdmin');
 Route::get('admin/users', 'AdminController@showUsers')->middleware('isAdmin');
 Route::get('admin/user/{id}', 'UserController@show')->middleware('isAdmin');
@@ -101,6 +106,7 @@ Route::get('agents/load/{id}', 'LoadsController@show')->middleware('isAgent');
 Route::get('agents/active/{id}', 'LoadsController@showActive')->middleware('isAgent');
 Route::get('agents/driver/{id}', 'AgentController@showDriver')->middleware('isAgent');
 Route::get('agents/profile', 'AgentController@show')->middleware('auth');
+Route::get('agents/edit-profile', 'AgentController@edit')->middleware('isAgent');
 
 Route::view('agents/loads', 'agents.loads')->middleware('isAgent');
 
@@ -108,6 +114,7 @@ Route::post('agent-register', '\App\Http\Controllers\Auth\RegisterController@age
 Route::post('agents/create-user', 'AgentController@createUsers')->name('create-user')->middleware('isAgent');
 Route::post('agents/create-driver', 'AgentController@createDrivers')->name('create-driver')->middleware('isAgent');
 Route::post('agents/send-bid/{id}', 'AgentController@sendBid')->name('agent-bid')->middleware('isAgent');
+Route::post('agents/edit-profile/{id}', 'AgentController@update')->name('agent-edit')->middleware('isAgent');
 
 Route::get('/pay/call-back', 'PaymentController@verifyTransaction')->name('payment-callback');
 

@@ -24,6 +24,10 @@
                                 <label for="description">Load description</label>
                                 <input type="text" name="description" class="form-control">
                             </div>
+                            <div class="col mb-4">
+                                <label for="title">Estimated value of goods</label>
+                                <input type="number" name="value" class="form-control">
+                            </div>
                             <div class="banner-upload text-center mb-3">
                                 <h6 class="dark-bold mb-3">Upload images of goods</h6>
                                 <div class="d-flex text-center align-self-center">

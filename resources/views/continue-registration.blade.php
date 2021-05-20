@@ -32,6 +32,10 @@
                                 <input type="text" name="description" class="form-control">
                             </div>
                             <div class="col mb-4">
+                                <label for="title">Estimated value of goods</label>
+                                <input type="number" name="value" class="form-control">
+                            </div>
+                            <div class="col mb-4">
                                 <select class="custom-select form-control" name="truck_type" id="truck-type" onchange="otherTrucks(this.value)">
                                     <option>Truck type</option>
                                     <option value="15 Tonnes Flatbeds">15 Tonnes Flatbeds</option>

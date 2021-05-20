@@ -14,8 +14,8 @@
             <form action="{{ route('login-driver') }}" method="POST" class="mt-5">
                 @csrf
                 <div class="col mb-3">
-                    <label for="email">E-Mail Address</label>
-                    <input type="email" class="form-control primary-text " name="email" id="email" value="{{ old('email') }}" required autocomplete="off" autofocus>
+                    <label for="phone">Phone</label>
+                    <input type="number" inputmode="numeric" class="form-control primary-text " name="phone" id="phone" value="{{ old('phone') }}" required autocomplete="off" autofocus>
                     
                 </div>
                 <div class="col mb-3">

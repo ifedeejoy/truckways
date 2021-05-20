@@ -8,6 +8,9 @@
                     <li class="tab active p-2 pt-0">
                         <a class="bold small-text black-text" data-toggle="tab" href="#users">Users</a>
                     </li>
+                    <li class="tab active p-2 pt-0">
+                        <a class="bold small-text black-text" data-toggle="tab" href="#agents">Agents</a>
+                    </li>
                     <li class="tab p-2 pt-0">
                         <a class="bold small-text black-text" data-toggle="tab" href="#drivers">Drivers</a>
                     </li>
@@ -43,6 +46,41 @@
                                     <td>{{$user->phone}}</td>
                                     <td>{{$user->created_at}}</td>
                                     <td><a href="/admin/user/{{$user->id}}" class="btn btn-sm btn-primary btn-rounded">View Profile</a></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="agents" class="tab-pane fade">
+                    <div class="table-responsive pl-4">
+                        <table class="table table-striped bg-white black-text table-border text-center" id="all-agents" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Profile Created</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Profile Created</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                @foreach ($agents as $agent)
+                                <tr>
+                                    <td>{{$agent->name}}</td>
+                                    <td>{{$agent->email}}</td>
+                                    <td>{{$agent->phone}}</td>
+                                    <td>{{$agent->created_at}}</td>
+                                    <td><a href="/admin/agent/{{$agent->id}}" class="btn btn-sm btn-primary btn-rounded">View Profile</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -97,6 +135,7 @@
 		$(document).ready(function () {
             $('#all-users').DataTable();
             $('#all-drivers').DataTable();
+            $('#all-agents').DataTable();
 		});
 	</script>
 	

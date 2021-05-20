@@ -302,6 +302,11 @@ header,
     font-size: 2.5rem;
 }
 
+.logo-img {
+    width: 15rem;
+    height: 2rem;
+}
+
 .banner-cta {
     color: $black !important;
     font-weight: 700 !important;
@@ -354,12 +359,16 @@ header,
 }
 
 .preview-card {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px $shadow-color;
     border: 1px solid #7070704F;
-    margin-right: 1rem;
+    margin: .25rem;
+}
+
+#previewUploads {
+    margin-top: 1rem;
 }
 
 // Intro Section
@@ -467,6 +476,15 @@ header,
     td {
         border-bottom: 1px solid $primary-color !important;
     }
+}
+
+.animated-rows {
+    animation-duration: 15s;
+    animation-delay: 15s;
+    animation-iteration-count: infinite;
+    -webkit-animation-duration: 15s;
+    -webkit-animation-delay: 15s;
+    -webkit-animation-iteration-count: infinite;
 }
 
 // Vehicle Range
@@ -954,6 +972,10 @@ header,
     }
     .navbar {
         background-color: $dark-bg !important;
+    }
+    .logo-img {
+        height: 10rem;
+        height: 2.5rem;
     }
     .wwd-container {
         flex-direction: column;

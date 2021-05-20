@@ -90,11 +90,12 @@ class UserController extends Controller
         $this->loads->reference = $ref;
         $this->loads->title = $request->title;
         $this->loads->description = $request->description;
+        $this->loads->value = str_replace(",", "", $request->value);
         $this->loads->pickup = $request->session()->get('user-pickup');
         $this->loads->delivery = $request->session()->get('user-destination');
         $this->loads->truck_type = $request->truck_type;
         $this->loads->load_type = $request->load_type;
-        $this->loads->budget = $request->budget;
+        $this->loads->budget = str_replace(",", "", $request->budget);
         $this->loads->images = $request->session()->get('user-images');
         $this->loads->save();
         session()->flush();

@@ -51,13 +51,13 @@ class LoginController extends Controller
     public function driverlogin(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email',
+            'phone' => 'required',
             'password' => 'required|min:8'
         ]);
-        if (Auth::guard('truck_drivers')->attempt(['email' => $request->email, 'password' => $request->password])):
+        if (Auth::guard('truck_drivers')->attempt(['phone' => $request->phone, 'password' => $request->password])):
             return redirect()->intended('drivers/home');
         endif;
-        return back()->with(["errors" => "Incorrect email or password"]);
+        return back()->with(["errors" => "Incorrect phone number or password"]);
     }
 
     public function login(Request $request)
