@@ -73,6 +73,14 @@
                                     <h6 class="black-text small-text bold">Registered Trucks</h6>
                                     <h6 class="gray-text">{{$load->trucks}}</h6>
                                 </div>
+                                <div class="d-flex flex-row w-100 mb-2 justify-content-between">
+                                    <h6 class="black-text small-text bold">Bank</h6>
+                                    <h6 class="gray-text">{{$load->bank}}</h6>
+                                </div>
+                                <div class="d-flex flex-row w-100 mb-2 justify-content-between">
+                                    <h6 class="black-text small-text bold">Account Number</h6>
+                                    <h6 class="gray-text">{{$load->account_number}}</h6>
+                                </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="text-center">

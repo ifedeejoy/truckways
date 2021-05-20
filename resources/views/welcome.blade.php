@@ -45,7 +45,7 @@
 				<tbody>
                     @foreach ($loads as $load)
                     @if ($loop->iteration <= 10 && $load->load_type == 0)
-                    <tr>
+                    <tr class="animated flash animated-rows">
                         <td>{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($load->created_at))) !!}</td>
                         <td>{{$load->title}}</td>
                         <td>{{$load->pickup}}</td>
@@ -167,16 +167,16 @@
 								<div class="test-header">
 									<div class="row">
 										<div class="col-sm-4">
-											<img src="/images/t1.jpg" class="img-fluid z-depth-1 rounded-circle" alt="Customer image">
+											<img src="https://res.cloudinary.com/ifedeejoy/image/upload/v1599985066/unnamed_wiwlpo.jpg" class="img-fluid z-depth-1 rounded-circle" alt="Customer image">
 										</div>
 										<div class="col-sm">
-											<h5 class="mt-2">Emmanuel Doe</h5>
-											<p>Janitor</p>
+											<h5 class="mt-2">Rasheed Hammed</h5>
+											<p>Driver</p>
 										</div>
 									</div>
 								</div>
 								<div class="test-message mt-4 p-2">
-									<p>Ever since i joined truckways, no more endless soliciting for jobs for me.</p>
+									<p>Ever since I joined Truckways, no more endless soliciting for loads</p>
 								</div>
 							</div>
 						</div>
@@ -187,16 +187,16 @@
 								<div class="test-header">
 									<div class="row">
 										<div class="col-sm-4">
-											<img src="/images/t1.jpg" class="img-fluid z-depth-1 rounded-circle" alt="Customer image">
+											<img src="https://res.cloudinary.com/ifedeejoy/image/upload/v1599985213/20190215114938-Funding-African-american-business-woman_mw0has.jpg" class="img-fluid z-depth-1 rounded-circle" alt="Customer image">
 										</div>
 										<div class="col-sm">
-											<h5 class="mt-2">Jane Doe</h5>
-											<p>Janitor</p>
+											<h5 class="mt-2">Nneka Raymond</h5>
+											<p>Shipper</p>
 										</div>
 									</div>
 								</div>
 								<div class="test-message mt-4 p-2">
-									<p>Ever since i joined truckways, no more endless soliciting for jobs for me.</p>
+									<p>My goods get delivered promptly, no hassles, business has never been better!</p>
 								</div>
 							</div>
 						</div>
@@ -207,16 +207,16 @@
 								<div class="test-header">
 									<div class="row">
 										<div class="col-sm-4">
-											<img src="/images/t1.jpg" class="img-fluid z-depth-1 rounded-circle" alt="Customer image">
+											<img src="https://res.cloudinary.com/ifedeejoy/image/upload/v1599985243/re-max-llc-real-estate-estate-agent-business-sales-png-favpng-qYEgPpzfZxcp7URDNLRpqW1g2_nklpdo.jpg" class="img-fluid z-depth-1 rounded-circle" alt="Customer image">
 										</div>
 										<div class="col-sm">
-											<h5 class="mt-2">Shanika James</h5>
-											<p>Janitor</p>
+											<h5 class="mt-2">Patrick Idowu</h5>
+											<p>Agent</p>
 										</div>
 									</div>
 								</div>
 								<div class="test-message mt-4 p-2">
-									<p>Ever since i joined truckways, no more endless soliciting for jobs for me.</p>
+									<p>Joining truckways was a great decision! I earn steadily as an agent part-time while working a full time job.</p>
 								</div>
 							</div>
 						</div>

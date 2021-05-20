@@ -42,6 +42,17 @@
                             <h6 class="smaller-text">{{$driver->idNumber}}</h6>
                         </div>
                         <div class="text-center">
+                            <h6 class="bold">Bank</h6>
+                            <h6 class="smaller-text">{{$driver->bank}}</h6>
+                        </div>
+                        <div class="text-center">
+                            <h6 class="bold">Account Number</h6>
+                            <h6 class="smaller-text">{{$driver->account_number}}</h6>
+                        </div>
+                    </div>
+                    <hr class="dark-hr">
+                    <div class="d-flex justify-content-between">
+                        <div class="text-center">
                             <h6 class="bold">Bids Won</h6>
                             <h6 class="smaller-text">{{$bidCount}}</h6>
                         </div>

@@ -7,24 +7,30 @@ use App\Models\Bids;
 use Illuminate\Support\Facades\DB;
 use App\Models\Drivers;
 use AfricasTalking\SDK\AfricasTalking;
+use App\Mail\BidNotification;
+use App\Models\User;
+use Illuminate\Database\QueryException;
 use Yabacon\Paystack;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class BidsController extends Controller
 {
     protected $loads;
     protected $bids;
     protected $drivers;
+    protected $users;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(Loads $loads, Bids $bids, Drivers $drivers)
+    public function __construct(Loads $loads, Bids $bids, Drivers $drivers, User $users)
     {
         $this->loads = $loads;
         $this->bids = $bids;
         $this->drivers = $drivers;
+        $this->users = $users;
     }
 
     public function index()
@@ -53,18 +59,29 @@ class BidsController extends Controller
      */
     public function store(Request $request, $id)
     {
-        if($request->is('drivers/send-bid/*')):
-            $driver = Auth::guard('truck_drivers')->user()->id;
-        elseif($request->is('admin/send-bid/*')):
-            $driver = $request->driver;
-        endif;
-        $getload = $this->loads->find($id);
-        $bid = new Bids([
-            "driver" => $driver,
-            "amount" => $request->amount,
-        ]);
-        $load = $getload->bids()->save($bid);
-        return back()->with('success', 'Bid sent successfully');
+        try{
+            $request->validate([
+                'amount' => 'required|integer'
+            ]);
+            if($request->is('drivers/send-bid/*')):
+                $driver = Auth::guard('truck_drivers')->user()->id;
+                $driverName = Auth::guard('truck_drivers')->user()->name;
+            elseif($request->is('admin/send-bid/*')):
+                $driver = $request->driver;
+            endif;
+            $getload = $this->loads->find($id);
+            $bid = new Bids([
+                "driver" => $driver,
+                "amount" => str_replace(",", "", $request->amount),
+            ]);
+            $load = $getload->bids()->save($bid);
+            $user = $this->users->find($getload->user);
+            Mail::to($user->email)->send(new BidNotification($user->name, number_format($bid->amount), $getload->title, $driverName));
+            return back()->with('success', 'Bid sent successfully');
+        }catch (QueryException $e){
+            return back()->withErrors([$e->errorInfo[2]]);
+        }
+        
     }
 
     /**
@@ -152,6 +169,7 @@ class BidsController extends Controller
         $AT = new AfricasTalking($username, $apiKey);
         $sms = $AT->sms();
         $sendsms = $sms->send([
+            'from' => "Truckways",
             'to' => $phone,
             'message' => "Your bid to move items from $bid->pickup to $bid->delivery for $amount has been accepted, visit this link https://truckwaysng.com/drivers/journey/$load->id or call 08138815183, 09012881281",
         ]);

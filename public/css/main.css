@@ -275,6 +275,11 @@ header,
   font-size: 2.5rem;
 }
 
+.logo-img {
+  width: 15rem;
+  height: 2rem;
+}
+
 .banner-cta {
   color: #000000 !important;
   font-weight: 700 !important;
@@ -298,11 +303,6 @@ header,
   border: 1px solid #1B202E70 !important;
   border-left: none !important;
   background-color: transparent !important;
-}
-
-.banner-input::-webkit-input-placeholder {
-  color: white !important;
-  font-size: 0.75rem;
 }
 
 .banner-input::-moz-placeholder {
@@ -347,12 +347,16 @@ header,
 }
 
 .preview-card {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #7070704F;
-  margin-right: 1rem;
+  margin: 0.25rem;
+}
+
+#previewUploads {
+  margin-top: 1rem;
 }
 
 .intro-section {
@@ -461,6 +465,15 @@ header,
 .table th,
 .table td {
   border-bottom: 1px solid #FF9011 !important;
+}
+
+.animated-rows {
+  animation-duration: 15s;
+  animation-delay: 15s;
+  animation-iteration-count: infinite;
+  -webkit-animation-duration: 15s;
+  -webkit-animation-delay: 15s;
+  -webkit-animation-iteration-count: infinite;
 }
 
 .vehicle-range,
@@ -948,6 +961,11 @@ header,
     background-color: #1B202E !important;
   }
 
+  .logo-img {
+    height: 10rem;
+    height: 2.5rem;
+  }
+
   .wwd-container {
     flex-direction: column;
     padding: 2rem;
@@ -1219,6 +1237,11 @@ main {
 
 .title {
   color: #000000 !important;
+}
+
+.logo-img {
+  width: 20rem;
+  height: 5rem;
 }
 
 .sidenav {

@@ -2188,11 +2188,6 @@ pre code {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-.form-control::-webkit-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
 .form-control::-moz-placeholder {
   color: #6c757d;
   opacity: 1;
@@ -19895,11 +19890,6 @@ table.table a.btn.btn-black {
   color: #000;
 }
 
-.navbar.navbar-light form .md-form .form-control::-webkit-input-placeholder {
-  font-weight: 300;
-  color: #000;
-}
-
 .navbar.navbar-light form .md-form .form-control::-moz-placeholder {
   font-weight: 300;
   color: #000;
@@ -19967,11 +19957,6 @@ table.table a.btn.btn-black {
 }
 
 .navbar.navbar-dark form .md-form .form-control {
-  color: #fff;
-}
-
-.navbar.navbar-dark form .md-form .form-control::-webkit-input-placeholder {
-  font-weight: 300;
   color: #fff;
 }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agents;
 use App\Models\Bids;
 use Illuminate\Http\Request;
 use App\Models\Loads;
@@ -95,6 +96,13 @@ class AdminController extends Controller
         return view('admin.driver')->with(['driver' => $driver, 'trucks' => $trucks, 'bidCount' => $bidCount, 'bids' => $bids, 'verification' => $verification]);
     }
 
+    public function showAgent($id, Request $request){
+        $agent = $this->users->find($id);
+        $users = $this->users->where('createdBy', $agent->name)->count();
+        $drivers = $this->users->where('createdBy', $agent->name)->count();
+        return view('admin.agent')->with(['agent' => $agent, "users" => $users, "drivers" => $drivers]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -127,6 +135,7 @@ class AdminController extends Controller
         $admins = $this->users->where('isAdmin', '1')->get();
         return view('admin.admins')->with('admins', $admins);
     }
+    
     /**
      * Display the specified resource.
      *
@@ -142,7 +151,8 @@ class AdminController extends Controller
     {
         $users = $this->users->whereNull('isAdmin')->get();
         $drivers = $this->drivers->get();
-        return view('admin.users')->with(['users' => $users, 'drivers' => $drivers]);
+        $agents = User::where('isAdmin', '2')->get();
+        return view('admin.users')->with(['users' => $users, 'drivers' => $drivers, 'agents' => $agents]);
     }
 
     public function showTrips()

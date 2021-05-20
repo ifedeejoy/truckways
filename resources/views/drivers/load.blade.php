@@ -40,15 +40,20 @@
                             </div>
                             <h6 class="small-text mb-5">We deduct 5% service charge from driver’s pay</h6>
                         </form>
-                        @if (count($errors) > 0)
+                        @if(is_string($errors))
                         <div class="alert alert-danger">
-                            <strong>Sorry!</strong> There were more problems with your HTML input.<br><br>
                             <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
+                                <li>{{ $errors }}</li>
                             </ul>
                         </div>
+                        @elseif ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
 
                         @if(session('success'))

@@ -10,17 +10,20 @@
         @foreach ($trucks as $truck)
             <div class="market-card">
                 @foreach (json_decode($truck->images) as $image)
-                    @if ($loop->first)
-                    <div class="mcard-top">
-                        <img src="{{asset($image)}}" class="m-img" alt="Loaded Van">
-                    </div>
-                    @break
-                    @endif
+                @if ($loop->first)
+                <a class="mcard-top" href="{{asset($image)}}" data-lightbox="{{$truck->id}}">
+                    <img src="{{asset($image)}}" class="m-img" alt="Loaded Van">
+                </a>
+                @else
+                <a class="d-none" href="{{asset($image)}}" data-lightbox="{{$truck->id}}">
+                    <img src="{{asset($image)}}" class="m-img" alt="Loaded Van">
+                </a>
+                @endif
                 @endforeach
                 
                 <div class="light-overlay text-center overlay{{$truck->id}}">
                     <h6 class="small-text mt-3 text-white">Phone Number</h6>
-                    <h6 class="small-text mt-3">{{$truck->phone}}</h6>
+                    <h6 class="small-text mt-3">{{Str::limit($truck->phone, 7)}}</h6>
                     <div class="text-center mt-5">
                     <button class="long-btn waves-effect waves-dark p-2" id="{{$truck->id}}" onclick="hideNumber(this.id)">Cancel</button>
                     </div>

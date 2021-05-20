@@ -16,6 +16,7 @@
                             <th scope="col">Destination</th>
                             <th scope="col">Price</th>
                             <th scope="col">Truck Type</th>
+                            <th scope="col">View</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -26,17 +27,19 @@
                             <th scope="col">Destination</th>
                             <th scope="col">Price</th>
                             <th scope="col">Truck Type</th>
+                            <th scope="col">View</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach ($loads as $load)
-                        <tr class="clickable-row" data-href="/users/active-load/{{$load->id}}">
+                        <tr>
                             <td>{!! htmlspecialchars_decode(date('j<\s\up>S</\s\up> F Y', strtotime($load->created_at))) !!}</td>
                             <td>{{$load->reference}}</td>
                             <td>{{$load->pickup}}</td>
                             <td>{{$load->delivery}}</td>
                             <td>{{$load->price}}</td>
                             <td>{{$load->truck_type}}</td>
+                            <td><a href="/users/load/{{$load->id}}}" class="btn btn-primary btn-sm">View</a></td>
                         </tr>
                         @endforeach
                     </tbody>

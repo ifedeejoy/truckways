@@ -18,6 +18,10 @@
                     <img src="/images/load-status.png" alt="">
                     <h6>My Bids</h6>
                 </div>
+                <div class="card-box clickable-row" data-href="/drivers/trucks">
+                    <img src="/images/explore-trucks.svg" alt="">
+                    <h6>My Vehicles</h6>
+                </div>
                 <div class="card-box clickable-row" data-href="/drivers/journey-history">
                     <img src="/images/view-records.png" alt="">
                     <h6>Journey History</h6>
@@ -25,10 +29,6 @@
                 <div class="card-box clickable-row" data-href="/drivers/earnings">
                     <img src="/images/bids.png" alt="">
                     <h6>Earnings</h6>
-                </div>
-                <div class="card-box clickable-row" data-href="/drivers/trucks">
-                    <img src="/images/explore-trucks.svg" alt="">
-                    <h6>My Vehicles</h6>
                 </div>
                 <div class="card-box clickable-row" data-href="/drivers/profile">
                     <img src="/images/manage-account.png" alt="">

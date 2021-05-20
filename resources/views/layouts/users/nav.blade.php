@@ -1,7 +1,7 @@
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-light lighten-5">
-	<a class="navbar-brand col-sm-3 text-center" href="#">
-		<strong class="title">{{ config('app.name') }}</strong class="title">
+	<a class="navbar-brand col-sm-3 text-center" href="/">
+		<strong class="title"><img src="/images/logo-black.png" alt="Truckways" class="logo-img"></strong class="title">
 	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
 	  aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">

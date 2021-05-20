@@ -11,10 +11,13 @@
             <div class="market-card">
                 @foreach (json_decode($load->images) as $image)
                     @if ($loop->first)
-                    <div class="mcard-top">
+                    <a class="mcard-top" href="{{asset($image)}}" data-lightbox="{{$load->id}}">
                         <img src="{{asset($image)}}" class="m-img" alt="Loaded Van">
-                    </div>
-                    @break
+                    </a>
+                    @else
+                    <a class="d-none" href="{{asset($image)}}" data-lightbox="{{$load->id}}">
+                        <img src="{{asset($image)}}" class="m-img" alt="Loaded Van">
+                    </a>
                     @endif
                 @endforeach
                 
